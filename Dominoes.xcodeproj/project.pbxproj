@@ -1,0 +1,445 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B527C6B3147C661D00D2257E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B2147C661D00D2257E /* UIKit.framework */; };
+		B527C6B5147C661D00D2257E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B4147C661D00D2257E /* Foundation.framework */; };
+		B527C6B7147C661D00D2257E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B6147C661D00D2257E /* CoreGraphics.framework */; };
+		B527C6BD147C661D00D2257E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B527C6BB147C661D00D2257E /* InfoPlist.strings */; };
+		B527C6BF147C661D00D2257E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B527C6BE147C661D00D2257E /* main.m */; };
+		B527C6C3147C661D00D2257E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B527C6C2147C661D00D2257E /* AppDelegate.m */; };
+		B527C6C6147C661D00D2257E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B527C6C4147C661D00D2257E /* MainStoryboard.storyboard */; };
+		B527C6C9147C661D00D2257E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B527C6C8147C661D00D2257E /* ViewController.m */; };
+		B527C6D1147C661D00D2257E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6D0147C661D00D2257E /* SenTestingKit.framework */; };
+		B527C6D2147C661D00D2257E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B2147C661D00D2257E /* UIKit.framework */; };
+		B527C6D3147C661D00D2257E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B4147C661D00D2257E /* Foundation.framework */; };
+		B527C6DB147C661D00D2257E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B527C6D9147C661D00D2257E /* InfoPlist.strings */; };
+		B527C6DE147C661D00D2257E /* DominoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B527C6DD147C661D00D2257E /* DominoesTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B527C6D4147C661D00D2257E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B527C6A5147C661D00D2257E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B527C6AD147C661D00D2257E;
+			remoteInfo = Dominoes;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B527C6AE147C661D00D2257E /* Dominoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dominoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B527C6B2147C661D00D2257E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B527C6B4147C661D00D2257E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B527C6B6147C661D00D2257E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B527C6BA147C661D00D2257E /* Dominoes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dominoes-Info.plist"; sourceTree = "<group>"; };
+		B527C6BC147C661D00D2257E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B527C6BE147C661D00D2257E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B527C6C0147C661D00D2257E /* Dominoes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dominoes-Prefix.pch"; sourceTree = "<group>"; };
+		B527C6C1147C661D00D2257E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B527C6C2147C661D00D2257E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B527C6C5147C661D00D2257E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		B527C6C7147C661D00D2257E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B527C6C8147C661D00D2257E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B527C6CF147C661D00D2257E /* DominoesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DominoesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B527C6D0147C661D00D2257E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		B527C6D8147C661D00D2257E /* DominoesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DominoesTests-Info.plist"; sourceTree = "<group>"; };
+		B527C6DA147C661D00D2257E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B527C6DC147C661D00D2257E /* DominoesTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DominoesTests.h; sourceTree = "<group>"; };
+		B527C6DD147C661D00D2257E /* DominoesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DominoesTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B527C6AB147C661D00D2257E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B527C6B3147C661D00D2257E /* UIKit.framework in Frameworks */,
+				B527C6B5147C661D00D2257E /* Foundation.framework in Frameworks */,
+				B527C6B7147C661D00D2257E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B527C6CB147C661D00D2257E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B527C6D1147C661D00D2257E /* SenTestingKit.framework in Frameworks */,
+				B527C6D2147C661D00D2257E /* UIKit.framework in Frameworks */,
+				B527C6D3147C661D00D2257E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B527C6A3147C661D00D2257E = {
+			isa = PBXGroup;
+			children = (
+				B527C6B8147C661D00D2257E /* Dominoes */,
+				B527C6D6147C661D00D2257E /* DominoesTests */,
+				B527C6B1147C661D00D2257E /* Frameworks */,
+				B527C6AF147C661D00D2257E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B527C6AF147C661D00D2257E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B527C6AE147C661D00D2257E /* Dominoes.app */,
+				B527C6CF147C661D00D2257E /* DominoesTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B527C6B1147C661D00D2257E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B527C6B2147C661D00D2257E /* UIKit.framework */,
+				B527C6B4147C661D00D2257E /* Foundation.framework */,
+				B527C6B6147C661D00D2257E /* CoreGraphics.framework */,
+				B527C6D0147C661D00D2257E /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B527C6B8147C661D00D2257E /* Dominoes */ = {
+			isa = PBXGroup;
+			children = (
+				B527C6C1147C661D00D2257E /* AppDelegate.h */,
+				B527C6C2147C661D00D2257E /* AppDelegate.m */,
+				B527C6C4147C661D00D2257E /* MainStoryboard.storyboard */,
+				B527C6C7147C661D00D2257E /* ViewController.h */,
+				B527C6C8147C661D00D2257E /* ViewController.m */,
+				B527C6B9147C661D00D2257E /* Supporting Files */,
+			);
+			path = Dominoes;
+			sourceTree = "<group>";
+		};
+		B527C6B9147C661D00D2257E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B527C6BA147C661D00D2257E /* Dominoes-Info.plist */,
+				B527C6BB147C661D00D2257E /* InfoPlist.strings */,
+				B527C6BE147C661D00D2257E /* main.m */,
+				B527C6C0147C661D00D2257E /* Dominoes-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B527C6D6147C661D00D2257E /* DominoesTests */ = {
+			isa = PBXGroup;
+			children = (
+				B527C6DC147C661D00D2257E /* DominoesTests.h */,
+				B527C6DD147C661D00D2257E /* DominoesTests.m */,
+				B527C6D7147C661D00D2257E /* Supporting Files */,
+			);
+			path = DominoesTests;
+			sourceTree = "<group>";
+		};
+		B527C6D7147C661D00D2257E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B527C6D8147C661D00D2257E /* DominoesTests-Info.plist */,
+				B527C6D9147C661D00D2257E /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B527C6AD147C661D00D2257E /* Dominoes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B527C6E1147C661D00D2257E /* Build configuration list for PBXNativeTarget "Dominoes" */;
+			buildPhases = (
+				B527C6AA147C661D00D2257E /* Sources */,
+				B527C6AB147C661D00D2257E /* Frameworks */,
+				B527C6AC147C661D00D2257E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Dominoes;
+			productName = Dominoes;
+			productReference = B527C6AE147C661D00D2257E /* Dominoes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B527C6CE147C661D00D2257E /* DominoesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B527C6E4147C661D00D2257E /* Build configuration list for PBXNativeTarget "DominoesTests" */;
+			buildPhases = (
+				B527C6CA147C661D00D2257E /* Sources */,
+				B527C6CB147C661D00D2257E /* Frameworks */,
+				B527C6CC147C661D00D2257E /* Resources */,
+				B527C6CD147C661D00D2257E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B527C6D5147C661D00D2257E /* PBXTargetDependency */,
+			);
+			name = DominoesTests;
+			productName = DominoesTests;
+			productReference = B527C6CF147C661D00D2257E /* DominoesTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B527C6A5147C661D00D2257E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = Home;
+			};
+			buildConfigurationList = B527C6A8147C661D00D2257E /* Build configuration list for PBXProject "Dominoes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B527C6A3147C661D00D2257E;
+			productRefGroup = B527C6AF147C661D00D2257E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B527C6AD147C661D00D2257E /* Dominoes */,
+				B527C6CE147C661D00D2257E /* DominoesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B527C6AC147C661D00D2257E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B527C6BD147C661D00D2257E /* InfoPlist.strings in Resources */,
+				B527C6C6147C661D00D2257E /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B527C6CC147C661D00D2257E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B527C6DB147C661D00D2257E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B527C6CD147C661D00D2257E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B527C6AA147C661D00D2257E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B527C6BF147C661D00D2257E /* main.m in Sources */,
+				B527C6C3147C661D00D2257E /* AppDelegate.m in Sources */,
+				B527C6C9147C661D00D2257E /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B527C6CA147C661D00D2257E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B527C6DE147C661D00D2257E /* DominoesTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B527C6D5147C661D00D2257E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B527C6AD147C661D00D2257E /* Dominoes */;
+			targetProxy = B527C6D4147C661D00D2257E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B527C6BB147C661D00D2257E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B527C6BC147C661D00D2257E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B527C6C4147C661D00D2257E /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B527C6C5147C661D00D2257E /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		B527C6D9147C661D00D2257E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B527C6DA147C661D00D2257E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B527C6DF147C661D00D2257E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B527C6E0147C661D00D2257E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B527C6E2147C661D00D2257E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dominoes/Dominoes-Prefix.pch";
+				INFOPLIST_FILE = "Dominoes/Dominoes-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B527C6E3147C661D00D2257E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dominoes/Dominoes-Prefix.pch";
+				INFOPLIST_FILE = "Dominoes/Dominoes-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B527C6E5147C661D00D2257E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Dominoes.app/Dominoes";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dominoes/Dominoes-Prefix.pch";
+				INFOPLIST_FILE = "DominoesTests/DominoesTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		B527C6E6147C661D00D2257E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Dominoes.app/Dominoes";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Dominoes/Dominoes-Prefix.pch";
+				INFOPLIST_FILE = "DominoesTests/DominoesTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B527C6A8147C661D00D2257E /* Build configuration list for PBXProject "Dominoes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B527C6DF147C661D00D2257E /* Debug */,
+				B527C6E0147C661D00D2257E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B527C6E1147C661D00D2257E /* Build configuration list for PBXNativeTarget "Dominoes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B527C6E2147C661D00D2257E /* Debug */,
+				B527C6E3147C661D00D2257E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B527C6E4147C661D00D2257E /* Build configuration list for PBXNativeTarget "DominoesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B527C6E5147C661D00D2257E /* Debug */,
+				B527C6E6147C661D00D2257E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B527C6A5147C661D00D2257E /* Project object */;
+}
