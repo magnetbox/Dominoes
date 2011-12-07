@@ -20,6 +20,7 @@
 		B527C6D3147C661D00D2257E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B4147C661D00D2257E /* Foundation.framework */; };
 		B527C6DB147C661D00D2257E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B527C6D9147C661D00D2257E /* InfoPlist.strings */; };
 		B527C6DE147C661D00D2257E /* DominoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B527C6DD147C661D00D2257E /* DominoesTests.m */; };
+		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		B527C6DA147C661D00D2257E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B527C6DC147C661D00D2257E /* DominoesTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DominoesTests.h; sourceTree = "<group>"; };
 		B527C6DD147C661D00D2257E /* DominoesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DominoesTests.m; sourceTree = "<group>"; };
+		BB9DCEAA1485DD8700C0E306 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		BB9DCEAB1485DD8700C0E306 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,8 @@
 			children = (
 				B527C6C1147C661D00D2257E /* AppDelegate.h */,
 				B527C6C2147C661D00D2257E /* AppDelegate.m */,
+				BB9DCEAA1485DD8700C0E306 /* Game.h */,
+				BB9DCEAB1485DD8700C0E306 /* Game.m */,
 				B527C6C4147C661D00D2257E /* MainStoryboard.storyboard */,
 				B527C6C7147C661D00D2257E /* ViewController.h */,
 				B527C6C8147C661D00D2257E /* ViewController.m */,
@@ -261,6 +266,7 @@
 				B527C6BF147C661D00D2257E /* main.m in Sources */,
 				B527C6C3147C661D00D2257E /* AppDelegate.m in Sources */,
 				B527C6C9147C661D00D2257E /* ViewController.m in Sources */,
+				BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +436,7 @@
 				B527C6E3147C661D00D2257E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B527C6E4147C661D00D2257E /* Build configuration list for PBXNativeTarget "DominoesTests" */ = {
 			isa = XCConfigurationList;
@@ -438,6 +445,7 @@
 				B527C6E6147C661D00D2257E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
