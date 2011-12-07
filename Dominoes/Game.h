@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Game : NSObject <NSCoding> {
+@interface Game : NSObject <NSCoding, NSCopying> {
     NSInteger *gId;
     NSString *gTitle;
     NSInteger *gEndScore;
@@ -30,18 +30,16 @@
 
 #pragma mark NSCoding
 
-#define kGameIdKey      @"ID"
-#define kGameTitleKey   @"Title"
+#define kGameIdKey          @"ID"
+#define kGameTitleKey       @"Title"
+#define kGameEndScoreKey    @"EndScore"
+#define kGameSurfaceKey     @"Surface"
+#define kGamePlayersKey     @"Players"
+#define kGamePlayersTurnKey @"PlayersTurn"
+#define kGameMovesKey       @"Moves"
+#define kGameActiveKey      @"Active"
 
-- (void) encodeWithCoder:(NSCoder *)encoder {
-    [encoder encodeObject:_title forKey:kTitleKey];
-    [encoder encodeFloat:_rating forKey:kRatingKey];
-}
-
-- (id)initWithCoder:(NSCoder *)decoder {
-    NSString *title = [decoder decodeObjectForKey:kTitleKey];
-    float rating = [decoder decodeFloatForKey:kRatingKey];
-    return [self initWithTitle:title rating:rating];
-}
+- (void) encodeWithCoder:(NSCoder *)aCoder;
+- (id) initWithCoder:(NSCoder *)aDecoder;
 
 @end

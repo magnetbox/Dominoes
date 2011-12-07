@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Game.h"
 
 @implementation ViewController
 
