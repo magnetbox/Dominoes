@@ -10,40 +10,40 @@
 
 @implementation Game
 
-@synthesize gameId=gId;
-@synthesize gameTitle=gTitle;
-@synthesize gameEndScore=gEndScore;
-@synthesize gameSurface=gSurface;
-@synthesize gamePlayers=gPlayers;
-@synthesize gamePlayersTurn=gPlayersTurn;
-@synthesize gameMoves=gMoves;
-@synthesize gameActive=gActive;
+@synthesize gameId;
+@synthesize gameTitle;
+@synthesize gameEndScore;
+@synthesize gameSurface;
+@synthesize gamePlayers;
+@synthesize gamePlayersTurn;
+@synthesize gameMoves;
+@synthesize gameActive;
 
 #pragma mark NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeInt:gId forKey:kGameIdKey];
-    [aCoder encodeObject:gTitle forKey:kGameTitleKey];
-    [aCoder encodeInt:gEndScore forKey:kGameEndScoreKey];
-    [aCoder encodeInt:gSurface forKey:kGameSurfaceKey];
-    [aCoder encodeObject:gPlayers forKey:kGamePlayersKey];
-    [aCoder encodeInt:gPlayersTurn forKey:kGamePlayersTurnKey];    
-    [aCoder encodeObject:gMoves forKey:kGameMovesKey];
-    [aCoder encodeBool:gActive forKey:kGameActiveKey];
-}
+    [aCoder encodeInt:gameId forKey:@"gameID"];
+    [aCoder encodeObject:gameTitle forKey:@"gameTitle"];
+    [aCoder encodeInt:gameEndScore forKey:@"gameEndScore"];
+    [aCoder encodeInt:gameSurface forKey:@"gameSurface"];
+    [aCoder encodeObject:gamePlayers forKey:@"gamePlayers"];
+    [aCoder encodeInt:gamePlayersTurn forKey:@"gamePlayersTurn"];    
+    [aCoder encodeObject:gameMoves forKey:@"gameMoves"];
+    [aCoder encodeBool:gameActive forKey:@"gameActive"];
+} // encodeWithCoder
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super init]) {
-        gId = [aDecoder decodeIntForKey:kGameIdKey];
-        gTitle = [aDecoder decodeObjectForKey:kGameTitleKey];
-        gEndScore = [aDecoder decodeIntForKey:kGameEndScoreKey];
-        gSurface = [aDecoder decodeIntForKey:kGameSurfaceKey];
-        gPlayers = [aDecoder decodeObjectForKey:kGamePlayersKey];
-        gPlayersTurn = [aDecoder decodeIntForKey:kGamePlayersTurnKey];
-        gMoves = [aDecoder decodeObjectForKey:kGameMovesKey];
-        gActive = [aDecoder decodeBoolForKey:kGameActiveKey];
+        [aDecoder decodeIntForKey:@"gameID"];
+        [aDecoder decodeObjectForKey:@"gameTitle"];
+        [aDecoder decodeIntForKey:@"gameEndScore"];
+        [aDecoder decodeIntForKey:@"gameSurface"];
+        [aDecoder decodeObjectForKey:@"gamePlayers"];
+        [aDecoder decodeIntForKey:@"gamePlayersTurn"];
+        [aDecoder decodeObjectForKey:@"gameMoves"];
+        [aDecoder decodeBoolForKey:@"gameActive"];
     }
-    return self;
-}
+    return (self);
+} // initWithCoder
 
 @end
