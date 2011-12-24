@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Game.h"
 
 @implementation AppDelegate
 
@@ -14,6 +15,29 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	
+	if (prefs) {
+        // load user's settings
+        /*
+		val = [prefs objectForKey:@"Prefs"];
+        NSString *myString = [prefs stringForKey:@"keyToLookupString"];
+        NSInteger myInt = [prefs integerForKey:@"integerKey"];
+        */
+    } else {
+        // set default settings
+        NSString *myString = nil;
+        
+        // save default settings
+        [prefs setObject:myString forKey:@"Prefs"];
+		//[prefs setObject:myString forKey:@"Prefs"];
+        //[prefs setInteger:index forKey:@"MySelectedValueKey"];
+        
+        // save settings
+        [prefs synchronize];
+    }
+	
+
     // Override point for customization after application launch.
     return YES;
 }

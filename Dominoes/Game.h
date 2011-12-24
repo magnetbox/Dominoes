@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Game : NSObject <NSCoding> {
+@interface Game : NSObject <NSCoding, NSCopying> {
     NSInteger gameId;
     NSString *gameTitle;
     NSInteger gameEndScore;
@@ -27,10 +27,5 @@
 @property (nonatomic, assign) NSInteger gamePlayersTurn;
 @property (nonatomic, retain) NSArray *gameMoves;
 @property (nonatomic) BOOL gameActive;
-
-#pragma mark NSCoding
-
-- (void) encodeWithCoder:(NSCoder *)aCoder;
-- (id) initWithCoder:(NSCoder *)aDecoder;
 
 @end

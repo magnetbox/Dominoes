@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#define kFileName   @"archive"
+#define kDataKey    @"Data"
+
 @interface ViewController : UIViewController
+
+-(NSString *)dataFilePath;
 
 @end
