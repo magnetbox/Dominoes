@@ -1,17 +1,17 @@
 //
-//  ViewController.h
+//  GamesViewController.h
 //  Dominoes
 //
-//  Created by Ben Tesch on 11/22/11.
+//  Created by Ben Tesch on 12/26/11.
 //  Copyright (c) 2011 Home. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-#define kFileName   @"games"
+#define kDataFileName   @"games"
 #define kDataKey    @"Data"
 
-@interface ViewController : UIViewController
+@interface GamesViewController : UITableViewController
 
 -(NSString *)dataFilePath;
 
