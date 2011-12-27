@@ -16,15 +16,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    gamesViewController = [[GamesViewController alloc] init];
+    [_window setRootViewController:gamesViewController];
+    
+    /*
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	
 	if (prefs) {
         // load user's settings
-        /*
 		val = [prefs objectForKey:@"Prefs"];
         NSString *myString = [prefs stringForKey:@"keyToLookupString"];
         NSInteger myInt = [prefs integerForKey:@"integerKey"];
-        */
     } else {
         // set default settings
         NSString *myString = nil;
@@ -37,8 +39,9 @@
         // save settings
         [prefs synchronize];
     }
+     */
 	
-
+    [_window makeKeyAndVisible];
     // Override point for customization after application launch.
     return YES;
 }

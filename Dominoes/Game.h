@@ -28,4 +28,13 @@
 @property (nonatomic, retain) NSArray *gameMoves;
 @property (nonatomic) BOOL gameActive;
 
+// Returns how many games are in the list.
+- (int)gameCount;
+
+// Returns the Gane object at the specified position in the list.
+- (Game*)gameAtIndex:(int)index;
+
+// Deletes a Game object from the list.
+- (void)removeGameAtIndex:(int)index;
+
 @end
