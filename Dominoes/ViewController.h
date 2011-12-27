@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define kFileName   @"archive"
+#define kFileName   @"games"
 #define kDataKey    @"Data"
 
 @interface ViewController : UIViewController

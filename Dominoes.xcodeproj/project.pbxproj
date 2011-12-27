@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5115BFC14A947810063F26B /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5115BFA14A947810063F26B /* NewGameViewController.m */; };
+		B5115BFD14A947810063F26B /* NewGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5115BFB14A947810063F26B /* NewGameViewController.xib */; };
+		B5115C0714A947C40063F26B /* PlayGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5115C0514A947C40063F26B /* PlayGameViewController.m */; };
+		B5115C0814A947C40063F26B /* PlayGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5115C0614A947C40063F26B /* PlayGameViewController.xib */; };
 		B527C6B3147C661D00D2257E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B2147C661D00D2257E /* UIKit.framework */; };
 		B527C6B5147C661D00D2257E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B4147C661D00D2257E /* Foundation.framework */; };
 		B527C6B7147C661D00D2257E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B6147C661D00D2257E /* CoreGraphics.framework */; };
@@ -35,6 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B5115BF914A947800063F26B /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
+		B5115BFA14A947810063F26B /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
+		B5115BFB14A947810063F26B /* NewGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewGameViewController.xib; sourceTree = "<group>"; };
+		B5115C0414A947C40063F26B /* PlayGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayGameViewController.h; sourceTree = "<group>"; };
+		B5115C0514A947C40063F26B /* PlayGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameViewController.m; sourceTree = "<group>"; };
+		B5115C0614A947C40063F26B /* PlayGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayGameViewController.xib; sourceTree = "<group>"; };
 		B527C6AE147C661D00D2257E /* Dominoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dominoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B527C6B2147C661D00D2257E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B527C6B4147C661D00D2257E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -124,6 +134,12 @@
 				B5D75F4014A554FE00171761 /* Helper.h */,
 				B5D75F4114A554FE00171761 /* Helper.m */,
 				B527C6C4147C661D00D2257E /* MainStoryboard.storyboard */,
+				B5115BF914A947800063F26B /* NewGameViewController.h */,
+				B5115BFA14A947810063F26B /* NewGameViewController.m */,
+				B5115BFB14A947810063F26B /* NewGameViewController.xib */,
+				B5115C0414A947C40063F26B /* PlayGameViewController.h */,
+				B5115C0514A947C40063F26B /* PlayGameViewController.m */,
+				B5115C0614A947C40063F26B /* PlayGameViewController.xib */,
 				B527C6C7147C661D00D2257E /* ViewController.h */,
 				B527C6C8147C661D00D2257E /* ViewController.m */,
 				B527C6B9147C661D00D2257E /* Supporting Files */,
@@ -234,6 +250,8 @@
 			files = (
 				B527C6BD147C661D00D2257E /* InfoPlist.strings in Resources */,
 				B527C6C6147C661D00D2257E /* MainStoryboard.storyboard in Resources */,
+				B5115BFD14A947810063F26B /* NewGameViewController.xib in Resources */,
+				B5115C0814A947C40063F26B /* PlayGameViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +291,8 @@
 				B527C6C9147C661D00D2257E /* ViewController.m in Sources */,
 				BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */,
 				B5D75F4214A554FE00171761 /* Helper.m in Sources */,
+				B5115BFC14A947810063F26B /* NewGameViewController.m in Sources */,
+				B5115C0714A947C40063F26B /* PlayGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
