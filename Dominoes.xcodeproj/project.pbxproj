@@ -18,9 +18,9 @@
 		B527C6D3147C661D00D2257E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B4147C661D00D2257E /* Foundation.framework */; };
 		B527C6DB147C661D00D2257E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B527C6D9147C661D00D2257E /* InfoPlist.strings */; };
 		B527C6DE147C661D00D2257E /* DominoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B527C6DD147C661D00D2257E /* DominoesTests.m */; };
-		B5671ABD14AD7E75006931F8 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5671ABA14AD7E75006931F8 /* MasterViewController.m */; };
-		B5671ABE14AD7E75006931F8 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5671ABC14AD7E75006931F8 /* DetailViewController.m */; };
 		B5671AC014AD7EE1006931F8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5671ABF14AD7EE1006931F8 /* MainStoryboard.storyboard */; };
+		B5E9848E14AE865500BA3DFF /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9848B14AE865500BA3DFF /* DetailViewController.m */; };
+		B5E9848F14AE865500BA3DFF /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9848D14AE865500BA3DFF /* MasterViewController.m */; };
 		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
 /* End PBXBuildFile section */
 
@@ -51,11 +51,11 @@
 		B527C6DA147C661D00D2257E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B527C6DC147C661D00D2257E /* DominoesTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DominoesTests.h; sourceTree = "<group>"; };
 		B527C6DD147C661D00D2257E /* DominoesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DominoesTests.m; sourceTree = "<group>"; };
-		B5671AB914AD7E75006931F8 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterViewController.h; path = ../../Dominoes3/Dominoes3/MasterViewController.h; sourceTree = "<group>"; };
-		B5671ABA14AD7E75006931F8 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterViewController.m; path = ../../Dominoes3/Dominoes3/MasterViewController.m; sourceTree = "<group>"; };
-		B5671ABB14AD7E75006931F8 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../../Dominoes3/Dominoes3/DetailViewController.h; sourceTree = "<group>"; };
-		B5671ABC14AD7E75006931F8 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../../Dominoes3/Dominoes3/DetailViewController.m; sourceTree = "<group>"; };
 		B5671ABF14AD7EE1006931F8 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		B5E9848A14AE865500BA3DFF /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		B5E9848B14AE865500BA3DFF /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		B5E9848C14AE865500BA3DFF /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		B5E9848D14AE865500BA3DFF /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		BB9DCEAA1485DD8700C0E306 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		BB9DCEAB1485DD8700C0E306 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,14 +117,14 @@
 		B527C6B8147C661D00D2257E /* Dominoes */ = {
 			isa = PBXGroup;
 			children = (
+				B5E9848A14AE865500BA3DFF /* DetailViewController.h */,
+				B5E9848B14AE865500BA3DFF /* DetailViewController.m */,
+				B5E9848C14AE865500BA3DFF /* MasterViewController.h */,
+				B5E9848D14AE865500BA3DFF /* MasterViewController.m */,
 				B527C6C1147C661D00D2257E /* AppDelegate.h */,
 				B527C6C2147C661D00D2257E /* AppDelegate.m */,
 				BB9DCEAA1485DD8700C0E306 /* Game.h */,
 				BB9DCEAB1485DD8700C0E306 /* Game.m */,
-				B5671AB914AD7E75006931F8 /* MasterViewController.h */,
-				B5671ABA14AD7E75006931F8 /* MasterViewController.m */,
-				B5671ABB14AD7E75006931F8 /* DetailViewController.h */,
-				B5671ABC14AD7E75006931F8 /* DetailViewController.m */,
 				B5671ABF14AD7EE1006931F8 /* MainStoryboard.storyboard */,
 				B527C6B9147C661D00D2257E /* Supporting Files */,
 			);
@@ -271,8 +271,8 @@
 				B527C6BF147C661D00D2257E /* main.m in Sources */,
 				B527C6C3147C661D00D2257E /* AppDelegate.m in Sources */,
 				BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */,
-				B5671ABD14AD7E75006931F8 /* MasterViewController.m in Sources */,
-				B5671ABE14AD7E75006931F8 /* DetailViewController.m in Sources */,
+				B5E9848E14AE865500BA3DFF /* DetailViewController.m in Sources */,
+				B5E9848F14AE865500BA3DFF /* MasterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
