@@ -8,12 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class GamesViewController;
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate> {
-    UIWindow *window;
-    GamesViewController *gamesViewController;
-}
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

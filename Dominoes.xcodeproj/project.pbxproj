@@ -7,25 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B5115BFC14A947810063F26B /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5115BFA14A947810063F26B /* NewGameViewController.m */; };
-		B5115BFD14A947810063F26B /* NewGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5115BFB14A947810063F26B /* NewGameViewController.xib */; };
-		B5115C0714A947C40063F26B /* PlayGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5115C0514A947C40063F26B /* PlayGameViewController.m */; };
-		B5115C0814A947C40063F26B /* PlayGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5115C0614A947C40063F26B /* PlayGameViewController.xib */; };
-		B5115C0C14A9494F0063F26B /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5115C0A14A9494F0063F26B /* GamesViewController.m */; };
-		B5115C0D14A9494F0063F26B /* GamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5115C0B14A9494F0063F26B /* GamesViewController.xib */; };
 		B527C6B3147C661D00D2257E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B2147C661D00D2257E /* UIKit.framework */; };
 		B527C6B5147C661D00D2257E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B4147C661D00D2257E /* Foundation.framework */; };
 		B527C6B7147C661D00D2257E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B6147C661D00D2257E /* CoreGraphics.framework */; };
 		B527C6BD147C661D00D2257E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B527C6BB147C661D00D2257E /* InfoPlist.strings */; };
 		B527C6BF147C661D00D2257E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B527C6BE147C661D00D2257E /* main.m */; };
 		B527C6C3147C661D00D2257E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B527C6C2147C661D00D2257E /* AppDelegate.m */; };
-		B527C6C6147C661D00D2257E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B527C6C4147C661D00D2257E /* MainStoryboard.storyboard */; };
 		B527C6D1147C661D00D2257E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6D0147C661D00D2257E /* SenTestingKit.framework */; };
 		B527C6D2147C661D00D2257E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B2147C661D00D2257E /* UIKit.framework */; };
 		B527C6D3147C661D00D2257E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B527C6B4147C661D00D2257E /* Foundation.framework */; };
 		B527C6DB147C661D00D2257E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B527C6D9147C661D00D2257E /* InfoPlist.strings */; };
 		B527C6DE147C661D00D2257E /* DominoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B527C6DD147C661D00D2257E /* DominoesTests.m */; };
-		B5D75F4214A554FE00171761 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D75F4114A554FE00171761 /* Helper.m */; };
+		B5671ABD14AD7E75006931F8 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5671ABA14AD7E75006931F8 /* MasterViewController.m */; };
+		B5671ABE14AD7E75006931F8 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5671ABC14AD7E75006931F8 /* DetailViewController.m */; };
+		B5671AC014AD7EE1006931F8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5671ABF14AD7EE1006931F8 /* MainStoryboard.storyboard */; };
 		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
 /* End PBXBuildFile section */
 
@@ -40,15 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B5115BF914A947800063F26B /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
-		B5115BFA14A947810063F26B /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
-		B5115BFB14A947810063F26B /* NewGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewGameViewController.xib; sourceTree = "<group>"; };
-		B5115C0414A947C40063F26B /* PlayGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayGameViewController.h; sourceTree = "<group>"; };
-		B5115C0514A947C40063F26B /* PlayGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayGameViewController.m; sourceTree = "<group>"; };
-		B5115C0614A947C40063F26B /* PlayGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayGameViewController.xib; sourceTree = "<group>"; };
-		B5115C0914A9494F0063F26B /* GamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamesViewController.h; sourceTree = "<group>"; };
-		B5115C0A14A9494F0063F26B /* GamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesViewController.m; sourceTree = "<group>"; };
-		B5115C0B14A9494F0063F26B /* GamesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GamesViewController.xib; sourceTree = "<group>"; };
 		B527C6AE147C661D00D2257E /* Dominoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dominoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B527C6B2147C661D00D2257E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B527C6B4147C661D00D2257E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -57,17 +43,19 @@
 		B527C6BC147C661D00D2257E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B527C6BE147C661D00D2257E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B527C6C0147C661D00D2257E /* Dominoes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dominoes-Prefix.pch"; sourceTree = "<group>"; };
-		B527C6C1147C661D00D2257E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B527C6C1147C661D00D2257E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B527C6C2147C661D00D2257E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B527C6C5147C661D00D2257E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B527C6CF147C661D00D2257E /* DominoesTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DominoesTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B527C6D0147C661D00D2257E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		B527C6D8147C661D00D2257E /* DominoesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DominoesTests-Info.plist"; sourceTree = "<group>"; };
 		B527C6DA147C661D00D2257E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B527C6DC147C661D00D2257E /* DominoesTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DominoesTests.h; sourceTree = "<group>"; };
 		B527C6DD147C661D00D2257E /* DominoesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DominoesTests.m; sourceTree = "<group>"; };
-		B5D75F4014A554FE00171761 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
-		B5D75F4114A554FE00171761 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		B5671AB914AD7E75006931F8 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterViewController.h; path = ../../Dominoes3/Dominoes3/MasterViewController.h; sourceTree = "<group>"; };
+		B5671ABA14AD7E75006931F8 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterViewController.m; path = ../../Dominoes3/Dominoes3/MasterViewController.m; sourceTree = "<group>"; };
+		B5671ABB14AD7E75006931F8 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../../Dominoes3/Dominoes3/DetailViewController.h; sourceTree = "<group>"; };
+		B5671ABC14AD7E75006931F8 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../../Dominoes3/Dominoes3/DetailViewController.m; sourceTree = "<group>"; };
+		B5671ABF14AD7EE1006931F8 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		BB9DCEAA1485DD8700C0E306 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		BB9DCEAB1485DD8700C0E306 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,18 +121,11 @@
 				B527C6C2147C661D00D2257E /* AppDelegate.m */,
 				BB9DCEAA1485DD8700C0E306 /* Game.h */,
 				BB9DCEAB1485DD8700C0E306 /* Game.m */,
-				B5D75F4014A554FE00171761 /* Helper.h */,
-				B5D75F4114A554FE00171761 /* Helper.m */,
-				B527C6C4147C661D00D2257E /* MainStoryboard.storyboard */,
-				B5115C0914A9494F0063F26B /* GamesViewController.h */,
-				B5115C0A14A9494F0063F26B /* GamesViewController.m */,
-				B5115C0B14A9494F0063F26B /* GamesViewController.xib */,
-				B5115BF914A947800063F26B /* NewGameViewController.h */,
-				B5115BFA14A947810063F26B /* NewGameViewController.m */,
-				B5115BFB14A947810063F26B /* NewGameViewController.xib */,
-				B5115C0414A947C40063F26B /* PlayGameViewController.h */,
-				B5115C0514A947C40063F26B /* PlayGameViewController.m */,
-				B5115C0614A947C40063F26B /* PlayGameViewController.xib */,
+				B5671AB914AD7E75006931F8 /* MasterViewController.h */,
+				B5671ABA14AD7E75006931F8 /* MasterViewController.m */,
+				B5671ABB14AD7E75006931F8 /* DetailViewController.h */,
+				B5671ABC14AD7E75006931F8 /* DetailViewController.m */,
+				B5671ABF14AD7EE1006931F8 /* MainStoryboard.storyboard */,
 				B527C6B9147C661D00D2257E /* Supporting Files */,
 			);
 			path = Dominoes;
@@ -252,10 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B527C6BD147C661D00D2257E /* InfoPlist.strings in Resources */,
-				B527C6C6147C661D00D2257E /* MainStoryboard.storyboard in Resources */,
-				B5115BFD14A947810063F26B /* NewGameViewController.xib in Resources */,
-				B5115C0814A947C40063F26B /* PlayGameViewController.xib in Resources */,
-				B5115C0D14A9494F0063F26B /* GamesViewController.xib in Resources */,
+				B5671AC014AD7EE1006931F8 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,10 +271,8 @@
 				B527C6BF147C661D00D2257E /* main.m in Sources */,
 				B527C6C3147C661D00D2257E /* AppDelegate.m in Sources */,
 				BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */,
-				B5D75F4214A554FE00171761 /* Helper.m in Sources */,
-				B5115BFC14A947810063F26B /* NewGameViewController.m in Sources */,
-				B5115C0714A947C40063F26B /* PlayGameViewController.m in Sources */,
-				B5115C0C14A9494F0063F26B /* GamesViewController.m in Sources */,
+				B5671ABD14AD7E75006931F8 /* MasterViewController.m in Sources */,
+				B5671ABE14AD7E75006931F8 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,14 +301,6 @@
 				B527C6BC147C661D00D2257E /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B527C6C4147C661D00D2257E /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B527C6C5147C661D00D2257E /* en */,
-			);
-			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 		B527C6D9147C661D00D2257E /* InfoPlist.strings */ = {

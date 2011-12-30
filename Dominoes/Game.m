@@ -8,15 +8,6 @@
 
 #import "Game.h"
 
-#define kGameId             @"GameId"
-#define kGameTitle          @"GameTitle"
-#define kGameEndScore       @"GameEndScore"
-#define kGameSurface        @"GameSurface"
-#define kGamePlayers        @"GamePlayers"
-#define kGamePlayersTurn    @"GamePlayersTurn"
-#define kGameMoves          @"GameMoves"
-#define kGameActive         @"GameActive"
-
 @implementation Game
 
 @synthesize gameId;
@@ -28,7 +19,21 @@
 @synthesize gameMoves;
 @synthesize gameActive;
 
+- (NSString*)description
+{
+	return [NSString stringWithFormat:@"%@ %@", [super description], self.gameTitle];
+}
+
 #pragma mark NSCoding
+
+#define kGameId             @"GameId"
+#define kGameTitle          @"GameTitle"
+#define kGameEndScore       @"GameEndScore"
+#define kGameSurface        @"GameSurface"
+#define kGamePlayers        @"GamePlayers"
+#define kGamePlayersTurn    @"GamePlayersTurn"
+#define kGameMoves          @"GameMoves"
+#define kGameActive         @"GameActive"
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeInt:gameId forKey:kGameId];

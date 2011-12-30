@@ -7,45 +7,29 @@
 //
 
 #import "AppDelegate.h"
-#import "GamesViewController.h"
-#import "Game.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 
++ (void)initialize
+{
+	if ([self class] == [AppDelegate class])
+	{
+		NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSArray array], @"GameDefaults",
+                              nil];
+        
+		[[NSUserDefaults standardUserDefaults] registerDefaults:dict];
+	}
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    gamesViewController = [[GamesViewController alloc] init];
-    [_window setRootViewController:gamesViewController];
-    
-    /*
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	
-	if (prefs) {
-        // load user's settings
-		val = [prefs objectForKey:@"Prefs"];
-        NSString *myString = [prefs stringForKey:@"keyToLookupString"];
-        NSInteger myInt = [prefs integerForKey:@"integerKey"];
-    } else {
-        // set default settings
-        NSString *myString = nil;
-        
-        // save default settings
-        [prefs setObject:myString forKey:@"Prefs"];
-		//[prefs setObject:myString forKey:@"Prefs"];
-        //[prefs setInteger:index forKey:@"MySelectedValueKey"];
-        
-        // save settings
-        [prefs synchronize];
-    }
-     */
-	
-    [_window makeKeyAndVisible];
     // Override point for customization after application launch.
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*
