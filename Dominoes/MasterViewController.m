@@ -6,9 +6,10 @@
 //  Copyright (c) 2011 Home. All rights reserved.
 //
 
+#import "Game.h"
 #import "MasterViewController.h"
 #import "DetailViewController.h"
-#import "Game.h"
+#import "NewGameViewController.h"
 
 @implementation MasterViewController
 
@@ -95,6 +96,12 @@
 
 }   
 
+- (void)setupNewGame:(id)sender
+{
+    NewGameViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"newGameView"];    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 #pragma mark - View lifecycle
 
 - (void)awakeFromNib
@@ -119,7 +126,7 @@
     self.navigationItem.leftBarButtonItem = leftButton;
 
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"New"
-                                                                    style:UIBarButtonItemStylePlain target:nil action:nil];
+                                                                    style:UIBarButtonItemStylePlain target:self action:@selector(setupNewGame:)];
     self.navigationItem.rightBarButtonItem = rightButton;
 }
 
