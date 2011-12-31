@@ -121,6 +121,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
+    /*
+    // handled in storyboard
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Settings"
                                                                     style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.leftBarButtonItem = leftButton;
@@ -128,6 +130,7 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"New"
                                                                     style:UIBarButtonItemStylePlain target:self action:@selector(setupNewGame:)];
     self.navigationItem.rightBarButtonItem = rightButton;
+    */
 }
 
 - (void)viewDidUnload

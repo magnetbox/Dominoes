@@ -37,12 +37,17 @@
     [super viewDidLoad];
 
     defaultPlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-    defaultSettings = [[NSMutableArray alloc] initWithObjects:@"Surface", @"Play to score", @"Game title", nil];    
+    defaultSettings = [[NSMutableArray alloc] initWithObjects:@"Surface", @"Play to score", @"Game title",@"Use as defaults", nil];    
     defaults = [[NSMutableArray alloc] initWithObjects:defaultPlayers, defaultSettings, nil];
+    
+    //self.tableView.editing = YES;
 
+    /*
+    // handled in storyboard
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
                                                                     style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.rightBarButtonItem = rightButton;
+    */
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -127,6 +132,7 @@
         cell.textLabel.text = cellText;
         
         return cell;
+        
     } else {
         NSString* SettingCellIdentifier = @"SettingCell";
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:SettingCellIdentifier];
@@ -141,14 +147,16 @@
     }    
 }
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    if (indexPath.section==0) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
-*/
 
 /*
 // Override to support editing the table view.
