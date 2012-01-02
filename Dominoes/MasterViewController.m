@@ -6,10 +6,9 @@
 //  Copyright (c) 2011 Home. All rights reserved.
 //
 
-#import "Game.h"
 #import "MasterViewController.h"
+#import "Game.h"
 #import "DetailViewController.h"
-#import "NewGameViewController.h"
 
 @implementation MasterViewController
 
@@ -118,6 +117,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
@@ -203,5 +203,29 @@
     return YES;
 }
 */
+
+- (void)newGameViewControllerDidCancel:(NewGameViewController *)controller
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)newGameViewController:(NewGameViewController *)controller didAddGame:(Game *)game
+{
+    [self.activeGames addObject:game];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.activeGames count] - 1 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"setupNewGame"])
+	{
+		UINavigationController *navigationController = segue.destinationViewController;
+		NewGameViewController *newGameViewController = [[navigationController viewControllers] objectAtIndex:0];
+		newGameViewController.delegate = self;
+	}
+}
 
 @end

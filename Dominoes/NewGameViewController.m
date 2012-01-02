@@ -11,16 +11,8 @@
 
 @implementation NewGameViewController
 
-@synthesize defaults, defaultPlayers, defaultSettings;
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize delegate;
+@synthesize defaults, defaultPlayers, defaultSettings, defaultSettingsLabels;
 
 - (void)didReceiveMemoryWarning
 {
@@ -37,18 +29,18 @@
     [super viewDidLoad];
 
     defaultPlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-    defaultSettings = [[NSMutableArray alloc] initWithObjects:@"Surface", @"Play to score", @"Game title",@"Use as defaults", nil];    
+    defaultSettings = [[NSMutableArray alloc] initWithObjects:@"Park bench", @"500", @"First to 500",@"Yes", nil];    
+    defaultSettingsLabels = [[NSMutableArray alloc] initWithObjects:@"Surface", @"End score", @"Game title",@"Defaults", nil];    
     defaults = [[NSMutableArray alloc] initWithObjects:defaultPlayers, defaultSettings, nil];
     
-    //self.tableView.editing = YES;
-
     /*
-    // handled in storyboard
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
-                                                                    style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Start"
+                                                                    style:UIBarButtonItemStylePlain target:self action:@selector(startNewGame:)];
     self.navigationItem.rightBarButtonItem = rightButton;
     */
-
+    
+    //self.tableView.editing = YES;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -122,26 +114,29 @@
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {    
     if(indexPath.section==0){
-        NSString* PlayerCellIdentifier = @"PlayerCell";
+        NSString* PlayerCellIdentifier = @"SettingCell";
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:PlayerCellIdentifier];
-        if (cell == nil)
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PlayerCellIdentifier];
+
         NSArray *sectionContents = [self.defaults objectAtIndex:indexPath.section];
         NSString* cellText = [sectionContents objectAtIndex:[indexPath row]];    
         
-        cell.textLabel.text = cellText;
+        cell.textLabel.text = @"Player";
+        cell.detailTextLabel.text = cellText;
         
         return cell;
         
     } else {
         NSString* SettingCellIdentifier = @"SettingCell";
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:SettingCellIdentifier];
-        if (cell == nil)
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SettingCellIdentifier];
+
+        NSString* cellLabel = [self.defaultSettingsLabels objectAtIndex:[indexPath row]];   
+        
         NSArray *sectionContents = [self.defaults objectAtIndex:indexPath.section];
         NSString* cellText = [sectionContents objectAtIndex:[indexPath row]];    
-        
-        cell.textLabel.text = cellText;
+
+        cell.textLabel.text = cellLabel;
+        cell.detailTextLabel.text = cellText;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         return cell;
     }    
@@ -199,6 +194,22 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - NewGameViewControllerDelegate
+
+- (IBAction)cancel:(id)sender
+{
+    NSLog(@"Cancel!");
+    [self.delegate newGameViewControllerDidCancel:self];
+}
+- (IBAction)done:(id)sender
+{
+    NSLog(@"Done!");
+    
+    Game *game = [[Game alloc] init];
+    game.gameTitle = @"Game title";
+    [self.delegate newGameViewController:self didAddGame:game];
 }
 
 @end

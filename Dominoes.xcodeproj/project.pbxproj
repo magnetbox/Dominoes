@@ -120,6 +120,7 @@
 		B527C6B8147C661D00D2257E /* Dominoes */ = {
 			isa = PBXGroup;
 			children = (
+				B5671ABF14AD7EE1006931F8 /* MainStoryboard.storyboard */,
 				B527C6C1147C661D00D2257E /* AppDelegate.h */,
 				B527C6C2147C661D00D2257E /* AppDelegate.m */,
 				BB9DCEAA1485DD8700C0E306 /* Game.h */,
@@ -130,7 +131,6 @@
 				BB83504D14AE8EF000E2210D /* NewGameViewController.m */,
 				B5E9848A14AE865500BA3DFF /* DetailViewController.h */,
 				B5E9848B14AE865500BA3DFF /* DetailViewController.m */,
-				B5671ABF14AD7EE1006931F8 /* MainStoryboard.storyboard */,
 				B527C6B9147C661D00D2257E /* Supporting Files */,
 			);
 			path = Dominoes;

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewGameViewController.h"
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController <NewGameViewControllerDelegate>
 {
     NSMutableArray *allGames;
     NSMutableArray *activeGames;
