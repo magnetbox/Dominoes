@@ -29,9 +29,11 @@
     [super viewDidLoad];
 
     defaultPlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+    /*
     defaultSettings = [[NSMutableArray alloc] initWithObjects:@"Park bench", @"500", @"First to 500",@"Yes", nil];    
     defaultSettingsLabels = [[NSMutableArray alloc] initWithObjects:@"Surface", @"End score", @"Game title",@"Defaults", nil];    
     defaults = [[NSMutableArray alloc] initWithObjects:defaultPlayers, defaultSettings, nil];
+    */
     
     /*
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Start"
@@ -83,6 +85,7 @@
 
 #pragma mark - Table view data source
 
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSInteger sections = [[self defaults] count];
@@ -152,6 +155,7 @@
         return NO;
     }
 }
+*/
 
 /*
 // Override to support editing the table view.
@@ -185,16 +189,13 @@
 
 #pragma mark - Table view delegate
 
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if (indexPath.section == 0)
+		[self.nameTextField becomeFirstResponder];
 }
+*/
 
 #pragma mark - NewGameViewControllerDelegate
 
@@ -203,6 +204,7 @@
     NSLog(@"Cancel!");
     [self.delegate newGameViewControllerDidCancel:self];
 }
+
 - (IBAction)done:(id)sender
 {
     NSLog(@"Done!");

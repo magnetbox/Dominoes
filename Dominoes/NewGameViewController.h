@@ -23,7 +23,6 @@
     NSMutableArray *defaultSettings;
     NSMutableArray *defaultSettingsLabels;
 }
-
 @property (nonatomic, retain) NSMutableArray *defaults;
 @property (nonatomic, retain) NSMutableArray *defaultPlayers;
 @property (nonatomic, retain) NSMutableArray *defaultSettings;
