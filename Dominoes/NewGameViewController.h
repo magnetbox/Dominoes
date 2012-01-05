@@ -29,6 +29,11 @@
 @property (nonatomic, retain) NSMutableArray *defaultSettingsLabels;
 @property (nonatomic, weak) id <NewGameViewControllerDelegate> delegate;
 
+@property (strong, nonatomic) IBOutlet UILabel *surfaceDetailLabel;
+@property (strong, nonatomic) IBOutlet UILabel *scoreDetailLabel;
+@property (strong, nonatomic) IBOutlet UILabel *titleDetailLabel;
+@property (strong, nonatomic) IBOutlet UILabel *saveDetailLabel;
+
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
 

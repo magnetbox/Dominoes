@@ -227,6 +227,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="saveDetailLabel" destination="cK7-h6-Uql" id="XH1-st-boY"/>
+                        <outlet property="scoreDetailLabel" destination="Mwr-a9-cjx" id="gDO-U1-PwA"/>
+                        <outlet property="surfaceDetailLabel" destination="3y3-ae-7fz" id="gv9-Rf-a4t"/>
+                        <outlet property="titleDetailLabel" destination="3cA-w3-65x" id="CJK-BB-YLw"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1551" y="-512"/>
@@ -276,24 +282,6 @@
             <point key="canvasLocation" x="1025" y="-512"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="DetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
-        </class>
-        <class className="NewGameViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewGameViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="done:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

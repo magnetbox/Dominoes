@@ -10,9 +10,31 @@
 #import "Game.h"
 
 @implementation NewGameViewController
+{
+	NSMutableArray* gamePlayers;
+    NSString* gameSurface;
+    NSString* gameScore;
+    NSString* gameTitle;
+    NSString* gameSave;
+}
 
 @synthesize delegate;
 @synthesize defaults, defaultPlayers, defaultSettings, defaultSettingsLabels;
+@synthesize surfaceDetailLabel, scoreDetailLabel, titleDetailLabel, saveDetailLabel;
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	if ((self = [super initWithCoder:aDecoder]))
+	{
+		NSLog(@"init NewGameViewController");
+        gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+        gameSurface = @"Park bench";
+        gameScore = @"500";
+        gameTitle = [NSString stringWithFormat:@"First to %@",gameScore];
+        gameSave = @"Yes";
+	}
+	return self;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -28,26 +50,11 @@
 {
     [super viewDidLoad];
 
-    defaultPlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-    /*
-    defaultSettings = [[NSMutableArray alloc] initWithObjects:@"Park bench", @"500", @"First to 500",@"Yes", nil];    
-    defaultSettingsLabels = [[NSMutableArray alloc] initWithObjects:@"Surface", @"End score", @"Game title",@"Defaults", nil];    
-    defaults = [[NSMutableArray alloc] initWithObjects:defaultPlayers, defaultSettings, nil];
-    */
+    self.surfaceDetailLabel.text = gameSurface;
+    self.scoreDetailLabel.text = gameScore;
+    self.titleDetailLabel.text = gameTitle;
+    self.saveDetailLabel.text = gameSave;
     
-    /*
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Start"
-                                                                    style:UIBarButtonItemStylePlain target:self action:@selector(startNewGame:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
-    */
-    
-    //self.tableView.editing = YES;
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
