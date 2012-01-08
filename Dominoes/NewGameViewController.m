@@ -8,6 +8,8 @@
 
 #import "NewGameViewController.h"
 #import "Game.h"
+#import "PlayersSectionController.h"
+#import "SettingsSectionController.h"
 
 @implementation NewGameViewController
 {
@@ -55,6 +57,12 @@
     self.titleDetailLabel.text = gameTitle;
     self.saveDetailLabel.text = gameSave;
     
+    id players = [[PlayersSectionController alloc] init];
+    id settings = [[SettingsSectionController alloc] init];
+    sectionControllers = [[NSArray alloc] initWithObjects:players, settings, nil];
+    
+    
+    
 }
 
 - (void)viewDidUnload
@@ -92,13 +100,38 @@
 
 #pragma mark - Table view data source
 
-/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSInteger sections = [[self defaults] count];
-    return sections;
+    return [sectionControllers count];
 }
 
+- (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section {
+	id<SectionController> sectionController = [sectionControllers objectAtIndex:section];
+	return [sectionController tableView:table numberOfRowsInSection:section];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	id<SectionController> sectionController = [sectionControllers objectAtIndex:indexPath.section];
+	return [sectionController tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	id<SectionController> sectionController = [sectionControllers objectAtIndex:section];
+	if ([sectionController respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
+		return [sectionController tableView:tableView titleForHeaderInSection:section];
+	}
+	return nil;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+	id<SectionController> sectionController = [sectionControllers objectAtIndex:section];
+	if ([sectionController respondsToSelector:@selector(tableView:titleForFooterInSection:)]) {
+		return [sectionController tableView:tableView titleForFooterInSection:section];
+	}
+	return nil;
+}
+
+/*
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	
 	NSString *sectionHeader = nil;
@@ -121,18 +154,23 @@
     return rows;
 }
 
-- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+ - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {    
     if(indexPath.section==0){
-        NSString* PlayerCellIdentifier = @"SettingCell";
+        NSString* PlayerCellIdentifier = @"PlayerCell";
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:PlayerCellIdentifier];
-
-        NSArray *sectionContents = [self.defaults objectAtIndex:indexPath.section];
-        NSString* cellText = [sectionContents objectAtIndex:[indexPath row]];    
+        UITextField* inputField;
         
-        cell.textLabel.text = @"Player";
-        cell.detailTextLabel.text = cellText;
+        if(cell==nil){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PlayerCellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,185,30)];
+            inputField.adjustsFontSizeToFitWidth = YES;
+            [cell addSubview:inputField];V
+        }
+        NSString* cellText = gamePlayerss objectAtIndex:[indexPath row]]
         
+        cell.detailTextLabel.text = cellText;         
         return cell;
         
     } else {

@@ -21,6 +21,8 @@
 		B5671AC014AD7EE1006931F8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5671ABF14AD7EE1006931F8 /* MainStoryboard.storyboard */; };
 		B5E9848E14AE865500BA3DFF /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9848B14AE865500BA3DFF /* DetailViewController.m */; };
 		B5E9848F14AE865500BA3DFF /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9848D14AE865500BA3DFF /* MasterViewController.m */; };
+		BB61819314B7E27F00FA40BE /* SettingsSectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61819214B7E27F00FA40BE /* SettingsSectionController.m */; };
+		BB61819614B7E29A00FA40BE /* PlayersSectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB61819514B7E29A00FA40BE /* PlayersSectionController.m */; };
 		BB83504E14AE8EF000E2210D /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB83504D14AE8EF000E2210D /* NewGameViewController.m */; };
 		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
 /* End PBXBuildFile section */
@@ -57,6 +59,11 @@
 		B5E9848B14AE865500BA3DFF /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		B5E9848C14AE865500BA3DFF /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		B5E9848D14AE865500BA3DFF /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		BB61818D14B7E1C600FA40BE /* SectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionController.h; sourceTree = "<group>"; };
+		BB61819114B7E27F00FA40BE /* SettingsSectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsSectionController.h; path = ../SettingsSectionController.h; sourceTree = "<group>"; };
+		BB61819214B7E27F00FA40BE /* SettingsSectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsSectionController.m; path = ../SettingsSectionController.m; sourceTree = "<group>"; };
+		BB61819414B7E29A00FA40BE /* PlayersSectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayersSectionController.h; sourceTree = "<group>"; };
+		BB61819514B7E29A00FA40BE /* PlayersSectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayersSectionController.m; sourceTree = "<group>"; };
 		BB83504C14AE8EF000E2210D /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
 		BB83504D14AE8EF000E2210D /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
 		BB9DCEAA1485DD8700C0E306 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -131,6 +138,11 @@
 				BB83504D14AE8EF000E2210D /* NewGameViewController.m */,
 				B5E9848A14AE865500BA3DFF /* DetailViewController.h */,
 				B5E9848B14AE865500BA3DFF /* DetailViewController.m */,
+				BB61818D14B7E1C600FA40BE /* SectionController.h */,
+				BB61819414B7E29A00FA40BE /* PlayersSectionController.h */,
+				BB61819514B7E29A00FA40BE /* PlayersSectionController.m */,
+				BB61819114B7E27F00FA40BE /* SettingsSectionController.h */,
+				BB61819214B7E27F00FA40BE /* SettingsSectionController.m */,
 				B527C6B9147C661D00D2257E /* Supporting Files */,
 			);
 			path = Dominoes;
@@ -279,6 +291,8 @@
 				B5E9848E14AE865500BA3DFF /* DetailViewController.m in Sources */,
 				B5E9848F14AE865500BA3DFF /* MasterViewController.m in Sources */,
 				BB83504E14AE8EF000E2210D /* NewGameViewController.m in Sources */,
+				BB61819314B7E27F00FA40BE /* SettingsSectionController.m in Sources */,
+				BB61819614B7E29A00FA40BE /* PlayersSectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
