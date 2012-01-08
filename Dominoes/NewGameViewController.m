@@ -271,7 +271,9 @@
             if ([objects isFirstResponder]) {
                 [theTextField resignFirstResponder];
             }
-        } 
+        } else {
+            [self.view endEditing:YES];
+        }
     }
 }
 

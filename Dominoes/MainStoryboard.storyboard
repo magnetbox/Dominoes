@@ -67,18 +67,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="lXd-l6-2ce">
-                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableViewCell>
-                        </prototypes>
                         <sections/>
                         <connections>
                             <outlet property="dataSource" destination="6Dg-EJ-8kw" id="gUt-a3-OnA"/>
@@ -91,7 +79,7 @@
                                 <action selector="cancel:" destination="6Dg-EJ-8kw" id="QeX-OR-KlI"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="lLx-sw-saP">
+                        <barButtonItem key="rightBarButtonItem" title="Start" id="lLx-sw-saP">
                             <connections>
                                 <action selector="done:" destination="6Dg-EJ-8kw" id="nr2-OZ-ePR"/>
                             </connections>
@@ -110,12 +98,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerCellIdentifier" id="Ydr-yo-J2c">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerCellIdentifier" textLabel="dKY-f2-5R6" detailTextLabel="oRc-yN-gY6" style="IBUITableViewCellStyleValue1" id="Ydr-yo-J2c">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dKY-f2-5R6">
+                                            <rect key="frame" x="10" y="11" width="35" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oRc-yN-gY6">
+                                            <rect key="frame" x="266" y="11" width="44" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </tableViewCell>
@@ -146,28 +150,6 @@
             <point key="canvasLocation" x="1025" y="-512"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="DetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
-        </class>
-        <class className="NewGameViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NewGameViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancel:"/>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="saveDetailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scoreDetailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="surfaceDetailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleDetailLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

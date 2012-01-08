@@ -25,6 +25,7 @@
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,185,30)];
+        inputField.textColor = [UIColor colorWithRed:51.0f/255.0f green:82.0f/255.0f blue:115.0f/255.0f alpha:1];
         inputField.adjustsFontSizeToFitWidth = YES;
         [cell addSubview:inputField];
 	}
