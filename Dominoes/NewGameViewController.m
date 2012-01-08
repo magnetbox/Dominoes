@@ -61,7 +61,9 @@
     id settings = [[SettingsSectionController alloc] init];
     sectionControllers = [[NSArray alloc] initWithObjects:players, settings, nil];
     
-    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
     
 }
 
@@ -257,6 +259,20 @@
     Game *game = [[Game alloc] init];
     game.gameTitle = @"Game title";
     [self.delegate newGameViewController:self didAddGame:game];
+}
+
+- (void)backgroundTap 
+{
+    NSLog(@"Tap!");
+    NSArray *subviews = [self.view subviews];
+    for (id objects in subviews) {
+        if ([objects isKindOfClass:[UITextField class]]) {
+            UITextField *theTextField = objects;
+            if ([objects isFirstResponder]) {
+                [theTextField resignFirstResponder];
+            }
+        } 
+    }
 }
 
 @end
