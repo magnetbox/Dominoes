@@ -12,28 +12,18 @@
 #import "SettingsSectionController.h"
 
 @implementation NewGameViewController
-{
-	NSMutableArray* gamePlayers;
-    NSString* gameSurface;
-    NSString* gameScore;
-    NSString* gameTitle;
-    NSString* gameSave;
-}
 
 @synthesize delegate;
-@synthesize defaults, defaultPlayers, defaultSettings, defaultSettingsLabels;
-@synthesize surfaceDetailLabel, scoreDetailLabel, titleDetailLabel, saveDetailLabel;
+@synthesize defaults, defaultPlayers, defaultSettings;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
 	if ((self = [super initWithCoder:aDecoder]))
 	{
 		NSLog(@"init NewGameViewController");
-        gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        gameSurface = @"Park bench";
-        gameScore = @"500";
-        gameTitle = [NSString stringWithFormat:@"First to %@",gameScore];
-        gameSave = @"Yes";
+        defaultPlayers = [[NSArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+        defaultSettings = [[NSArray alloc] initWithObjects:@"Park bench", @"500", @"First to 500", @"Yes", nil];
+        defaults = [[NSArray alloc] initWithObjects:defaultPlayers, defaultSettings, nil];
 	}
 	return self;
 }
@@ -52,15 +42,6 @@
 {
     [super viewDidLoad];
 
-    self.surfaceDetailLabel.text = gameSurface;
-    self.scoreDetailLabel.text = gameScore;
-    self.titleDetailLabel.text = gameTitle;
-    self.saveDetailLabel.text = gameSave;
-    
-    id players = [[PlayersSectionController alloc] init];
-    id settings = [[SettingsSectionController alloc] init];
-    sectionControllers = [[NSArray alloc] initWithObjects:players, settings, nil];
-    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap)];
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
@@ -104,9 +85,10 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [sectionControllers count];
+    return [defaults count];
 }
 
+/*
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section {
 	id<SectionController> sectionController = [sectionControllers objectAtIndex:section];
 	return [sectionController tableView:table numberOfRowsInSection:section];
@@ -132,8 +114,8 @@
 	}
 	return nil;
 }
+*/
 
-/*
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	
 	NSString *sectionHeader = nil;
@@ -159,39 +141,60 @@
  - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {    
     if(indexPath.section==0){
-        NSString* PlayerCellIdentifier = @"PlayerCell";
-        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:PlayerCellIdentifier];
-        UITextField* inputField;
         
-        if(cell==nil){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PlayerCellIdentifier];
+        NSString *cellIdentifier = @"PlayerCell";
+        
+        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        UITextField *inputField;
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,185,30)];
+            inputField.textColor = [UIColor colorWithRed:51.0f/255.0f green:82.0f/255.0f blue:115.0f/255.0f alpha:1];
             inputField.adjustsFontSizeToFitWidth = YES;
-            [cell addSubview:inputField];V
+            [cell addSubview:inputField];
         }
-        NSString* cellText = gamePlayerss objectAtIndex:[indexPath row]]
+        inputField.keyboardType = UIKeyboardTypeDefault;
+        inputField.returnKeyType = UIReturnKeyDone;
         
-        cell.detailTextLabel.text = cellText;         
+        NSString* rowLabel = [NSString stringWithFormat:@"Player %i", indexPath.row+1];
+        cell.textLabel.text = rowLabel;
+        inputField.placeholder = rowLabel;
+        inputField.delegate = self;
+        
         return cell;
         
     } else {
-        NSString* SettingCellIdentifier = @"SettingCell";
-        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:SettingCellIdentifier];
-
-        NSString* cellLabel = [self.defaultSettingsLabels objectAtIndex:[indexPath row]];   
         
-        NSArray *sectionContents = [self.defaults objectAtIndex:indexPath.section];
-        NSString* cellText = [sectionContents objectAtIndex:[indexPath row]];    
-
-        cell.textLabel.text = cellLabel;
-        cell.detailTextLabel.text = cellText;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        NSString *cellIdentifier = @"SettingCell";
+        
+        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"Surface";
+            cell.detailTextLabel.text = @"Park bench";
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"Play to score";
+            cell.detailTextLabel.text = @"500";
+        } else if (indexPath.row == 2) {
+            cell.textLabel.text = @"Title";
+            cell.detailTextLabel.text = @"First to 500";
+        } else if (indexPath.row == 3) {
+            cell.textLabel.text = @"Save as defaults";
+            cell.detailTextLabel.text = @"Yes";
+        }
         
         return cell;
+        
     }    
 }
 
+/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -202,9 +205,7 @@
         return NO;
     }
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -246,6 +247,12 @@
 
 #pragma mark - NewGameViewControllerDelegate
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (IBAction)cancel:(id)sender
 {
     NSLog(@"Cancel!");
@@ -271,7 +278,9 @@
             if ([objects isFirstResponder]) {
                 [theTextField resignFirstResponder];
             }
-        } 
+        } else {
+            [self.view endEditing:YES];
+        }
     }
 }
 
