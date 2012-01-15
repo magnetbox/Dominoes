@@ -18,13 +18,16 @@
 
 @interface NewGameViewController : UITableViewController <NewGameViewControllerDelegate>
 {
-    NSArray *defaults;
-    NSArray *defaultPlayers;
-    NSArray *defaultSettings;
+    NSMutableArray *defaultGame;
+    NSArray *defaultGamePlayers;
+    NSArray *defaultGameSettings;
+    BOOL defaultGameSave;
 }
-@property (nonatomic, retain) NSArray *defaults;
-@property (nonatomic, retain) NSArray *defaultPlayers;
-@property (nonatomic, retain) NSArray *defaultSettings;
+@property (nonatomic, retain) NSMutableArray *defaultGame;
+@property (nonatomic, retain) NSArray *defaultGamePlayers;
+@property (nonatomic, retain) NSArray *defaultGameSettings;
+@property (nonatomic) BOOL defaultGameSave;
+
 @property (nonatomic, weak) id <NewGameViewControllerDelegate> delegate;
 
 - (IBAction)cancel:(id)sender;

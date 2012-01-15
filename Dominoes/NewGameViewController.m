@@ -14,19 +14,7 @@
 @implementation NewGameViewController
 
 @synthesize delegate;
-@synthesize defaults, defaultPlayers, defaultSettings;
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-	if ((self = [super initWithCoder:aDecoder]))
-	{
-		NSLog(@"init NewGameViewController");
-        defaultPlayers = [[NSArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        defaultSettings = [[NSArray alloc] initWithObjects:@"Park bench", @"500", @"First to 500", @"Yes", nil];
-        defaults = [[NSArray alloc] initWithObjects:defaultPlayers, defaultSettings, nil];
-	}
-	return self;
-}
+@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave;
 
 - (void)didReceiveMemoryWarning
 {
@@ -41,6 +29,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
+    NSData *defaultGameArraySavedArray = [currentDefaults objectForKey:@"defaultGame"];
+    if (defaultGameArraySavedArray != nil)
+    {
+        NSLog(@"HAS DEFAULT GAME DATA, LOAD IT");
+        NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:defaultGameArraySavedArray];
+        if (oldSavedArray != nil) {
+            NSLog(@"FOUND ARCHIVED DATA");
+            defaultGame = [[NSMutableArray alloc] initWithArray:oldSavedArray];
+            defaultGamePlayers = [defaultGame objectAtIndex:0];
+            defaultGameSettings = [defaultGame objectAtIndex:1];
+            defaultGameSave = NO;
+        } else {
+            NSLog(@"NO ARCHIVED DATA");
+            defaultGame = [[NSMutableArray alloc] init];
+        }
+    } else {
+        NSLog(@"NO DEFAULT GAME DATA, SET IT AND SAVE IT");
+        defaultGamePlayers = [[NSArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+        defaultGameSettings = [[NSArray alloc] initWithObjects:@"Park bench", @"500", @"First to 500", @"Yes", nil];
+        defaultGame = [[NSMutableArray alloc] initWithObjects:defaultGamePlayers, defaultGameSettings, nil];
+        defaultGameSave = YES;
+        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:defaultGame] forKey:@"defaultGame"];
+    }
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap)];
     tap.cancelsTouchesInView = NO;
@@ -85,7 +98,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [defaults count];
+    return [defaultGame count];
 }
 
 /*
@@ -132,7 +145,7 @@
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *sectionContents = [[self defaults] objectAtIndex:section];
+    NSArray *sectionContents = [[self defaultGame] objectAtIndex:section];
     NSInteger rows = [sectionContents count];
 	
     return rows;
@@ -177,16 +190,20 @@
         
         if (indexPath.row == 0) {
             cell.textLabel.text = @"Surface";
-            cell.detailTextLabel.text = @"Park bench";
+            cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:0];
         } else if (indexPath.row == 1) {
             cell.textLabel.text = @"Play to score";
-            cell.detailTextLabel.text = @"500";
+            cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:1];
         } else if (indexPath.row == 2) {
             cell.textLabel.text = @"Title";
-            cell.detailTextLabel.text = @"First to 500";
+            cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:2];
         } else if (indexPath.row == 3) {
             cell.textLabel.text = @"Save as defaults";
-            cell.detailTextLabel.text = @"Yes";
+            if(defaultGameSave){
+                cell.detailTextLabel.text = @"Yes";
+            } else {
+                cell.detailTextLabel.text = @"No";
+            }
         }
         
         return cell;
@@ -264,7 +281,13 @@
     NSLog(@"Done!");
     
     Game *game = [[Game alloc] init];
-    game.gameTitle = @"Game title";
+    game.gameTitle = [defaultGameSettings objectAtIndex:2];
+    
+    if(defaultGameSave){
+        NSLog(@"SAVE IT");
+    } else {
+        NSLog(@"DON'T SAVE IT");
+    }
     [self.delegate newGameViewController:self didAddGame:game];
 }
 
