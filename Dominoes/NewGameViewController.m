@@ -180,35 +180,50 @@
         
     } else {
         
-        NSString *cellIdentifier = @"SettingCell";
+        if (indexPath.row < 3) {
+            
+            NSString *cellIdentifier = @"SettingCell";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
-        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-        
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"Surface";
-            cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:0];
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Play to score";
-            cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:1];
-        } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"Title";
-            cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:2];
-        } else if (indexPath.row == 3) {
-            cell.textLabel.text = @"Save as defaults";
-            if(defaultGameSave){
-                cell.detailTextLabel.text = @"Yes";
-            } else {
-                cell.detailTextLabel.text = @"No";
+            if (indexPath.row == 0) {
+                cell.textLabel.text = @"Surface";
+                cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:0];
+            } else if (indexPath.row == 1) {
+                cell.textLabel.text = @"Play to score";
+                cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:1];
+            } else if (indexPath.row == 2) {
+                cell.textLabel.text = @"Title";
+                cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:2];
             }
+            return cell;
+            
+        } else {
+
+            NSString *cellIdentifier = @"SettingSaveCell";            
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            UISwitch *saveSwitch = (UISwitch *)[cell viewWithTag:1];
+            if(defaultGameSave){
+                [saveSwitch setOn:YES animated:NO];
+            } else {
+                [saveSwitch setOn:NO animated:NO];
+            }
+            [saveSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+            
+            return cell;
+            
         }
-        
-        return cell;
         
     }    
+}
+
+- (void) switchChanged:(id)sender {
+    UISwitch* switchControl = sender;
+    if(switchControl.on){
+        defaultGameSave = YES;
+    } else {
+        defaultGameSave = NO;
+    }
+    NSLog( @"The switch is %@", switchControl.on ? @"ON" : @"OFF" );
 }
 
 /*
@@ -284,11 +299,17 @@
     game.gameTitle = [defaultGameSettings objectAtIndex:2];
     
     if(defaultGameSave){
-        NSLog(@"SAVE IT");
+        NSLog(@"SAVE THE DEFAULTS");
+        NSArray *newDefaultGamePlayers = [[NSArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+        NSArray *newDefaultGameSettings = [[NSArray alloc] initWithObjects:@"Park bench 2", @"500", @"First to 500", @"No", nil];
+        NSMutableArray *newDefaultGame = [[NSMutableArray alloc] initWithObjects:newDefaultGamePlayers, newDefaultGameSettings, nil];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:newDefaultGame] forKey:@"defaultGame"];
     } else {
-        NSLog(@"DON'T SAVE IT");
+        NSLog(@"DON'T SAVE THE DEFAULTS");
     }
+    
     [self.delegate newGameViewController:self didAddGame:game];
+
 }
 
 - (void)backgroundTap 
