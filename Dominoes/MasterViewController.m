@@ -211,6 +211,7 @@
 
 - (void)newGameViewController:(NewGameViewController *)controller didAddGame:(Game *)game
 {
+    
     [self.activeGames addObject:game];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.activeGames count] - 1 inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
