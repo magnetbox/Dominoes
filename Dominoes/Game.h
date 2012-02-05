@@ -12,7 +12,7 @@
     NSInteger gameId;
     NSString *gameTitle;
     NSInteger gameEndScore;
-    NSInteger gameSurface;
+    NSString *gameSurface;
     NSArray *gamePlayers;
     NSInteger gamePlayersTurn;
     NSArray *gameMoves;
@@ -22,7 +22,7 @@
 @property (nonatomic, assign) NSInteger gameId;
 @property (nonatomic, retain) NSString *gameTitle;
 @property (nonatomic, assign) NSInteger gameEndScore;
-@property (nonatomic, assign) NSInteger gameSurface;
+@property (nonatomic, retain) NSString *gameSurface;
 @property (nonatomic, retain) NSArray *gamePlayers;
 @property (nonatomic, assign) NSInteger gamePlayersTurn;
 @property (nonatomic, retain) NSArray *gameMoves;

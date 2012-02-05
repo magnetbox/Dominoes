@@ -8,8 +8,6 @@
 
 #import "NewGameViewController.h"
 #import "Game.h"
-#import "PlayersSectionController.h"
-#import "SettingsSectionController.h"
 
 @implementation NewGameViewController
 
@@ -208,7 +206,7 @@
                 scoreInputField.returnKeyType = UIReturnKeyDone;
                 scoreInputField.textAlignment = UITextAlignmentRight;
                 scoreInputField.tag = 201;
-                NSLog(@"inputField TAG: %i",scoreInputField.tag);
+                NSLog(@"UITextField TAG: %i",scoreInputField.tag);
                 
                 [cell addSubview:scoreInputField];
             }
@@ -235,7 +233,7 @@
                 inputField.returnKeyType = UIReturnKeyDone;
                 inputField.textAlignment = UITextAlignmentRight;
                 inputField.tag = 202;
-                NSLog(@"inputField TAG: %i",inputField.tag);
+                NSLog(@"UITextField TAG: %i",inputField.tag);
                 
                 [cell addSubview:inputField];
             }
@@ -344,37 +342,39 @@
 
 - (IBAction)cancel:(id)sender
 {
-    NSLog(@"Cancel!");
+    NSLog(@"CANCEL!");
     [self.delegate newGameViewControllerDidCancel:self];
 }
 
 - (IBAction)done:(id)sender
 {
-    NSLog(@"Done!");
+    NSLog(@"DONE!");
     
+    // get the field values    
     Game *game = [[Game alloc] init];
+    game.gamePlayers = defaultGamePlayers;
+    game.gameSurface = [defaultGameSettings objectAtIndex:0];
+    game.gameEndScore = [[defaultGameSettings objectAtIndex:1] intValue];
     game.gameTitle = [defaultGameSettings objectAtIndex:2];
+    game.gameActive = YES;
     
+    // save the values as the defaults
     if(defaultGameSave){
         NSLog(@"SAVE THE DEFAULTS");
-        
-        //get the field values
-        
-        //NSArray *newDefaultGamePlayers = [[NSArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        //NSArray *newDefaultGameSettings = [[NSArray alloc] initWithObjects:@"Park bench", @"500", @"First to 500", @"No", nil];
         NSMutableArray *newDefaultGame = [[NSMutableArray alloc] initWithObjects:defaultGamePlayers, defaultGameSettings, nil];
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:newDefaultGame] forKey:@"defaultGame"];
     } else {
         NSLog(@"DON'T SAVE THE DEFAULTS");
     }
     
+    // go back to the master view
     [self.delegate newGameViewController:self didAddGame:game];
 
 }
 
 - (void)backgroundTap 
 {
-    NSLog(@"Tap!");
+    NSLog(@"TAP!");
     NSArray *subviews = [self.view subviews];
     for (id objects in subviews) {
         if ([objects isKindOfClass:[UITextField class]]) {
