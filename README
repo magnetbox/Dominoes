@@ -1,6 +1,6 @@
 TODO:
 - MasterView: save Games to NSUserDefaults (didAddGame)
-- NewGameView: surface picker
+- NewGameView: surface picker (picker or table which changes background graphic)
 - NewGameView: add players
 - NewGameView: remove players
 - NewGameView: reorder existing players
