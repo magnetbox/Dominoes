@@ -19,6 +19,10 @@
 		B527C6DB147C661D00D2257E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B527C6D9147C661D00D2257E /* InfoPlist.strings */; };
 		B527C6DE147C661D00D2257E /* DominoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B527C6DD147C661D00D2257E /* DominoesTests.m */; };
 		B5671AC014AD7EE1006931F8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5671ABF14AD7EE1006931F8 /* MainStoryboard.storyboard */; };
+		B5D4C7C014DF304700C2866B /* pattern1.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D4C7BC14DF304700C2866B /* pattern1.png */; };
+		B5D4C7C114DF304700C2866B /* pattern2.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D4C7BD14DF304700C2866B /* pattern2.png */; };
+		B5D4C7C214DF304700C2866B /* pattern3.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D4C7BE14DF304700C2866B /* pattern3.png */; };
+		B5D4C7C314DF304700C2866B /* pattern4.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D4C7BF14DF304700C2866B /* pattern4.png */; };
 		B5E9848E14AE865500BA3DFF /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9848B14AE865500BA3DFF /* DetailViewController.m */; };
 		B5E9848F14AE865500BA3DFF /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9848D14AE865500BA3DFF /* MasterViewController.m */; };
 		BB83504E14AE8EF000E2210D /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB83504D14AE8EF000E2210D /* NewGameViewController.m */; };
@@ -53,6 +57,10 @@
 		B527C6DC147C661D00D2257E /* DominoesTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DominoesTests.h; sourceTree = "<group>"; };
 		B527C6DD147C661D00D2257E /* DominoesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DominoesTests.m; sourceTree = "<group>"; };
 		B5671ABF14AD7EE1006931F8 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		B5D4C7BC14DF304700C2866B /* pattern1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern1.png; sourceTree = "<group>"; };
+		B5D4C7BD14DF304700C2866B /* pattern2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern2.png; sourceTree = "<group>"; };
+		B5D4C7BE14DF304700C2866B /* pattern3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern3.png; sourceTree = "<group>"; };
+		B5D4C7BF14DF304700C2866B /* pattern4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern4.png; sourceTree = "<group>"; };
 		B5E9848A14AE865500BA3DFF /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		B5E9848B14AE865500BA3DFF /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		B5E9848C14AE865500BA3DFF /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
@@ -131,6 +139,7 @@
 				BB83504D14AE8EF000E2210D /* NewGameViewController.m */,
 				B5E9848A14AE865500BA3DFF /* DetailViewController.h */,
 				B5E9848B14AE865500BA3DFF /* DetailViewController.m */,
+				B5D4C7C514DF306100C2866B /* Images */,
 				B527C6B9147C661D00D2257E /* Supporting Files */,
 			);
 			path = Dominoes;
@@ -164,6 +173,17 @@
 				B527C6D9147C661D00D2257E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B5D4C7C514DF306100C2866B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B5D4C7BC14DF304700C2866B /* pattern1.png */,
+				B5D4C7BD14DF304700C2866B /* pattern2.png */,
+				B5D4C7BE14DF304700C2866B /* pattern3.png */,
+				B5D4C7BF14DF304700C2866B /* pattern4.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +259,10 @@
 			files = (
 				B527C6BD147C661D00D2257E /* InfoPlist.strings in Resources */,
 				B5671AC014AD7EE1006931F8 /* MainStoryboard.storyboard in Resources */,
+				B5D4C7C014DF304700C2866B /* pattern1.png in Resources */,
+				B5D4C7C114DF304700C2866B /* pattern2.png in Resources */,
+				B5D4C7C214DF304700C2866B /* pattern3.png in Resources */,
+				B5D4C7C314DF304700C2866B /* pattern4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
