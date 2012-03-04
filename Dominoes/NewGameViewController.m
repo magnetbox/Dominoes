@@ -202,7 +202,7 @@
                 scoreInputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,178,30)];
                 scoreInputField.textColor = [UIColor colorWithRed:51.0f/255.0f green:82.0f/255.0f blue:115.0f/255.0f alpha:1];
                 scoreInputField.adjustsFontSizeToFitWidth = YES;
-                scoreInputField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+                scoreInputField.keyboardType = UIKeyboardTypeNumberPad;
                 scoreInputField.returnKeyType = UIReturnKeyDone;
                 scoreInputField.textAlignment = UITextAlignmentRight;
                 scoreInputField.tag = 201;
@@ -229,7 +229,7 @@
                 inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,178,30)];
                 inputField.textColor = [UIColor colorWithRed:51.0f/255.0f green:82.0f/255.0f blue:115.0f/255.0f alpha:1];
                 inputField.adjustsFontSizeToFitWidth = YES;
-                inputField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+                inputField.keyboardType = UIKeyboardTypeDefault;
                 inputField.returnKeyType = UIReturnKeyDone;
                 inputField.textAlignment = UITextAlignmentRight;
                 inputField.tag = 202;

@@ -25,7 +25,7 @@
     [aCoder encodeInt:self.gameId forKey:@"GameId"];
     [aCoder encodeObject:self.gameTitle forKey:@"GameTitle"];
     [aCoder encodeInt:self.gameEndScore forKey:@"GameEndScore"];
-    [aCoder encodeInt:self.gameSurface forKey:@"GameSurface"];
+    [aCoder encodeObject:self.gameSurface forKey:@"GameSurface"];
     [aCoder encodeObject:self.gamePlayers forKey:@"GamePlayers"];
     [aCoder encodeInt:self.gamePlayersTurn forKey:@"GamePlayersTurn"];    
     [aCoder encodeObject:self.gameMoves forKey:@"GameMoves"];
@@ -37,7 +37,7 @@
         self.gameId             = [aDecoder decodeIntForKey:@"GameId"];
         self.gameTitle          = [aDecoder decodeObjectForKey:@"GameTitle"];
         self.gameEndScore       = [aDecoder decodeIntForKey:@"GameEndScore"];
-        self.gameSurface        = [aDecoder decodeIntForKey:@"GameSurface"];
+        self.gameSurface        = [aDecoder decodeObjectForKey:@"GameSurface"];
         self.gamePlayers        = [aDecoder decodeObjectForKey:@"GamePlayers"];
         self.gamePlayersTurn    = [aDecoder decodeIntForKey:@"GamePlayersTurn"];
         self.gameMoves          = [aDecoder decodeObjectForKey:@"GameMoves"];
