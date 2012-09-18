@@ -1,0 +1,46 @@
+1. Save default game settings to NSUserDefaults
+2. Game class conform to NSCoding
+
+GLOBAL VAR
+- Games have you played (unique id)
+
+CLASS
+- Default game
+	- GameID
+	- Title
+	- End score
+	- Players (array)
+		- Name
+		- Name
+	- Surface (enum)
+
+DATASTORE
+- Games (array)
+
+	CLASS
+	- Game
+		- GameID
+		- Title
+		- Surface
+		- End score
+		- Players (array)
+			- Name
+			- Name
+		- Moves
+			- Move
+				- Player
+				- Increment
+				- Time
+			- Move
+				- Player
+				- Increment
+				- Time
+		- Current score
+			- Player
+				- Score
+			- Player
+				- Score
+		- Current status (in progress/complete)
+		- Current turn
+
+	

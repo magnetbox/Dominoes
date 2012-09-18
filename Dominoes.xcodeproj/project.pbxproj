@@ -231,7 +231,7 @@
 		B527C6A5147C661D00D2257E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = Home;
 			};
 			buildConfigurationList = B527C6A8147C661D00D2257E /* Build configuration list for PBXProject "Dominoes" */;
