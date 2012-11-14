@@ -7,8 +7,8 @@
 //
 
 #import "MasterViewController.h"
-#import "Game.h"
 #import "DetailViewController.h"
+#import "Game.h"
 
 @implementation MasterViewController
 
@@ -23,15 +23,21 @@
 		activeGames = [NSMutableArray arrayWithCapacity:10];
 		Game* activeGame = [[Game alloc] init];
 		activeGame.gameTitle = @"Active 1";
-		[activeGames addObject:activeGame];        
+        activeGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+		activeGame.gameActive = YES;
+		[activeGames addObject:activeGame];
 
         inactiveGames = [NSMutableArray arrayWithCapacity:10];
 		Game* inactiveGame = [[Game alloc] init];
 		inactiveGame.gameTitle = @"Inactive 1";
+        inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+		inactiveGame.gameActive = NO;
 		[inactiveGames addObject:inactiveGame];
 
         inactiveGame = [[Game alloc] init];
 		inactiveGame.gameTitle = @"Inactive 2";
+        inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+		inactiveGame.gameActive = NO;
 		[inactiveGames addObject:inactiveGame];
         
         NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:activeGames, inactiveGames, nil];
@@ -60,7 +66,7 @@
 	return sectionHeader;
 }
 
-- (NSInteger)tableView:(UITableView*)theTableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *sectionContents = [[self allGames] objectAtIndex:section];
     NSInteger rows = [sectionContents count];
@@ -89,7 +95,9 @@
     DetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"gameView"];
 
     // set title of next view controller
-    controller.selected = [[[self.allGames objectAtIndex:indexPath.section] objectAtIndex:indexPath.row] gameTitle];
+    Game *selectedGame = [[self.allGames objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    controller.game = selectedGame;
+    NSLog(@"didselect: %@",[[controller.game gamePlayers] objectAtIndex:0]);
 
     [self.navigationController pushViewController:controller animated:YES];
 

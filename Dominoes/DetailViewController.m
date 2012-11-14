@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "Game.h"
 
 @interface DetailViewController ()
 - (void)configureView;
@@ -16,9 +17,15 @@
 
 @synthesize detailItem = _detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
-@synthesize selected;
+@synthesize selected, game;
 
 #pragma mark - Managing the detail item
+
+/*
+ - (void)setGame:(Game *)game {
+    
+}
+*/
 
 - (void)setDetailItem:(id)newDetailItem
 {
@@ -39,7 +46,57 @@
         self.detailDescriptionLabel.text = [self.detailItem description];
     }
     */
-    self.title = self.selected;
+    self.title = self.game.gameTitle;
+    game = self.game;
+    NSLog(@"game: %@",game);
+    NSLog(@"title: %@",self.title);
+    NSLog(@"configure: %@",[self.game.gamePlayers objectAtIndex:0]);
+
+    //[self.tableView initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern1.png"]];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    //self.tableView.opaque = NO;
+
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger rows = [[self.game gamePlayers] count];
+    //NSInteger rows = [sectionContents count];
+	
+    NSLog(@"Rows: %d",rows);
+    return rows;
+
+    //NSInteger rows = [self.game.gamePlayers count];
+    //return rows;
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+	NSString* CellIdentifier = [NSString stringWithFormat:@"Cell-%i", indexPath.row];
+    
+	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil)
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    
+    NSString *playerName = [[self.game gamePlayers] objectAtIndex:indexPath.row];
+    NSLog(@"%@",playerName);
+	
+    cell.textLabel.text = playerName;
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
+    cell.textLabel.textColor = [UIColor whiteColor];
+
+    cell.detailTextLabel.text = @"0";
+    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:28.0];
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
+
+	return cell;
 }
 
 - (void)didReceiveMemoryWarning

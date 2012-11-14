@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Game.h"
 
 @interface DetailViewController : UITableViewController
 
 @property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) Game *game;
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 

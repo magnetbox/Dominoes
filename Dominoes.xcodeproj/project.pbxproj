@@ -27,6 +27,7 @@
 		B5E9848F14AE865500BA3DFF /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9848D14AE865500BA3DFF /* MasterViewController.m */; };
 		BB83504E14AE8EF000E2210D /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB83504D14AE8EF000E2210D /* NewGameViewController.m */; };
 		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
+		BBB38BBF160E8057002E0302 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBB38BBE160E8057002E0302 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		BB83504D14AE8EF000E2210D /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
 		BB9DCEAA1485DD8700C0E306 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		BB9DCEAB1485DD8700C0E306 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		BBB38BBE160E8057002E0302 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		B527C6A3147C661D00D2257E = {
 			isa = PBXGroup;
 			children = (
+				BBB38BBE160E8057002E0302 /* Default-568h@2x.png */,
 				B527C6B8147C661D00D2257E /* Dominoes */,
 				B527C6D6147C661D00D2257E /* DominoesTests */,
 				B527C6B1147C661D00D2257E /* Frameworks */,
@@ -231,7 +234,7 @@
 		B527C6A5147C661D00D2257E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = Home;
 			};
 			buildConfigurationList = B527C6A8147C661D00D2257E /* Build configuration list for PBXProject "Dominoes" */;
@@ -263,6 +266,7 @@
 				B5D4C7C114DF304700C2866B /* pattern2.png in Resources */,
 				B5D4C7C214DF304700C2866B /* pattern3.png in Resources */,
 				B5D4C7C314DF304700C2866B /* pattern4.png in Resources */,
+				BBB38BBF160E8057002E0302 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
