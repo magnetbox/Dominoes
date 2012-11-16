@@ -24,6 +24,8 @@
 		Game* activeGame = [[Game alloc] init];
 		activeGame.gameTitle = @"Active 1";
         activeGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+        activeGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:@"0", @"0", nil];
+		activeGame.gameEndScore = 500;
 		activeGame.gameActive = YES;
 		[activeGames addObject:activeGame];
 
@@ -31,12 +33,16 @@
 		Game* inactiveGame = [[Game alloc] init];
 		inactiveGame.gameTitle = @"Inactive 1";
         inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:@"0", @"0", nil];
+		inactiveGame.gameEndScore = 500;
 		inactiveGame.gameActive = NO;
 		[inactiveGames addObject:inactiveGame];
 
         inactiveGame = [[Game alloc] init];
 		inactiveGame.gameTitle = @"Inactive 2";
         inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:@"0", @"0", nil];
+		inactiveGame.gameEndScore = 500;
 		inactiveGame.gameActive = NO;
 		[inactiveGames addObject:inactiveGame];
         
@@ -97,7 +103,6 @@
     // set title of next view controller
     Game *selectedGame = [[self.allGames objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     controller.game = selectedGame;
-    NSLog(@"didselect: %@",[[controller.game gamePlayers] objectAtIndex:0]);
 
     [self.navigationController pushViewController:controller animated:YES];
 

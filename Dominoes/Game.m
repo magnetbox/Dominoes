@@ -15,6 +15,7 @@
 @synthesize gameEndScore;
 @synthesize gameSurface;
 @synthesize gamePlayers;
+@synthesize gamePlayersScore;
 @synthesize gamePlayersTurn;
 @synthesize gameMoves;
 @synthesize gameActive;
@@ -27,7 +28,8 @@
     [aCoder encodeInt:self.gameEndScore forKey:@"GameEndScore"];
     [aCoder encodeObject:self.gameSurface forKey:@"GameSurface"];
     [aCoder encodeObject:self.gamePlayers forKey:@"GamePlayers"];
-    [aCoder encodeInt:self.gamePlayersTurn forKey:@"GamePlayersTurn"];    
+    [aCoder encodeObject:self.gamePlayersScore forKey:@"GamePlayersScore"];
+    [aCoder encodeInt:self.gamePlayersTurn forKey:@"GamePlayersTurn"];
     [aCoder encodeObject:self.gameMoves forKey:@"GameMoves"];
     [aCoder encodeBool:self.gameActive forKey:@"GameActive"];
 }
@@ -39,6 +41,7 @@
         self.gameEndScore       = [aDecoder decodeIntForKey:@"GameEndScore"];
         self.gameSurface        = [aDecoder decodeObjectForKey:@"GameSurface"];
         self.gamePlayers        = [aDecoder decodeObjectForKey:@"GamePlayers"];
+        self.gamePlayersScore   = [aDecoder decodeObjectForKey:@"GamePlayersScore"];
         self.gamePlayersTurn    = [aDecoder decodeIntForKey:@"GamePlayersTurn"];
         self.gameMoves          = [aDecoder decodeObjectForKey:@"GameMoves"];
         self.gameActive         = [aDecoder decodeBoolForKey:@"GameActive"];

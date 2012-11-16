@@ -48,9 +48,7 @@
     */
     self.title = self.game.gameTitle;
     game = self.game;
-    NSLog(@"game: %@",game);
-    NSLog(@"title: %@",self.title);
-    NSLog(@"configure: %@",[self.game.gamePlayers objectAtIndex:0]);
+    NSLog(@"TITLE: %@",self.title);
 
     //[self.tableView initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -70,7 +68,7 @@
     NSInteger rows = [[self.game gamePlayers] count];
     //NSInteger rows = [sectionContents count];
 	
-    NSLog(@"Rows: %d",rows);
+    NSLog(@"PLAYERS: %d",rows);
     return rows;
 
     //NSInteger rows = [self.game.gamePlayers count];
@@ -86,13 +84,13 @@
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     
     NSString *playerName = [[self.game gamePlayers] objectAtIndex:indexPath.row];
-    NSLog(@"%@",playerName);
+    NSLog(@"PLAYER %d: %@", indexPath.row, playerName);
 	
     cell.textLabel.text = playerName;
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
     cell.textLabel.textColor = [UIColor whiteColor];
 
-    cell.detailTextLabel.text = @"0";
+    cell.detailTextLabel.text = [[self.game gamePlayersScore] objectAtIndex:indexPath.row];
     cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:28.0];
     cell.detailTextLabel.textColor = [UIColor whiteColor];
 
