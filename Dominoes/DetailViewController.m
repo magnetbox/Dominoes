@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "Game.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DetailViewController ()
 - (void)configureView;
@@ -58,12 +59,39 @@
     
 }
 
+-(id)setupDotStyle:(UIView*)dot{
+    dot.layer.cornerRadius = 4;
+    dot.backgroundColor = [UIColor colorWithRed:82.0f/255.0f green:92.0f/255.0f blue:105.0f/255.0f alpha:1.0f];
+    dot.layer.shadowColor = [UIColor whiteColor].CGColor;
+    dot.layer.shadowOpacity = 0.8;
+    dot.layer.shadowRadius = 2;
+    dot.layer.shadowOffset = CGSizeMake(0,2.0f);
+    dot.layer.masksToBounds = NO;
+    return dot;
+}
+
+-(id)setupButtonStyle:(UIButton*)button{
+    button.clipsToBounds = YES;
+    button.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.9];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
+    [button setTitleColor:[UIColor colorWithRed:82.0f/255.0f green:92.0f/255.0f blue:105.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    [button setTitleShadowColor:[UIColor colorWithWhite:1.0f alpha:0.8f] forState:UIControlStateNormal];
+    [button.titleLabel setShadowOffset:CGSizeMake(0.0f, 1.0f)];
+    button.layer.cornerRadius = 3;
+    button.layer.shadowColor = [UIColor blackColor].CGColor;
+    button.layer.shadowOpacity = 0.7;
+    button.layer.shadowRadius = 2;
+    button.layer.shadowOffset = CGSizeMake(0,2.0f);
+    button.layer.masksToBounds = NO;
+    return button;
+}
+
 - (void)drawKeypad
 {
-    UIView *keypad = [[UIView alloc] initWithFrame:CGRectMake(0,self.tableView.frame.size.height-200,self.tableView.frame.size.width,200)];
+    UIView *keypad = [[UIView alloc] initWithFrame:CGRectMake(0,self.tableView.frame.size.height-170,self.tableView.frame.size.width,170)];
     keypad.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.2];
     
-    UILabel *pointsLabel = [[UILabel alloc] initWithFrame:CGRectMake(50,10,50,50)];
+    UILabel *pointsLabel = [[UILabel alloc] initWithFrame:CGRectMake(30,10,50,50)];
     pointsLabel.backgroundColor = [UIColor clearColor];
     pointsLabel.text = @"Points to add:";
     pointsLabel.textColor = [UIColor whiteColor];
@@ -71,45 +99,68 @@
     pointsLabel.numberOfLines = 0;
     [keypad addSubview:pointsLabel];
 
-    UILabel *pointsToAdd = [[UILabel alloc] initWithFrame:CGRectMake(100,10,50,50)];
+    UILabel *pointsToAdd = [[UILabel alloc] initWithFrame:CGRectMake(75,10,500,50)];
     pointsToAdd.backgroundColor = [UIColor clearColor];
-    pointsToAdd.text = @"15";
+    pointsToAdd.text = @"0";
     pointsToAdd.textColor = [UIColor whiteColor];
     pointsToAdd.font = [UIFont boldSystemFontOfSize:34.0];
     [keypad addSubview:pointsToAdd];
 
-    UIButton *undoButton = [[UIButton alloc] initWithFrame:CGRectMake(150,10,70,50)];
+    UIButton *undoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    undoButton.frame = CGRectMake(140,15,65,40);
     [undoButton setTitle:@"undo" forState:UIControlStateNormal];
-    undoButton.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
+    [self setupButtonStyle:undoButton];
     [keypad addSubview:undoButton];
     
-    UIButton *doneButton = [[UIButton alloc] initWithFrame:CGRectMake(220,10,70,50)];
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    doneButton.frame = CGRectMake(215,15,65,40);
     [doneButton setTitle:@"done" forState:UIControlStateNormal];
-    doneButton.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
+    [self setupButtonStyle:doneButton];
     [keypad addSubview:doneButton];
 
-    UIButton *button1 = [[UIButton alloc] initWithFrame:CGRectMake(10,100,30,30)];
-    [button1 setTitle:@"1" forState:UIControlStateNormal];
+    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    button1.frame = CGRectMake(15,70,40,40);
+    [self setupButtonStyle:button1];
     [keypad addSubview:button1];
+
+    UIView *dot1 = [[UIView alloc] initWithFrame:CGRectMake(16,16,8,8)];
+    [self setupDotStyle:dot1];
+    [button1 addSubview:dot1];
     
-    UIButton *button2 = [[UIButton alloc] initWithFrame:CGRectMake(50,100,30,30)];
-    [button2 setTitle:@"2" forState:UIControlStateNormal];
+    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    button2.frame = CGRectMake(65,70,40,40);
+    [self setupButtonStyle:button2];
     [keypad addSubview:button2];
+
+    UIView *dot21 = [[UIView alloc] initWithFrame:CGRectMake(8,8,8,8)];
+    [self setupDotStyle:dot21];
+    [button2 addSubview:dot21];
+    UIView *dot22 = [[UIView alloc] initWithFrame:CGRectMake(24,24,8,8)];
+    [self setupDotStyle:dot22];
+    [button2 addSubview:dot22];
     
-    UIButton *button3 = [[UIButton alloc] initWithFrame:CGRectMake(90,100,30,30)];
+    UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
+    button3.frame = CGRectMake(115,70,40,40);
     [button3 setTitle:@"3" forState:UIControlStateNormal];
+    [self setupButtonStyle:button3];
     [keypad addSubview:button3];
     
-    UIButton *button4 = [[UIButton alloc] initWithFrame:CGRectMake(130,100,30,30)];
+    UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
+    button4.frame = CGRectMake(165,70,40,40);
     [button4 setTitle:@"4" forState:UIControlStateNormal];
+    [self setupButtonStyle:button4];
     [keypad addSubview:button4];
     
-    UIButton *button5 = [[UIButton alloc] initWithFrame:CGRectMake(170,100,30,30)];
+    UIButton *button5 = [UIButton buttonWithType:UIButtonTypeCustom];
+    button5.frame = CGRectMake(215,70,40,40);
     [button5 setTitle:@"5" forState:UIControlStateNormal];
+    [self setupButtonStyle:button5];
     [keypad addSubview:button5];
     
-    UIButton *button6 = [[UIButton alloc] initWithFrame:CGRectMake(210,100,30,30)];
+    UIButton *button6 = [UIButton buttonWithType:UIButtonTypeCustom];
+    button6.frame = CGRectMake(265,70,40,40);
     [button6 setTitle:@"6" forState:UIControlStateNormal];
+    [self setupButtonStyle:button6];
     [keypad addSubview:button6];
     
     [self.view addSubview:keypad];
