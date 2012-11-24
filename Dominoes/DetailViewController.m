@@ -132,36 +132,90 @@
     [self setupButtonStyle:button2];
     [keypad addSubview:button2];
 
-    UIView *dot21 = [[UIView alloc] initWithFrame:CGRectMake(8,8,8,8)];
+    UIView *dot21 = [[UIView alloc] initWithFrame:CGRectMake(6,6,8,8)];
     [self setupDotStyle:dot21];
     [button2 addSubview:dot21];
-    UIView *dot22 = [[UIView alloc] initWithFrame:CGRectMake(24,24,8,8)];
+    UIView *dot22 = [[UIView alloc] initWithFrame:CGRectMake(26,26,8,8)];
     [self setupDotStyle:dot22];
     [button2 addSubview:dot22];
     
     UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
     button3.frame = CGRectMake(115,70,40,40);
-    [button3 setTitle:@"3" forState:UIControlStateNormal];
     [self setupButtonStyle:button3];
     [keypad addSubview:button3];
     
+    UIView *dot31 = [[UIView alloc] initWithFrame:CGRectMake(6,6,8,8)];
+    [self setupDotStyle:dot31];
+    [button3 addSubview:dot31];
+    UIView *dot32 = [[UIView alloc] initWithFrame:CGRectMake(16,16,8,8)];
+    [self setupDotStyle:dot32];
+    [button3 addSubview:dot32];
+    UIView *dot33 = [[UIView alloc] initWithFrame:CGRectMake(26,26,8,8)];
+    [self setupDotStyle:dot33];
+    [button3 addSubview:dot33];
+    
     UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
     button4.frame = CGRectMake(165,70,40,40);
-    [button4 setTitle:@"4" forState:UIControlStateNormal];
     [self setupButtonStyle:button4];
     [keypad addSubview:button4];
-    
+
+    UIView *dot41 = [[UIView alloc] initWithFrame:CGRectMake(6,6,8,8)];
+    [self setupDotStyle:dot41];
+    [button4 addSubview:dot41];
+    UIView *dot42 = [[UIView alloc] initWithFrame:CGRectMake(26,6,8,8)];
+    [self setupDotStyle:dot42];
+    [button4 addSubview:dot42];
+    UIView *dot43 = [[UIView alloc] initWithFrame:CGRectMake(6,26,8,8)];
+    [self setupDotStyle:dot43];
+    [button4 addSubview:dot43];
+    UIView *dot44 = [[UIView alloc] initWithFrame:CGRectMake(26,26,8,8)];
+    [self setupDotStyle:dot44];
+    [button4 addSubview:dot44];
+
     UIButton *button5 = [UIButton buttonWithType:UIButtonTypeCustom];
     button5.frame = CGRectMake(215,70,40,40);
-    [button5 setTitle:@"5" forState:UIControlStateNormal];
     [self setupButtonStyle:button5];
     [keypad addSubview:button5];
     
+    UIView *dot51 = [[UIView alloc] initWithFrame:CGRectMake(6,6,8,8)];
+    [self setupDotStyle:dot51];
+    [button5 addSubview:dot51];
+    UIView *dot52 = [[UIView alloc] initWithFrame:CGRectMake(26,6,8,8)];
+    [self setupDotStyle:dot52];
+    [button5 addSubview:dot52];
+    UIView *dot53 = [[UIView alloc] initWithFrame:CGRectMake(16,16,8,8)];
+    [self setupDotStyle:dot53];
+    [button5 addSubview:dot53];
+    UIView *dot54 = [[UIView alloc] initWithFrame:CGRectMake(6,26,8,8)];
+    [self setupDotStyle:dot54];
+    [button5 addSubview:dot54];
+    UIView *dot55 = [[UIView alloc] initWithFrame:CGRectMake(26,26,8,8)];
+    [self setupDotStyle:dot55];
+    [button5 addSubview:dot55];
+    
     UIButton *button6 = [UIButton buttonWithType:UIButtonTypeCustom];
     button6.frame = CGRectMake(265,70,40,40);
-    [button6 setTitle:@"6" forState:UIControlStateNormal];
     [self setupButtonStyle:button6];
     [keypad addSubview:button6];
+    
+    UIView *dot61 = [[UIView alloc] initWithFrame:CGRectMake(6,6,8,8)];
+    [self setupDotStyle:dot61];
+    [button6 addSubview:dot61];
+    UIView *dot62 = [[UIView alloc] initWithFrame:CGRectMake(26,6,8,8)];
+    [self setupDotStyle:dot62];
+    [button6 addSubview:dot62];
+    UIView *dot63 = [[UIView alloc] initWithFrame:CGRectMake(6,16,8,8)];
+    [self setupDotStyle:dot63];
+    [button6 addSubview:dot63];
+    UIView *dot64 = [[UIView alloc] initWithFrame:CGRectMake(6,26,8,8)];
+    [self setupDotStyle:dot64];
+    [button6 addSubview:dot64];
+    UIView *dot65 = [[UIView alloc] initWithFrame:CGRectMake(26,26,8,8)];
+    [self setupDotStyle:dot65];
+    [button6 addSubview:dot65];
+    UIView *dot66 = [[UIView alloc] initWithFrame:CGRectMake(26,16,8,8)];
+    [self setupDotStyle:dot66];
+    [button6 addSubview:dot66];
     
     [self.view addSubview:keypad];
 }
