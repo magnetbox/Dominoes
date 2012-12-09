@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 #import "Game.h"
 #import "KeypadViewController.h"
+#import "PlayerCell.h"
 
 @interface DetailViewController ()
 - (void)configureView;
@@ -81,25 +82,20 @@
 {
 	NSString* CellIdentifier = [NSString stringWithFormat:@"Cell-%i", indexPath.row];
     
-	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	PlayerCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil)
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+		cell = [[PlayerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
     NSString *playerName = [[self.game gamePlayers] objectAtIndex:indexPath.row];
     NSLog(@"PLAYER %d: %@", indexPath.row, playerName);
+    int playerScore = (int) [[self.game gamePlayersScore] objectAtIndex:indexPath.row];
+    int gameEndScore = (int) [self.game gameEndScore];
 	
-    cell.textLabel.text = playerName;
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:16.0];
-    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.nameLabel.text = playerName;
+    cell.scoreLabel.text = [[self.game gamePlayersScore] objectAtIndex:indexPath.row];
+    cell.progressBar.progress = gameEndScore / playerScore;
+    NSLog(@"%d %d %d",gameEndScore,playerScore,gameEndScore / playerScore);
 
-    cell.detailTextLabel.text = [[self.game gamePlayersScore] objectAtIndex:indexPath.row];
-    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:34.0];
-    cell.detailTextLabel.textColor = [UIColor whiteColor];
-
-    UIView *bgColorView = [[UIView alloc] init];
-    [bgColorView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.3]];
-    [cell setSelectedBackgroundView:bgColorView];
-	
     return cell;
 }
 

@@ -33,7 +33,7 @@
 		Game* inactiveGame = [[Game alloc] init];
 		inactiveGame.gameTitle = @"Inactive 1";
         inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:@"0", @"0", nil];
+        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:@"10", @"0", nil];
 		inactiveGame.gameEndScore = 500;
 		inactiveGame.gameActive = NO;
 		[inactiveGames addObject:inactiveGame];

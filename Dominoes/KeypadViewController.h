@@ -9,18 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface KeypadViewController : UIViewController {
-    IBOutlet UITextField *display;
-    IBOutlet UIButton *cbutton;
+    IBOutlet UILabel *display;
 }
 
-- (UIButton*) button2;
-- (UIButton*) button3;
-- (UIButton*) button4;
-- (UIButton*) button5;
-- (UIButton*) button6;
-- (UIButton*) undoButton;
-- (UIButton*) doneButton;
+@property (nonatomic, retain) UILabel *display;
 /*
+- (UIButton*) button1;
 - (void)buttonPressed:(id)sender;
 - (void)clearDisplay;
 */

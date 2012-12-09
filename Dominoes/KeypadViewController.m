@@ -14,6 +14,8 @@
 
 @implementation KeypadViewController
 
+@synthesize display;
+
 -(id)setupDotStyle:(UIView*)dot{
     dot.layer.cornerRadius = 4;
     dot.backgroundColor = [UIColor colorWithRed:82.0f/255.0f green:92.0f/255.0f blue:105.0f/255.0f alpha:1.0f];
@@ -54,9 +56,9 @@
     pointsLabel.numberOfLines = 0;
     [keypad addSubview:pointsLabel];
     
-    //UILabel *pointsToAdd = [[UILabel alloc] initWithFrame:CGRectMake(75,10,500,50)];
+    display = [[UILabel alloc] initWithFrame:CGRectMake(75,10,500,50)];
     display.backgroundColor = [UIColor clearColor];
-    display.text = @"0";
+    display.text = @"10";
     display.textColor = [UIColor whiteColor];
     display.font = [UIFont boldSystemFontOfSize:34.0];
     [keypad addSubview:display];
@@ -65,6 +67,7 @@
     undoButton.frame = CGRectMake(140,15,65,40);
     [undoButton setTitle:@"undo" forState:UIControlStateNormal];
     [self setupButtonStyle:undoButton];
+    [undoButton addTarget:self action:@selector(clearDisplay:) forControlEvents:UIControlEventTouchUpInside];
     [keypad addSubview:undoButton];
     
     UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -178,16 +181,12 @@
 }
 
 -(void)buttonPressed:(id)sender {
-    //display.text = @"0";
-    NSLog(@"HI");
+    NSLog(@"PRESS");
+    //display.text = @"55";
 }
-/*
-- (IBAction) button1 {
-    display.text=[NSString stringWithFormat:@"%@1",display.text];
-}
-*/
 
 - (void)clearDisplay {
+    NSLog(@"CLEAR");
     display.text = @"0";
 }
 

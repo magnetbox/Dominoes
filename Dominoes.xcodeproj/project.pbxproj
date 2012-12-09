@@ -25,6 +25,10 @@
 		B5D4C7C314DF304700C2866B /* pattern4.png in Resources */ = {isa = PBXBuildFile; fileRef = B5D4C7BF14DF304700C2866B /* pattern4.png */; };
 		B5E9848E14AE865500BA3DFF /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9848B14AE865500BA3DFF /* DetailViewController.m */; };
 		B5E9848F14AE865500BA3DFF /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9848D14AE865500BA3DFF /* MasterViewController.m */; };
+		BB4AF71416741C79001834F7 /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF71316741C79001834F7 /* PlayerCell.m */; };
+		BB4AF71816743408001834F7 /* PlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF71716743408001834F7 /* PlayerProgress.m */; };
+		BB6194591675448300160735 /* progress-view-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BB6194571675448200160735 /* progress-view-bg.png */; };
+		BB61945A1675448300160735 /* progress-view-fill.png in Resources */ = {isa = PBXBuildFile; fileRef = BB6194581675448200160735 /* progress-view-fill.png */; };
 		BB72FBCB16646DAB00ACF2F1 /* KeypadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB72FBCA16646DAB00ACF2F1 /* KeypadViewController.m */; };
 		BB83504E14AE8EF000E2210D /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB83504D14AE8EF000E2210D /* NewGameViewController.m */; };
 		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
@@ -67,6 +71,12 @@
 		B5E9848B14AE865500BA3DFF /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		B5E9848C14AE865500BA3DFF /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		B5E9848D14AE865500BA3DFF /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		BB4AF71216741C79001834F7 /* PlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCell.h; sourceTree = "<group>"; };
+		BB4AF71316741C79001834F7 /* PlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCell.m; sourceTree = "<group>"; };
+		BB4AF71616743408001834F7 /* PlayerProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerProgress.h; sourceTree = "<group>"; };
+		BB4AF71716743408001834F7 /* PlayerProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerProgress.m; sourceTree = "<group>"; };
+		BB6194571675448200160735 /* progress-view-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-view-bg.png"; sourceTree = "<group>"; };
+		BB6194581675448200160735 /* progress-view-fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-view-fill.png"; sourceTree = "<group>"; };
 		BB72FBC916646DAB00ACF2F1 /* KeypadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeypadViewController.h; sourceTree = "<group>"; };
 		BB72FBCA16646DAB00ACF2F1 /* KeypadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeypadViewController.m; sourceTree = "<group>"; };
 		BB83504C14AE8EF000E2210D /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
@@ -147,6 +157,10 @@
 				B5E9848B14AE865500BA3DFF /* DetailViewController.m */,
 				BB72FBC916646DAB00ACF2F1 /* KeypadViewController.h */,
 				BB72FBCA16646DAB00ACF2F1 /* KeypadViewController.m */,
+				BB4AF71216741C79001834F7 /* PlayerCell.h */,
+				BB4AF71316741C79001834F7 /* PlayerCell.m */,
+				BB4AF71616743408001834F7 /* PlayerProgress.h */,
+				BB4AF71716743408001834F7 /* PlayerProgress.m */,
 				B5D4C7C514DF306100C2866B /* Images */,
 				B527C6B9147C661D00D2257E /* Supporting Files */,
 			);
@@ -186,6 +200,8 @@
 		B5D4C7C514DF306100C2866B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BB6194571675448200160735 /* progress-view-bg.png */,
+				BB6194581675448200160735 /* progress-view-fill.png */,
 				B5D4C7BC14DF304700C2866B /* pattern1.png */,
 				B5D4C7BD14DF304700C2866B /* pattern2.png */,
 				B5D4C7BE14DF304700C2866B /* pattern3.png */,
@@ -272,6 +288,8 @@
 				B5D4C7C214DF304700C2866B /* pattern3.png in Resources */,
 				B5D4C7C314DF304700C2866B /* pattern4.png in Resources */,
 				BBB38BBF160E8057002E0302 /* Default-568h@2x.png in Resources */,
+				BB6194591675448300160735 /* progress-view-bg.png in Resources */,
+				BB61945A1675448300160735 /* progress-view-fill.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +331,8 @@
 				B5E9848F14AE865500BA3DFF /* MasterViewController.m in Sources */,
 				BB83504E14AE8EF000E2210D /* NewGameViewController.m in Sources */,
 				BB72FBCB16646DAB00ACF2F1 /* KeypadViewController.m in Sources */,
+				BB4AF71416741C79001834F7 /* PlayerCell.m in Sources */,
+				BB4AF71816743408001834F7 /* PlayerProgress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
