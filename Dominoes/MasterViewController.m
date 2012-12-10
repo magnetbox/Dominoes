@@ -19,13 +19,13 @@
 - (id)initWithCoder:(NSCoder*)aDecoder
 {
 	if ((self = [super initWithCoder:aDecoder]))
-	{
+	{        
 		activeGames = [NSMutableArray arrayWithCapacity:10];
 		Game* activeGame = [[Game alloc] init];
 		activeGame.gameTitle = @"Active 1";
         activeGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        activeGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:@"0", @"0", nil];
-		activeGame.gameEndScore = 500;
+        activeGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:100], nil];
+		activeGame.gameEndScore = [NSNumber numberWithInt:500];
 		activeGame.gameActive = YES;
 		[activeGames addObject:activeGame];
 
@@ -33,16 +33,16 @@
 		Game* inactiveGame = [[Game alloc] init];
 		inactiveGame.gameTitle = @"Inactive 1";
         inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:@"10", @"0", nil];
-		inactiveGame.gameEndScore = 500;
+        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:10], [NSNumber numberWithInt:0], nil];
+		inactiveGame.gameEndScore = [NSNumber numberWithInt:500];
 		inactiveGame.gameActive = NO;
 		[inactiveGames addObject:inactiveGame];
 
         inactiveGame = [[Game alloc] init];
 		inactiveGame.gameTitle = @"Inactive 2";
         inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:@"0", @"0", nil];
-		inactiveGame.gameEndScore = 500;
+        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
+		inactiveGame.gameEndScore = [NSNumber numberWithInt:500];
 		inactiveGame.gameActive = NO;
 		[inactiveGames addObject:inactiveGame];
         

@@ -19,7 +19,7 @@
 
 @synthesize detailItem = _detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
-@synthesize selected, game;
+@synthesize selected, game, keypad;
 
 #pragma mark - Managing the detail item
 
@@ -56,7 +56,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern4.png"]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 
-    KeypadViewController *keypad = [[KeypadViewController alloc] init];
+    keypad = [[KeypadViewController alloc] init];
     [self.view addSubview:keypad.view];
     
 }
@@ -86,15 +86,14 @@
 	if (cell == nil)
 		cell = [[PlayerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-    NSString *playerName = [[self.game gamePlayers] objectAtIndex:indexPath.row];
-    NSLog(@"PLAYER %d: %@", indexPath.row, playerName);
-    int playerScore = (int) [[self.game gamePlayersScore] objectAtIndex:indexPath.row];
-    int gameEndScore = (int) [self.game gameEndScore];
+    NSString *playerName = [[self.game gamePlayers] objectAtIndex:indexPath.row];    
+    NSNumber* playerScore = [[self.game gamePlayersScore] objectAtIndex:indexPath.row];
+    NSNumber* gameEndScore = [self.game gameEndScore];
+    NSString *playerScoreString = [playerScore stringValue];
 	
     cell.nameLabel.text = playerName;
-    cell.scoreLabel.text = [[self.game gamePlayersScore] objectAtIndex:indexPath.row];
-    cell.progressBar.progress = gameEndScore / playerScore;
-    NSLog(@"%d %d %d",gameEndScore,playerScore,gameEndScore / playerScore);
+    cell.scoreLabel.text = playerScoreString;
+    cell.progressBar.progress = (float) [playerScore intValue] / [gameEndScore intValue];
 
     return cell;
 }
@@ -120,6 +119,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.keypad = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated

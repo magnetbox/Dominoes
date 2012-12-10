@@ -10,13 +10,13 @@
 
 @interface KeypadViewController : UIViewController {
     IBOutlet UILabel *display;
+    //UIButton *button1;
 }
 
 @property (nonatomic, retain) UILabel *display;
-/*
-- (UIButton*) button1;
 - (void)buttonPressed:(id)sender;
-- (void)clearDisplay;
-*/
+- (void)undoLastEvent:(id)sender;
+- (void)endTurn:(id)sender;
+//- (UIButton*) button1;
 
 @end

@@ -47,7 +47,7 @@
     } else {
         NSLog(@"NO DEFAULT GAME DATA, SET IT AND SAVE IT");
         defaultGamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        defaultGameSettings = [[NSMutableArray alloc] initWithObjects:@"Park bench", @"500", @"First to 500", @"Yes", nil];
+        defaultGameSettings = [[NSMutableArray alloc] initWithObjects:@"Park bench", [NSNumber numberWithInt:500], @"First to 500", @"Yes", nil];
         defaultGame = [[NSMutableArray alloc] initWithObjects:defaultGamePlayers, defaultGameSettings, nil];
         defaultGameSave = YES;
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:defaultGame] forKey:@"defaultGame"];
@@ -354,7 +354,7 @@
     Game *game = [[Game alloc] init];
     game.gamePlayers = defaultGamePlayers;
     game.gameSurface = [defaultGameSettings objectAtIndex:0];
-    game.gameEndScore = [[defaultGameSettings objectAtIndex:1] intValue];
+    game.gameEndScore = [defaultGameSettings objectAtIndex:1];
     game.gameTitle = [defaultGameSettings objectAtIndex:2];
     game.gameActive = YES;
     

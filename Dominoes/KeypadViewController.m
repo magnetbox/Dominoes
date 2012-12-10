@@ -24,6 +24,9 @@
     dot.layer.shadowRadius = 2;
     dot.layer.shadowOffset = CGSizeMake(0,2.0f);
     dot.layer.masksToBounds = NO;
+    dot.clipsToBounds = YES;
+    dot.userInteractionEnabled = NO;
+    dot.exclusiveTouch = NO;
     return dot;
 }
 
@@ -47,6 +50,7 @@
 {
     UIView *keypad = [[UIView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height-190.0f,self.view.frame.size.width,190.0f)];
     keypad.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.2];
+    [self.view addSubview:keypad];
     
     UILabel *pointsLabel = [[UILabel alloc] initWithFrame:CGRectMake(30,10,50,50)];
     pointsLabel.backgroundColor = [UIColor clearColor];
@@ -67,19 +71,22 @@
     undoButton.frame = CGRectMake(140,15,65,40);
     [undoButton setTitle:@"undo" forState:UIControlStateNormal];
     [self setupButtonStyle:undoButton];
-    [undoButton addTarget:self action:@selector(clearDisplay:) forControlEvents:UIControlEventTouchUpInside];
+    [undoButton addTarget:self action:@selector(undoLastEvent:) forControlEvents:UIControlEventTouchUpInside];
     [keypad addSubview:undoButton];
     
     UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     doneButton.frame = CGRectMake(215,15,65,40);
     [doneButton setTitle:@"done" forState:UIControlStateNormal];
     [self setupButtonStyle:doneButton];
+    [doneButton addTarget:self action:@selector(endTurn:) forControlEvents:UIControlEventTouchUpInside];
     [keypad addSubview:doneButton];
     
     UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
     button1.frame = CGRectMake(15,70,40,40);
-    [self setupButtonStyle:button1];
+    button1.titleLabel.hidden = YES;
+    button1.tag = 1;
     [button1 addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self setupButtonStyle:button1];
     [keypad addSubview:button1];
     
     UIView *dot1 = [[UIView alloc] initWithFrame:CGRectMake(16,16,8,8)];
@@ -88,8 +95,9 @@
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     button2.frame = CGRectMake(65,70,40,40);
-    [self setupButtonStyle:button2];
+    button2.tag = 2;
     [button2 addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self setupButtonStyle:button2];
     [keypad addSubview:button2];
     
     UIView *dot21 = [[UIView alloc] initWithFrame:CGRectMake(6,6,8,8)];
@@ -101,7 +109,9 @@
     
     UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
     button3.frame = CGRectMake(115,70,40,40);
+    button3.tag = 3;
     [self setupButtonStyle:button3];
+    [button3 addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [keypad addSubview:button3];
     
     UIView *dot31 = [[UIView alloc] initWithFrame:CGRectMake(6,6,8,8)];
@@ -116,7 +126,9 @@
     
     UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
     button4.frame = CGRectMake(165,70,40,40);
+    button4.tag = 4;
     [self setupButtonStyle:button4];
+    [button4 addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [keypad addSubview:button4];
     
     UIView *dot41 = [[UIView alloc] initWithFrame:CGRectMake(6,6,8,8)];
@@ -134,7 +146,9 @@
     
     UIButton *button5 = [UIButton buttonWithType:UIButtonTypeCustom];
     button5.frame = CGRectMake(215,70,40,40);
+    button5.tag = 5;
     [self setupButtonStyle:button5];
+    [button5 addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [keypad addSubview:button5];
     
     UIView *dot51 = [[UIView alloc] initWithFrame:CGRectMake(6,6,8,8)];
@@ -155,7 +169,9 @@
     
     UIButton *button6 = [UIButton buttonWithType:UIButtonTypeCustom];
     button6.frame = CGRectMake(265,70,40,40);
+    button6.tag = 6;
     [self setupButtonStyle:button6];
+    [button6 addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [keypad addSubview:button6];
     
     UIView *dot61 = [[UIView alloc] initWithFrame:CGRectMake(6,6,8,8)];
@@ -177,16 +193,21 @@
     [self setupDotStyle:dot66];
     [button6 addSubview:dot66];
     
-    [self.view addSubview:keypad];
 }
 
 -(void)buttonPressed:(id)sender {
-    NSLog(@"PRESS");
-    //display.text = @"55";
+    NSLog(@"DIGIT PRESSED: %d", [sender tag]);
+    NSInteger total = [display.text intValue];
+    display.text = [NSString stringWithFormat:@"%d", total+[sender tag]];
 }
 
-- (void)clearDisplay {
-    NSLog(@"CLEAR");
+- (void)undoLastEvent:(id)sender {
+    NSLog(@"UNDO");
+    //display.text = @"0";
+}
+
+- (void)endTurn:(id)sender {
+    NSLog(@"END TURN");
     display.text = @"0";
 }
 

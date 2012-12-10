@@ -11,22 +11,22 @@
 @interface Game : NSObject <NSCoding> {
     NSInteger gameId;
     NSString *gameTitle;
-    NSInteger gameEndScore;
+    NSNumber *gameEndScore;
     NSString *gameSurface;
     NSArray *gamePlayers;
     NSArray *gamePlayersScore;
-    NSInteger gamePlayersTurn;
+    NSNumber *gamePlayersTurn;
     NSArray *gameMoves;
     BOOL gameActive;
 }
 
 @property (nonatomic, assign) NSInteger gameId;
 @property (nonatomic, retain) NSString *gameTitle;
-@property (nonatomic, assign) NSInteger gameEndScore;
+@property (nonatomic, retain) NSNumber *gameEndScore;
 @property (nonatomic, retain) NSString *gameSurface;
 @property (nonatomic, retain) NSArray *gamePlayers;
 @property (nonatomic, retain) NSArray *gamePlayersScore;
-@property (nonatomic, assign) NSInteger gamePlayersTurn;
+@property (nonatomic, retain) NSNumber *gamePlayersTurn;
 @property (nonatomic, retain) NSArray *gameMoves;
 @property (nonatomic) BOOL gameActive;
 

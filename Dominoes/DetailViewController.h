@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Game.h"
+#import "KeypadViewController.h"
 
-@interface DetailViewController : UITableViewController
+@interface DetailViewController : UITableViewController {
+    KeypadViewController *keypad;
+}
 
 @property (strong, nonatomic) id detailItem;
 @property (strong, nonatomic) Game *game;
@@ -17,5 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 @property (retain, nonatomic) NSString *selected;
+
+@property (nonatomic, retain) KeypadViewController *keypad;
 
 @end

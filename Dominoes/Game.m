@@ -25,11 +25,11 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeInt:self.gameId forKey:@"GameId"];
     [aCoder encodeObject:self.gameTitle forKey:@"GameTitle"];
-    [aCoder encodeInt:self.gameEndScore forKey:@"GameEndScore"];
+    [aCoder encodeObject:self.gameEndScore forKey:@"GameEndScore"];
     [aCoder encodeObject:self.gameSurface forKey:@"GameSurface"];
     [aCoder encodeObject:self.gamePlayers forKey:@"GamePlayers"];
     [aCoder encodeObject:self.gamePlayersScore forKey:@"GamePlayersScore"];
-    [aCoder encodeInt:self.gamePlayersTurn forKey:@"GamePlayersTurn"];
+    [aCoder encodeObject:self.gamePlayersTurn forKey:@"GamePlayersTurn"];
     [aCoder encodeObject:self.gameMoves forKey:@"GameMoves"];
     [aCoder encodeBool:self.gameActive forKey:@"GameActive"];
 }
@@ -38,11 +38,11 @@
     if (self = [super init]) {
         self.gameId             = [aDecoder decodeIntForKey:@"GameId"];
         self.gameTitle          = [aDecoder decodeObjectForKey:@"GameTitle"];
-        self.gameEndScore       = [aDecoder decodeIntForKey:@"GameEndScore"];
+        self.gameEndScore       = [aDecoder decodeObjectForKey:@"GameEndScore"];
         self.gameSurface        = [aDecoder decodeObjectForKey:@"GameSurface"];
         self.gamePlayers        = [aDecoder decodeObjectForKey:@"GamePlayers"];
         self.gamePlayersScore   = [aDecoder decodeObjectForKey:@"GamePlayersScore"];
-        self.gamePlayersTurn    = [aDecoder decodeIntForKey:@"GamePlayersTurn"];
+        self.gamePlayersTurn    = [aDecoder decodeObjectForKey:@"GamePlayersTurn"];
         self.gameMoves          = [aDecoder decodeObjectForKey:@"GameMoves"];
         self.gameActive         = [aDecoder decodeBoolForKey:@"GameActive"];
     }
