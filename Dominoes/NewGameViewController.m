@@ -12,7 +12,7 @@
 @implementation NewGameViewController
 
 @synthesize delegate;
-@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave;
+@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave, defaultGamePlayersTurn;
 
 - (void)didReceiveMemoryWarning
 {
@@ -40,6 +40,7 @@
             defaultGamePlayers = [[NSMutableArray alloc] initWithArray:[defaultGame objectAtIndex:0]];
             defaultGameSettings = [[NSMutableArray alloc] initWithArray:[defaultGame objectAtIndex:1]];
             defaultGameSave = NO;
+            defaultGamePlayersTurn = 0;
         } else {
             NSLog(@"NO ARCHIVED DATA");
             defaultGame = [[NSMutableArray alloc] init];
@@ -50,6 +51,7 @@
         defaultGameSettings = [[NSMutableArray alloc] initWithObjects:@"Park bench", [NSNumber numberWithInt:500], @"First to 500", @"Yes", nil];
         defaultGame = [[NSMutableArray alloc] initWithObjects:defaultGamePlayers, defaultGameSettings, nil];
         defaultGameSave = YES;
+        defaultGamePlayersTurn = 0;
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:defaultGame] forKey:@"defaultGame"];
     }
 
@@ -356,6 +358,7 @@
     game.gameSurface = [defaultGameSettings objectAtIndex:0];
     game.gameEndScore = [defaultGameSettings objectAtIndex:1];
     game.gameTitle = [defaultGameSettings objectAtIndex:2];
+    game.gamePlayersTurn = defaultGamePlayersTurn;
     game.gameActive = YES;
     
     // save the values as the defaults

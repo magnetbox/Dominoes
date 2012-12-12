@@ -18,8 +18,8 @@
     [super layoutSubviews];
     CGRect contentRect = self.contentView.bounds;
     CGFloat boundsX = contentRect.origin.x;    
-    nameLabel.frame = CGRectMake(boundsX+16, 7, 170, 25);
-    scoreLabel.frame = CGRectMake(boundsX+185, -6, 120, 50);
+    nameLabel.frame = CGRectMake(boundsX+16, 8, 170, 25);
+    scoreLabel.frame = CGRectMake(boundsX+185, -4, 120, 50);
     progressBar.frame = CGRectMake(boundsX, 40, contentRect.size.width, 4);
     
 }
@@ -37,7 +37,7 @@
         nameLabel.textAlignment = UITextAlignmentLeft;
         nameLabel.font = [UIFont boldSystemFontOfSize:16.0];
         nameLabel.textColor = [UIColor whiteColor];
-        nameLabel.backgroundColor = [UIColor redColor];
+        nameLabel.backgroundColor = [UIColor clearColor];
         nameLabel.adjustsFontSizeToFitWidth = NO;
         nameLabel.lineBreakMode = UILineBreakModeTailTruncation;
         
@@ -45,7 +45,7 @@
         scoreLabel.textAlignment = UITextAlignmentRight;
         scoreLabel.font = [UIFont boldSystemFontOfSize:34.0];
         scoreLabel.textColor = [UIColor whiteColor];
-        scoreLabel.backgroundColor = [UIColor blueColor];
+        scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.adjustsFontSizeToFitWidth = NO;
         
         progressBar = [[PlayerProgress alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];

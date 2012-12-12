@@ -23,11 +23,43 @@
 
 #pragma mark - Managing the detail item
 
+-(void)buttonPressed:(id)sender {
+    NSLog(@"DIGIT PRESSED: %d", [sender tag]);
+    NSInteger total = [keypad.display.text intValue];
+    keypad.display.text = [NSString stringWithFormat:@"%d", total+[sender tag]];
+}
+
+- (void)clearDisplay {
+    NSLog(@"CLEAR");
+    keypad.display.text = @"0";
+}
+
+- (void)endTurn:(id)sender {
+    NSLog(@"DONE");
+    [self updatePlayerScore:[self.game gamePlayersTurn]];
+    [self.game setGamePlayersTurn:[self.game gamePlayersTurn] + 1];
+    if ([self.game gamePlayersTurn]>([[self.game gamePlayers] count]-1)) {
+        [self.game setGamePlayersTurn:0];
+    }
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.game gamePlayersTurn] inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    [self clearDisplay];
+}
+
 /*
  - (void)setGame:(Game *)game {
     
 }
 */
+- (void)updatePlayerScore:(int)player
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:player inSection:0];
+	PlayerCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    NSInteger newValue = [self.keypad.display.text intValue]+[cell.scoreLabel.text intValue];
+    [cell.scoreLabel setText:[NSString stringWithFormat:@"%d", newValue]];
+    cell.progressBar.progress = (float) newValue / [self.game.gameEndScore intValue];
+}
 
 - (void)setDetailItem:(id)newDetailItem
 {
@@ -89,13 +121,22 @@
     NSString *playerName = [[self.game gamePlayers] objectAtIndex:indexPath.row];    
     NSNumber* playerScore = [[self.game gamePlayersScore] objectAtIndex:indexPath.row];
     NSNumber* gameEndScore = [self.game gameEndScore];
+    NSInteger gamePlayersTurn = [self.game gamePlayersTurn];
     NSString *playerScoreString = [playerScore stringValue];
-	
+    
     cell.nameLabel.text = playerName;
     cell.scoreLabel.text = playerScoreString;
     cell.progressBar.progress = (float) [playerScore intValue] / [gameEndScore intValue];
+    
+    if (indexPath.row == gamePlayersTurn) {
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    }
 
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
 }
 
 - (void)didReceiveMemoryWarning
@@ -129,7 +170,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewDidAppear:animated];    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

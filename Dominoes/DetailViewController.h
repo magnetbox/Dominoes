@@ -10,7 +10,13 @@
 #import "Game.h"
 #import "KeypadViewController.h"
 
-@interface DetailViewController : UITableViewController {
+@protocol KeypadViewControllerDelegate <UITableViewDelegate>
+- (void)buttonPressed:(id)sender;
+- (void)clearDisplay;
+- (void)endTurn:(id)sender;
+@end
+
+@interface DetailViewController : UITableViewController <KeypadViewControllerDelegate> {
     KeypadViewController *keypad;
 }
 
@@ -22,5 +28,7 @@
 @property (retain, nonatomic) NSString *selected;
 
 @property (nonatomic, retain) KeypadViewController *keypad;
+
+- (void)updatePlayerScore:(int)player;
 
 @end

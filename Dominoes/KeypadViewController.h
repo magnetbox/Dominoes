@@ -14,9 +14,6 @@
 }
 
 @property (nonatomic, retain) UILabel *display;
-- (void)buttonPressed:(id)sender;
-- (void)undoLastEvent:(id)sender;
-- (void)endTurn:(id)sender;
 //- (UIButton*) button1;
 
 @end
