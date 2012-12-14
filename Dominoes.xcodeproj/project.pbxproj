@@ -29,10 +29,11 @@
 		BB4AF71816743408001834F7 /* PlayerProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = BB4AF71716743408001834F7 /* PlayerProgress.m */; };
 		BB6194591675448300160735 /* progress-view-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BB6194571675448200160735 /* progress-view-bg.png */; };
 		BB61945A1675448300160735 /* progress-view-fill.png in Resources */ = {isa = PBXBuildFile; fileRef = BB6194581675448200160735 /* progress-view-fill.png */; };
+		BB6EF5A4167B06FB007F7B4E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB6EF5A3167B06FB007F7B4E /* Icon.png */; };
+		BB6EF5A6167B06FF007F7B4E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */; };
 		BB72FBCB16646DAB00ACF2F1 /* KeypadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB72FBCA16646DAB00ACF2F1 /* KeypadViewController.m */; };
 		BB83504E14AE8EF000E2210D /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB83504D14AE8EF000E2210D /* NewGameViewController.m */; };
 		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
-		BBB38BBF160E8057002E0302 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBB38BBE160E8057002E0302 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,13 +78,14 @@
 		BB4AF71716743408001834F7 /* PlayerProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerProgress.m; sourceTree = "<group>"; };
 		BB6194571675448200160735 /* progress-view-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-view-bg.png"; sourceTree = "<group>"; };
 		BB6194581675448200160735 /* progress-view-fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-view-fill.png"; sourceTree = "<group>"; };
+		BB6EF5A3167B06FB007F7B4E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		BB72FBC916646DAB00ACF2F1 /* KeypadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeypadViewController.h; sourceTree = "<group>"; };
 		BB72FBCA16646DAB00ACF2F1 /* KeypadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeypadViewController.m; sourceTree = "<group>"; };
 		BB83504C14AE8EF000E2210D /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
 		BB83504D14AE8EF000E2210D /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
 		BB9DCEAA1485DD8700C0E306 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		BB9DCEAB1485DD8700C0E306 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
-		BBB38BBE160E8057002E0302 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +115,8 @@
 		B527C6A3147C661D00D2257E = {
 			isa = PBXGroup;
 			children = (
-				BBB38BBE160E8057002E0302 /* Default-568h@2x.png */,
+				BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */,
+				BB6EF5A3167B06FB007F7B4E /* Icon.png */,
 				B527C6B8147C661D00D2257E /* Dominoes */,
 				B527C6D6147C661D00D2257E /* DominoesTests */,
 				B527C6B1147C661D00D2257E /* Frameworks */,
@@ -287,9 +290,10 @@
 				B5D4C7C114DF304700C2866B /* pattern2.png in Resources */,
 				B5D4C7C214DF304700C2866B /* pattern3.png in Resources */,
 				B5D4C7C314DF304700C2866B /* pattern4.png in Resources */,
-				BBB38BBF160E8057002E0302 /* Default-568h@2x.png in Resources */,
 				BB6194591675448300160735 /* progress-view-bg.png in Resources */,
 				BB61945A1675448300160735 /* progress-view-fill.png in Resources */,
+				BB6EF5A4167B06FB007F7B4E /* Icon.png in Resources */,
+				BB6EF5A6167B06FF007F7B4E /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,13 +21,13 @@
     NSMutableArray *defaultGame;
     NSMutableArray *defaultGamePlayers;
     NSMutableArray *defaultGameSettings;
-    NSNumber *defaultGamePlayersTurn;
+    NSInteger defaultGamePlayersTurn;
     BOOL defaultGameSave;
 }
 @property (nonatomic, retain) NSMutableArray *defaultGame;
 @property (nonatomic, retain) NSMutableArray *defaultGamePlayers;
 @property (nonatomic, retain) NSMutableArray *defaultGameSettings;
-@property (nonatomic, retain) NSNumber *defaultGamePlayersTurn;
+@property (nonatomic, assign) NSInteger defaultGamePlayersTurn;
 @property (nonatomic) BOOL defaultGameSave;
 
 @property (nonatomic, weak) id <NewGameViewControllerDelegate> delegate;

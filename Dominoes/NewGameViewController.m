@@ -12,7 +12,7 @@
 @implementation NewGameViewController
 
 @synthesize delegate;
-@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave, defaultGamePlayersTurn;
+@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave;
 
 - (void)didReceiveMemoryWarning
 {
@@ -214,7 +214,7 @@
             }
             
             cell.textLabel.text = @"Play to score";
-            scoreInputField.text = [defaultGameSettings objectAtIndex:1];
+            scoreInputField.text = [[defaultGameSettings objectAtIndex:1] stringValue];
             scoreInputField.delegate = self;
             return cell;
             

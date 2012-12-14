@@ -16,6 +16,12 @@
 
 @synthesize display;
 
+-(id)setupDotsStyle:(UIView*)dots{
+    dots.userInteractionEnabled = NO;
+    dots.exclusiveTouch = NO;
+    return dots;
+}
+
 -(id)setupDotStyle:(UIView*)dot{
     dot.layer.cornerRadius = 5;
     dot.backgroundColor = [UIColor colorWithRed:82.0f/255.0f green:92.0f/255.0f blue:105.0f/255.0f alpha:1.0f];
@@ -92,6 +98,7 @@
     CGRect buttonCenter = CGRectMake(1,22,44,44);
     
     UIView *dot1s = [[UIView alloc] initWithFrame:buttonCenter];
+    [self setupDotsStyle:dot1s];
     UIView *dot1 = [[UIView alloc] initWithFrame:CGRectMake(16,16,10,10)];
     [self setupDotStyle:dot1];
     [dot1s addSubview:dot1];
@@ -105,6 +112,7 @@
     [keypad addSubview:button2];
     
     UIView *dot2s = [[UIView alloc] initWithFrame:buttonCenter];
+    [self setupDotsStyle:dot2s];
     UIView *dot21 = [[UIView alloc] initWithFrame:CGRectMake(4,4,10,10)];
     [self setupDotStyle:dot21];
     [dot2s addSubview:dot21];
@@ -121,6 +129,7 @@
     [keypad addSubview:button3];
     
     UIView *dot3s = [[UIView alloc] initWithFrame:buttonCenter];
+    [self setupDotsStyle:dot3s];
     UIView *dot31 = [[UIView alloc] initWithFrame:CGRectMake(4,4,10,10)];
     [self setupDotStyle:dot31];
     [dot3s addSubview:dot31];
@@ -140,6 +149,7 @@
     [keypad addSubview:button4];
     
     UIView *dot4s = [[UIView alloc] initWithFrame:buttonCenter];
+    [self setupDotsStyle:dot4s];
     UIView *dot41 = [[UIView alloc] initWithFrame:CGRectMake(4,4,10,10)];
     [self setupDotStyle:dot41];
     [dot4s addSubview:dot41];
@@ -162,6 +172,7 @@
     [keypad addSubview:button5];
     
     UIView *dot5s = [[UIView alloc] initWithFrame:buttonCenter];
+    [self setupDotsStyle:dot5s];
     UIView *dot51 = [[UIView alloc] initWithFrame:CGRectMake(4,4,10,10)];
     [self setupDotStyle:dot51];
     [dot5s addSubview:dot51];
@@ -187,6 +198,7 @@
     [keypad addSubview:button6];
     
     UIView *dot6s = [[UIView alloc] initWithFrame:buttonCenter];
+    [self setupDotsStyle:dot6s];
     UIView *dot61 = [[UIView alloc] initWithFrame:CGRectMake(4,4,10,10)];
     [self setupDotStyle:dot61];
     [dot6s addSubview:dot61];
