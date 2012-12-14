@@ -17,10 +17,10 @@
     
     [super layoutSubviews];
     CGRect contentRect = self.contentView.bounds;
-    CGFloat boundsX = contentRect.origin.x;    
-    nameLabel.frame = CGRectMake(boundsX+16, 8, 170, 25);
-    scoreLabel.frame = CGRectMake(boundsX+185, -4, 120, 50);
-    progressBar.frame = CGRectMake(boundsX, 40, contentRect.size.width, 4);
+    CGFloat boundsX = contentRect.origin.x;
+    nameLabel.frame = CGRectMake(boundsX+16, 16, 170, 25);
+    scoreLabel.frame = CGRectMake(boundsX+185, 4, 120, 50);
+    progressBar.frame = CGRectMake(boundsX, contentRect.size.height-6, contentRect.size.width, 6);
     
 }
 
@@ -35,7 +35,7 @@
         
         nameLabel = [[UILabel alloc]init];
         nameLabel.textAlignment = UITextAlignmentLeft;
-        nameLabel.font = [UIFont boldSystemFontOfSize:16.0];
+        nameLabel.font = [UIFont boldSystemFontOfSize:24.0];
         nameLabel.textColor = [UIColor whiteColor];
         nameLabel.backgroundColor = [UIColor clearColor];
         nameLabel.adjustsFontSizeToFitWidth = NO;
@@ -43,7 +43,7 @@
         
         scoreLabel = [[UILabel alloc]init];
         scoreLabel.textAlignment = UITextAlignmentRight;
-        scoreLabel.font = [UIFont boldSystemFontOfSize:34.0];
+        scoreLabel.font = [UIFont boldSystemFontOfSize:48.0];
         scoreLabel.textColor = [UIColor whiteColor];
         scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.adjustsFontSizeToFitWidth = NO;
