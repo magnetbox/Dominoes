@@ -34,6 +34,7 @@
 		BB72FBCB16646DAB00ACF2F1 /* KeypadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB72FBCA16646DAB00ACF2F1 /* KeypadViewController.m */; };
 		BB83504E14AE8EF000E2210D /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB83504D14AE8EF000E2210D /* NewGameViewController.m */; };
 		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
+		BBD635EA167E8DA20064AC7F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		BB83504D14AE8EF000E2210D /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
 		BB9DCEAA1485DD8700C0E306 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		BB9DCEAB1485DD8700C0E306 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		B527C6A3147C661D00D2257E = {
 			isa = PBXGroup;
 			children = (
+				BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */,
 				BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */,
 				BB6EF5A3167B06FB007F7B4E /* Icon.png */,
 				B527C6B8147C661D00D2257E /* Dominoes */,
@@ -294,6 +297,7 @@
 				BB61945A1675448300160735 /* progress-view-fill.png in Resources */,
 				BB6EF5A4167B06FB007F7B4E /* Icon.png in Resources */,
 				BB6EF5A6167B06FF007F7B4E /* Icon@2x.png in Resources */,
+				BBD635EA167E8DA20064AC7F /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

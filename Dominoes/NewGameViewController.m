@@ -12,7 +12,7 @@
 @implementation NewGameViewController
 
 @synthesize delegate;
-@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave;
+@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave, defaultGamePlayersTurn;
 
 - (void)didReceiveMemoryWarning
 {
