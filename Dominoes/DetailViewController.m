@@ -55,7 +55,7 @@
 - (void)updatePlayerScore:(int)player
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:player inSection:0];
-	PlayerCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+	PlayerCell* cell = (PlayerCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     NSInteger newValue = [self.keypad.display.text intValue]+[cell.scoreLabel.text intValue];
     [cell.scoreLabel setText:[NSString stringWithFormat:@"%d", newValue]];
     cell.progressBar.progress = (float) newValue / [self.game.gameEndScore intValue];
