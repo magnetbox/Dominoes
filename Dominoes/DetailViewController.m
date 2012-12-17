@@ -23,7 +23,24 @@
 
 #pragma mark - Managing the detail item
 
--(void)buttonPressed:(id)sender {
+/*
+- (Game *)loadGame:(NSString *)key {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *myEncodedObject = [defaults objectForKey:key];
+    Game *aGame = (Game *)[NSKeyedUnarchiver unarchiveObjectWithData: myEncodedObject];
+    return aGame;
+}
+
+- (void)setGame:(Game *)aGame {
+    NSLog(@"SAVE");
+    // save the game object
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSData *myEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:aGame];
+    [prefs setObject:myEncodedObject forKey:@"myEncodedObjectKey"];
+}
+*/
+
+- (void)buttonPressed:(id)sender {
     NSLog(@"DIGIT PRESSED: %d", [sender tag]);
     NSInteger total = [keypad.display.text intValue];
     keypad.display.text = [NSString stringWithFormat:@"%d", total+[sender tag]];
@@ -47,11 +64,6 @@
     [self clearDisplay];
 }
 
-/*
- - (void)setGame:(Game *)game {
-    
-}
-*/
 - (void)updatePlayerScore:(int)player
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:player inSection:0];
