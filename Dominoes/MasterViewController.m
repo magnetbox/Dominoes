@@ -49,6 +49,15 @@
         inactiveGame.gamePlayersTurn = 0;
 		[inactiveGames addObject:inactiveGame];
         
+        inactiveGame = [[Game alloc] init];
+		inactiveGame.gameTitle = @"First to 100";
+        inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
+		inactiveGame.gameEndScore = [NSNumber numberWithInt:100];
+		inactiveGame.gameActive = NO;
+        inactiveGame.gamePlayersTurn = 0;
+		[inactiveGames addObject:inactiveGame];
+        
         NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:activeGames, inactiveGames, nil];
         [self setAllGames:array];
     }

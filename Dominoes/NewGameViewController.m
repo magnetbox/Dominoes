@@ -214,7 +214,7 @@
             }
             
             cell.textLabel.text = @"Play to score";
-            scoreInputField.text = [[defaultGameSettings objectAtIndex:1] stringValue];
+            scoreInputField.text = [NSString stringWithFormat:@"%i", [[defaultGameSettings objectAtIndex:1] integerValue]];
             scoreInputField.delegate = self;
             return cell;
             
@@ -265,11 +265,15 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField.tag==201) {
-        [defaultGameSettings replaceObjectAtIndex:1 withObject:textField.text];
+        NSNumber *gameES = [NSNumber numberWithInt:[textField.text intValue]];
+        [defaultGameSettings replaceObjectAtIndex:1 withObject:gameES];
+        NSLog(@"THIS: %@",gameES);
     } else if (textField.tag==202) {
         [defaultGameSettings replaceObjectAtIndex:2 withObject:textField.text];
+        NSLog(@"THAT");
     } else {
         [defaultGamePlayers replaceObjectAtIndex:textField.tag withObject:textField.text];
+        NSLog(@"THE OTHER");
     }
 }
 

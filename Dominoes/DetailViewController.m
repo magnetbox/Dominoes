@@ -95,6 +95,7 @@
     self.title = self.game.gameTitle;
     game = self.game;
     NSLog(@"TITLE: %@",self.title);
+    NSLog(@"END SCORE: %@",self.game.gameEndScore);
     
     self.tableView.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern4.png"]];
