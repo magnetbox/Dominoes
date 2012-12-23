@@ -98,7 +98,7 @@
     NSLog(@"END SCORE: %@",self.game.gameEndScore);
     
     self.tableView.backgroundColor = [UIColor clearColor];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern4.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern2.png"]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 
     keypad = [[KeypadViewController alloc] init];
