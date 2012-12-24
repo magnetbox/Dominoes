@@ -363,6 +363,13 @@
     game.gameEndScore = [defaultGameSettings objectAtIndex:1];
     game.gameTitle = [defaultGameSettings objectAtIndex:2];
     game.gamePlayersTurn = defaultGamePlayersTurn;
+
+    game.gamePlayersScore = [[NSMutableArray alloc] init];
+    int i;
+    for (i=0; i<[game.gamePlayers count]; i++) {
+        [game.gamePlayersScore addObject:[NSNumber numberWithInt:0]];
+    }
+    
     game.gameActive = YES;
     
     // save the values as the defaults

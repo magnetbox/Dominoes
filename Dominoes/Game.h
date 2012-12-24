@@ -14,7 +14,7 @@
     NSNumber *gameEndScore;
     NSString *gameSurface;
     NSArray *gamePlayers;
-    NSArray *gamePlayersScore;
+    NSMutableArray *gamePlayersScore;
     NSInteger gamePlayersTurn;
     NSArray *gameMoves;
     BOOL gameActive;
@@ -25,7 +25,7 @@
 @property (nonatomic, retain) NSNumber *gameEndScore;
 @property (nonatomic, retain) NSString *gameSurface;
 @property (nonatomic, retain) NSArray *gamePlayers;
-@property (nonatomic, retain) NSArray *gamePlayersScore;
+@property (nonatomic, retain) NSMutableArray *gamePlayersScore;
 @property (nonatomic, assign) NSInteger gamePlayersTurn;
 @property (nonatomic, retain) NSArray *gameMoves;
 @property (nonatomic) BOOL gameActive;

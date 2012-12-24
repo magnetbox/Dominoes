@@ -20,7 +20,10 @@
 {
 	if ((self = [super initWithCoder:aDecoder]))
 	{        
-		activeGames = [NSMutableArray arrayWithCapacity:10];
+        NSData *myDecodedObject = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"activeGames"]];
+        activeGames =[NSKeyedUnarchiver unarchiveObjectWithData: myDecodedObject];
+        
+        activeGames = [NSMutableArray arrayWithCapacity:10];
 		Game* activeGame = [[Game alloc] init];
 		activeGame.gameTitle = @"Active 1";
         activeGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
@@ -29,7 +32,7 @@
 		activeGame.gameActive = YES;
         activeGame.gamePlayersTurn = 0;
 		[activeGames addObject:activeGame];
-
+        
         inactiveGames = [NSMutableArray arrayWithCapacity:10];
 		Game* inactiveGame = [[Game alloc] init];
 		inactiveGame.gameTitle = @"First to 500";
@@ -238,8 +241,13 @@
 {
     
     [self.activeGames addObject:game];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.activeGames count] - 1 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+    NSInteger insertAtRow = [self.activeGames count] - 1;
+    if (insertAtRow<0) {
+        insertAtRow = 0;
+    }
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:insertAtRow inSection:0];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.activeGames] forKey:@"activeGames"];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }

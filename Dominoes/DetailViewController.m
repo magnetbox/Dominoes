@@ -52,16 +52,30 @@
 }
 
 - (void)endTurn:(id)sender {
-    NSLog(@"DONE");
+    NSLog(@"END TURN");
+    
+    // update score display
     [self updatePlayerScore:[self.game gamePlayersTurn]];
+
+    // select next player
     [self.game setGamePlayersTurn:[self.game gamePlayersTurn] + 1];
     if ([self.game gamePlayersTurn]>([[self.game gamePlayers] count]-1)) {
         [self.game setGamePlayersTurn:0];
     }
-    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.game gamePlayersTurn] inSection:0];
     [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
     [self clearDisplay];
+
+    // if someone has reached the end score, the game is done so set it to be inactive
+    int i;
+    for (i=0; i<[self.game.gamePlayersScore count]; i++) {
+        int pScore = [[self.game.gamePlayersScore objectAtIndex:i] intValue];
+        if (pScore >= [self.game.gameEndScore intValue]) {
+            self.game.gameActive = NO;
+        }
+    }
+    
+    // save data
 }
 
 - (void)updatePlayerScore:(int)player
@@ -70,6 +84,7 @@
 	PlayerCell* cell = (PlayerCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     NSInteger newValue = [self.keypad.display.text intValue]+[cell.scoreLabel.text intValue];
     [cell.scoreLabel setText:[NSString stringWithFormat:@"%d", newValue]];
+    [self.game.gamePlayersScore replaceObjectAtIndex:player withObject:[NSNumber numberWithInt:newValue]];
     cell.progressBar.progress = (float) newValue / [self.game.gameEndScore intValue];
 }
 
@@ -94,13 +109,16 @@
      */
     self.title = self.game.gameTitle;
     game = self.game;
+
     NSLog(@"TITLE: %@",self.title);
     NSLog(@"END SCORE: %@",self.game.gameEndScore);
+    NSLog(@"ACTIVE: %c",self.game.gameActive);
     
     self.tableView.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern2.png"]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-
+    
+    // add keypad to view
     keypad = [[KeypadViewController alloc] init];
     [self.view addSubview:keypad.view];
     
