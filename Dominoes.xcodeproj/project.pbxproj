@@ -79,15 +79,15 @@
 		BB4AF71716743408001834F7 /* PlayerProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerProgress.m; sourceTree = "<group>"; };
 		BB6194571675448200160735 /* progress-view-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-view-bg.png"; sourceTree = "<group>"; };
 		BB6194581675448200160735 /* progress-view-fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-view-fill.png"; sourceTree = "<group>"; };
-		BB6EF5A3167B06FB007F7B4E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		BB6EF5A3167B06FB007F7B4E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		BB72FBC916646DAB00ACF2F1 /* KeypadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeypadViewController.h; sourceTree = "<group>"; };
 		BB72FBCA16646DAB00ACF2F1 /* KeypadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeypadViewController.m; sourceTree = "<group>"; };
 		BB83504C14AE8EF000E2210D /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
 		BB83504D14AE8EF000E2210D /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
 		BB9DCEAA1485DD8700C0E306 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		BB9DCEAB1485DD8700C0E306 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
-		BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,9 +117,6 @@
 		B527C6A3147C661D00D2257E = {
 			isa = PBXGroup;
 			children = (
-				BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */,
-				BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */,
-				BB6EF5A3167B06FB007F7B4E /* Icon.png */,
 				B527C6B8147C661D00D2257E /* Dominoes */,
 				B527C6D6147C661D00D2257E /* DominoesTests */,
 				B527C6B1147C661D00D2257E /* Frameworks */,
@@ -206,6 +203,9 @@
 		B5D4C7C514DF306100C2866B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */,
+				BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */,
+				BB6EF5A3167B06FB007F7B4E /* Icon.png */,
 				BB6194571675448200160735 /* progress-view-bg.png */,
 				BB6194581675448200160735 /* progress-view-fill.png */,
 				B5D4C7BC14DF304700C2866B /* pattern1.png */,
