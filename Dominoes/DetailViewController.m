@@ -8,7 +8,7 @@
 
 #import "DetailViewController.h"
 #import "Game.h"
-#import "KeypadViewController.h"
+#import "KeypadView.h"
 #import "PlayerCell.h"
 
 @interface DetailViewController ()
@@ -19,7 +19,7 @@
 
 @synthesize detailItem = _detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
-@synthesize selected, game, keypad;
+@synthesize selected, game, keypad, playerList;
 
 #pragma mark - Managing the detail item
 
@@ -63,7 +63,7 @@
         [self.game setGamePlayersTurn:0];
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.game gamePlayersTurn] inSection:0];
-    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    [playerList selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
     [self clearDisplay];
 
     // if someone has reached the end score, the game is done so set it to be inactive
@@ -81,8 +81,8 @@
 - (void)updatePlayerScore:(int)player
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:player inSection:0];
-	PlayerCell* cell = (PlayerCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    NSInteger newValue = [self.keypad.display.text intValue]+[cell.scoreLabel.text intValue];
+	PlayerCell* cell = (PlayerCell *)[playerList cellForRowAtIndexPath:indexPath];
+    NSInteger newValue = [keypad.display.text intValue]+[cell.scoreLabel.text intValue];
     [cell.scoreLabel setText:[NSString stringWithFormat:@"%d", newValue]];
     [self.game.gamePlayersScore replaceObjectAtIndex:player withObject:[NSNumber numberWithInt:newValue]];
     cell.progressBar.progress = (float) newValue / [self.game.gameEndScore intValue];
@@ -114,13 +114,24 @@
     NSLog(@"END SCORE: %@",self.game.gameEndScore);
     NSLog(@"ACTIVE: %c",self.game.gameActive);
     
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern2.png"]];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    int keypadHeight = 210;
+
+    playerList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 440) style:UITableViewStylePlain];
+    playerList.backgroundColor = [UIColor clearColor];
+    playerList.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [playerList setContentInset:UIEdgeInsetsMake(0,0,keypadHeight,0)];
+
+    [playerList setAutoresizesSubviews:YES];
+    [playerList setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+    [playerList setDelegate:self];
+    [playerList setDataSource:self];
     
     // add keypad to view
-    keypad = [[KeypadViewController alloc] init];
-    [self.view addSubview:keypad.view];
+    keypad = [[KeypadView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-keypadHeight, self.view.frame.size.width, self.view.frame.size.height)];
+
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern2.png"]];
+    [self.view addSubview:playerList];
+    [self.view addSubview:keypad];
     
 }
 
@@ -173,6 +184,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    self.game.gamePlayersTurn = indexPath.row;
 }
 
 - (void)didReceiveMemoryWarning

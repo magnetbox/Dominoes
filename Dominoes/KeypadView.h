@@ -1,19 +1,17 @@
 //
-//  KeypadViewController.h
+//  KeypadView.h
 //  Dominoes
 //
-//  Created by j-btesch on 11/26/12.
+//  Created by j-btesch on 12/30/12.
 //  Copyright (c) 2012 Home. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface KeypadViewController : UIViewController {
+@interface KeypadView : UIView {
     IBOutlet UILabel *display;
-    //UIButton *button1;
 }
 
 @property (nonatomic, retain) UILabel *display;
-//- (UIButton*) button1;
 
 @end
