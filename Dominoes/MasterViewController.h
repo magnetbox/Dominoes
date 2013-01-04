@@ -8,16 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "NewGameViewController.h"
+#import "AppDelegate.h"
 
-@interface MasterViewController : UITableViewController <NewGameViewControllerDelegate>
-{
-    NSMutableArray *allGames;
-    NSMutableArray *activeGames;
-    NSMutableArray *inactiveGames;
+@interface MasterViewController : UITableViewController <NewGameViewControllerDelegate>{
+    AppDelegate *appDelegate;
 }
-
-@property (nonatomic, retain) NSMutableArray *allGames;
-@property (nonatomic, retain) NSMutableArray *activeGames;
-@property (nonatomic, retain) NSMutableArray *inactiveGames;
 
 @end

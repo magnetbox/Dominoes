@@ -72,10 +72,18 @@
         int pScore = [[self.game.gamePlayersScore objectAtIndex:i] intValue];
         if (pScore >= [self.game.gameEndScore intValue]) {
             self.game.gameActive = NO;
+            [appDelegate.activeGames removeObject:self.game];
+            [appDelegate.inactiveGames addObject:self.game];
         }
     }
     
     // save data
+    NSUserDefaults *userDefault=[NSUserDefaults standardUserDefaults];
+    NSData *myEncodedActive = [NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames];
+    [userDefault setObject:myEncodedActive forKey:[NSString stringWithFormat:@"activeGames"]];
+    NSData *myEncodedInactive = [NSKeyedArchiver archivedDataWithRootObject:appDelegate.inactiveGames];
+    [userDefault setObject:myEncodedInactive forKey:[NSString stringWithFormat:@"inactiveGames"]];
+    
 }
 
 - (void)updatePlayerScore:(int)player
@@ -199,6 +207,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [self configureView];
     
 }

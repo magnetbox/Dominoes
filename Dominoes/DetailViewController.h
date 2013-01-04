@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Game.h"
 #import "KeypadView.h"
+#import "AppDelegate.h"
 
 @protocol KeypadViewControllerDelegate <UITableViewDelegate>
 - (void)buttonPressed:(id)sender;
@@ -17,6 +18,7 @@
 @end
 
 @interface DetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    AppDelegate *appDelegate;
     KeypadView *keypad;
     UITableView *playerList;
 }

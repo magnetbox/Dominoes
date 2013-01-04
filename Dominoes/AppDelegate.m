@@ -11,6 +11,7 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize allGames, activeGames, inactiveGames;
 
 + (void)initialize
 {

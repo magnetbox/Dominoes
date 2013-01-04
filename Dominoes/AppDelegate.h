@@ -9,7 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    NSMutableArray *allGames;
+    NSMutableArray *activeGames;
+    NSMutableArray *inactiveGames;
+}
 
+@property (nonatomic, retain) NSMutableArray *allGames;
+@property (nonatomic, retain) NSMutableArray *activeGames;
+@property (nonatomic, retain) NSMutableArray *inactiveGames;
 @property (strong, nonatomic) UIWindow *window;
+
+- (IBAction)setAllGames:(NSMutableArray *)allGames;
 
 @end

@@ -12,64 +12,11 @@
 
 @implementation MasterViewController
 
-@synthesize allGames, activeGames, inactiveGames;
-
 #pragma mark - tableview stuff
-
-- (id)initWithCoder:(NSCoder*)aDecoder
-{
-	if ((self = [super initWithCoder:aDecoder]))
-	{        
-        NSData *myDecodedObject = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"activeGames"]];
-        activeGames =[NSKeyedUnarchiver unarchiveObjectWithData: myDecodedObject];
-        
-        activeGames = [NSMutableArray arrayWithCapacity:10];
-		Game* activeGame = [[Game alloc] init];
-		activeGame.gameTitle = @"Active 1";
-        activeGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        activeGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
-		activeGame.gameEndScore = [NSNumber numberWithInt:500];
-		activeGame.gameActive = YES;
-        activeGame.gamePlayersTurn = 0;
-		[activeGames addObject:activeGame];
-        
-        inactiveGames = [NSMutableArray arrayWithCapacity:10];
-		Game* inactiveGame = [[Game alloc] init];
-		inactiveGame.gameTitle = @"First to 500";
-        inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
-		inactiveGame.gameEndScore = [NSNumber numberWithInt:500];
-		inactiveGame.gameActive = NO;
-        inactiveGame.gamePlayersTurn = 0;
-		[inactiveGames addObject:inactiveGame];
-
-        inactiveGame = [[Game alloc] init];
-		inactiveGame.gameTitle = @"First to 121";
-        inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
-		inactiveGame.gameEndScore = [NSNumber numberWithInt:121];
-		inactiveGame.gameActive = NO;
-        inactiveGame.gamePlayersTurn = 0;
-		[inactiveGames addObject:inactiveGame];
-        
-        inactiveGame = [[Game alloc] init];
-		inactiveGame.gameTitle = @"First to 100";
-        inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
-		inactiveGame.gameEndScore = [NSNumber numberWithInt:100];
-		inactiveGame.gameActive = NO;
-        inactiveGame.gamePlayersTurn = 0;
-		[inactiveGames addObject:inactiveGame];
-        
-        NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:activeGames, inactiveGames, nil];
-        [self setAllGames:array];
-    }
-	return self;
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSInteger sections = [[self allGames] count];
+    NSInteger sections = [appDelegate.allGames count];
     return sections;
 }
 
@@ -89,10 +36,13 @@
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *sectionContents = [[self allGames] objectAtIndex:section];
-    NSInteger rows = [sectionContents count];
-	
-    return rows;
+    NSArray *sectionContents = [appDelegate.allGames objectAtIndex:section];
+    /*
+     if ([sectionContents count]==0) {
+        return 1;
+    }
+     */
+    return [sectionContents count];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -103,9 +53,18 @@
 	if (cell == nil)
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-    NSArray *sectionContents = [self.allGames objectAtIndex:indexPath.section];
-    Game* game = [sectionContents objectAtIndex:[indexPath row]];
+    NSArray *sectionContents = [appDelegate.allGames objectAtIndex:indexPath.section];
+    //NSLog(@"ROWS: %d",[sectionContents count]);
+    
+    if ([sectionContents count]==0) {
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
+        cell.textLabel.text = @"No games";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.userInteractionEnabled = NO;
+        return cell;
+    }
 
+    Game* game = [sectionContents objectAtIndex:[indexPath row]];
 	cell.textLabel.text = game.gameTitle;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	return cell;
@@ -116,7 +75,7 @@
     DetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"gameView"];
 
     // set title of next view controller
-    Game *selectedGame = [[self.allGames objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    Game *selectedGame = [[appDelegate.allGames objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     controller.game = selectedGame;
 
     [self.navigationController pushViewController:controller animated:YES];
@@ -146,19 +105,81 @@
 {
     [super viewDidLoad];
     
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
-    /*
-    // handled in storyboard
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Settings"
-                                                                    style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.navigationItem.leftBarButtonItem = leftButton;
-
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"New"
-                                                                    style:UIBarButtonItemStylePlain target:self action:@selector(setupNewGame:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
-    */
+    appDelegate.activeGames = [NSMutableArray arrayWithCapacity:10];
+    Game* activeGame = [[Game alloc] init];
+    activeGame.gameTitle = @"Active 1";
+    activeGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+    activeGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
+    activeGame.gameEndScore = [NSNumber numberWithInt:500];
+    activeGame.gameActive = YES;
+    activeGame.gamePlayersTurn = 0;
+    [appDelegate.activeGames addObject:activeGame];
+    
+    appDelegate.inactiveGames = [NSMutableArray arrayWithCapacity:10];
+    Game* inactiveGame = [[Game alloc] init];
+    inactiveGame.gameTitle = @"First to 500";
+    inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+    inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
+    inactiveGame.gameEndScore = [NSNumber numberWithInt:500];
+    inactiveGame.gameActive = NO;
+    inactiveGame.gamePlayersTurn = 0;
+    [appDelegate.inactiveGames addObject:inactiveGame];
+    
+    inactiveGame = [[Game alloc] init];
+    inactiveGame.gameTitle = @"First to 121";
+    inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+    inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
+    inactiveGame.gameEndScore = [NSNumber numberWithInt:121];
+    inactiveGame.gameActive = NO;
+    inactiveGame.gamePlayersTurn = 0;
+    [appDelegate.inactiveGames addObject:inactiveGame];
+    
+    inactiveGame = [[Game alloc] init];
+    inactiveGame.gameTitle = @"First to 100";
+    inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
+    inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
+    inactiveGame.gameEndScore = [NSNumber numberWithInt:100];
+    inactiveGame.gameActive = NO;
+    inactiveGame.gamePlayersTurn = 0;
+    [appDelegate.inactiveGames addObject:inactiveGame];
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSLog(@"HERE");
+    
+    NSData *myDecodedObjectActive = [prefs objectForKey:[NSString stringWithFormat:@"activeGames"]];
+    if (myDecodedObjectActive == nil) {
+        NSLog(@"OBJECT NOT NIL");
+        NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:myDecodedObjectActive];
+        if (oldSavedArray != nil) {
+            NSLog(@"ARRAY NOT NIL");
+            appDelegate.activeGames = [[NSMutableArray alloc] initWithArray:oldSavedArray];
+        } else {
+            NSLog(@"ARRAY NIL");
+            appDelegate.activeGames = [[NSMutableArray alloc] init];
+        }
+    }
+    
+    NSData *myDecodedObjectInactive = [prefs objectForKey:[NSString stringWithFormat:@"inactiveGames"]];
+    if (myDecodedObjectInactive == nil) {
+        NSLog(@"OBJECT NOT NIL");
+        NSArray *oldSavedArray2 = [NSKeyedUnarchiver unarchiveObjectWithData:myDecodedObjectInactive];
+        if (oldSavedArray2 != nil) {
+            NSLog(@"ARRAY NOT NIL");
+            [appDelegate setInactiveGames:[[NSMutableArray alloc] initWithArray:oldSavedArray2]];
+        } else {
+            NSLog(@"ARRAY NIL");
+            [appDelegate setInactiveGames:[[NSMutableArray alloc] init]];
+        }
+    }
+    
+    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:appDelegate.activeGames, appDelegate.inactiveGames, nil];
+    NSLog(@"%@",array);
+    [appDelegate setAllGames:array];
 }
 
 - (void)viewDidUnload
@@ -176,6 +197,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -240,13 +262,14 @@
 - (void)newGameViewController:(NewGameViewController *)controller didAddGame:(Game *)game
 {
     
-    [self.activeGames addObject:game];
-    NSInteger insertAtRow = [self.activeGames count] - 1;
+    [appDelegate.activeGames addObject:game];
+    NSLog(@"%@",appDelegate.activeGames);
+    NSInteger insertAtRow = [appDelegate.activeGames count] - 1;
     if (insertAtRow<0) {
         insertAtRow = 0;
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:insertAtRow inSection:0];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.activeGames] forKey:@"activeGames"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames] forKey:@"activeGames"];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
 	[self dismissViewControllerAnimated:YES completion:nil];
