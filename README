@@ -1,14 +1,1 @@
-TODO:
-- MasterView: save Games to NSUserDefaults (didAddGame)
-- NewGameView: surface picker (picker or table which changes background graphic)
-- NewGameView: add players
-- NewGameView: remove players
-- NewGameView: reorder existing players
-- NewGameView: use gameEndScore in default title
-- NewGameView: only use gameEndScore in default title if formats to "First to ###"
-- NewGameView: show something else if there are no active games
-- NewGameView: show something else if there are no completed games
-- NewGameView: show something else if there are no active or completed games
-- DetailView: set up with Game data
-
-
+A dominoes scoring app for the iPhone.
