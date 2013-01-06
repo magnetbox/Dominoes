@@ -12,82 +12,6 @@
 
 @implementation MasterViewController
 
-#pragma mark - tableview stuff
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    NSInteger sections = [appDelegate.allGames count];
-    return sections;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	
-	NSString *sectionHeader = nil;
-	
-	if(section == 0) {
-		sectionHeader = @"In progress";
-	}
-	if(section == 1) {
-		sectionHeader = @"Completed";
-	}
-	
-	return sectionHeader;
-}
-
-- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSArray *sectionContents = [appDelegate.allGames objectAtIndex:section];
-    /*
-     if ([sectionContents count]==0) {
-        return 1;
-    }
-     */
-    return [sectionContents count];
-}
-
-- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
-{
-	NSString* CellIdentifier = [NSString stringWithFormat:@"Cell-%i-%i", indexPath.section, indexPath.row];
-    
-	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if (cell == nil)
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    
-    NSArray *sectionContents = [appDelegate.allGames objectAtIndex:indexPath.section];
-    //NSLog(@"ROWS: %d",[sectionContents count]);
-    
-    if ([sectionContents count]==0) {
-        UITableViewCell *cell = [[UITableViewCell alloc] init];
-        cell.textLabel.text = @"No games";
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.userInteractionEnabled = NO;
-        return cell;
-    }
-
-    Game* game = [sectionContents objectAtIndex:[indexPath row]];
-	cell.textLabel.text = game.gameTitle;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {    
-
-    DetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"gameView"];
-
-    // set title of next view controller
-    Game *selectedGame = [[appDelegate.allGames objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    controller.game = selectedGame;
-
-    [self.navigationController pushViewController:controller animated:YES];
-
-}   
-
-- (void)setupNewGame:(id)sender
-{
-    NewGameViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"newGameView"];    
-    [self.navigationController pushViewController:controller animated:YES];
-}
-
 #pragma mark - View lifecycle
 
 - (void)awakeFromNib
@@ -104,12 +28,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
     
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-	// Do any additional setup after loading the view, typically from a nib.
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
+    /*
     appDelegate.activeGames = [NSMutableArray arrayWithCapacity:10];
     Game* activeGame = [[Game alloc] init];
     activeGame.gameTitle = @"Active 1";
@@ -148,37 +72,43 @@
     inactiveGame.gamePlayersTurn = 0;
     [appDelegate.inactiveGames addObject:inactiveGame];
     
+     */
+    
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSLog(@"HERE");
     
     NSData *myDecodedObjectActive = [prefs objectForKey:[NSString stringWithFormat:@"activeGames"]];
-    if (myDecodedObjectActive == nil) {
-        NSLog(@"OBJECT NOT NIL");
+    if (myDecodedObjectActive != nil) {
+        NSLog(@"ACTIVE OBJECT IS NOT NIL");
         NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:myDecodedObjectActive];
         if (oldSavedArray != nil) {
-            NSLog(@"ARRAY NOT NIL");
+            NSLog(@"ACTIVE ARRAY IS NOT NIL");
             appDelegate.activeGames = [[NSMutableArray alloc] initWithArray:oldSavedArray];
         } else {
-            NSLog(@"ARRAY NIL");
+            NSLog(@"ACTIVE ARRAY IS NIL");
             appDelegate.activeGames = [[NSMutableArray alloc] init];
         }
+    } else {
+        NSLog(@"ACTIVE OBJECT IS NIL");
+        appDelegate.activeGames = [[NSMutableArray alloc] init];
     }
     
     NSData *myDecodedObjectInactive = [prefs objectForKey:[NSString stringWithFormat:@"inactiveGames"]];
-    if (myDecodedObjectInactive == nil) {
-        NSLog(@"OBJECT NOT NIL");
+    if (myDecodedObjectInactive != nil) {
+        NSLog(@"INACTIVE OBJECT IS NOT NIL");
         NSArray *oldSavedArray2 = [NSKeyedUnarchiver unarchiveObjectWithData:myDecodedObjectInactive];
         if (oldSavedArray2 != nil) {
-            NSLog(@"ARRAY NOT NIL");
+            NSLog(@"INACTIVE ARRAY IS NOT NIL");
             [appDelegate setInactiveGames:[[NSMutableArray alloc] initWithArray:oldSavedArray2]];
         } else {
-            NSLog(@"ARRAY NIL");
+            NSLog(@"INACTIVE ARRAY IS NIL");
             [appDelegate setInactiveGames:[[NSMutableArray alloc] init]];
         }
+    } else {
+        NSLog(@"INACTIVE OBJECT IS NIL");
     }
     
     NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:appDelegate.activeGames, appDelegate.inactiveGames, nil];
-    NSLog(@"%@",array);
+    //NSLog(@"%@",array);
     [appDelegate setAllGames:array];
 }
 
@@ -216,62 +146,25 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)setupNewGame:(id)sender
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-- (void)newGameViewControllerDidCancel:(NewGameViewController *)controller
-{
-	[self dismissViewControllerAnimated:YES completion:nil];
+    NewGameViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"newGameView"];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)newGameViewController:(NewGameViewController *)controller didAddGame:(Game *)game
 {
-    
-    [appDelegate.activeGames addObject:game];
-    NSLog(@"%@",appDelegate.activeGames);
-    NSInteger insertAtRow = [appDelegate.activeGames count] - 1;
-    if (insertAtRow<0) {
-        insertAtRow = 0;
-    }
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:insertAtRow inSection:0];
+    [appDelegate.activeGames insertObject:game atIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames] forKey:@"activeGames"];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadData];
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)newGameViewControllerDidCancel:(NewGameViewController *)controller
+{
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -284,5 +177,111 @@
 		newGameViewController.delegate = self;
 	}
 }
+
+#pragma mark - tableview stuff
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    NSInteger sections = [appDelegate.allGames count];
+    return sections;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	
+	NSString *sectionHeader = nil;
+	
+	if(section == 0) {
+		sectionHeader = @"In progress";
+	}
+	if(section == 1) {
+		sectionHeader = @"Completed";
+	}
+	
+	return sectionHeader;
+}
+
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSArray *sectionContents = [appDelegate.allGames objectAtIndex:section];
+    if (section==0) {
+        //return 1 extra row for new game button in active games section
+        return [sectionContents count]+1;
+    } else {
+        return [sectionContents count];
+    }
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+	NSString* CellIdentifier = [NSString stringWithFormat:@"Cell-%i-%i", indexPath.section, indexPath.row];
+    
+	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil)
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    
+    NSArray *sectionContents = [appDelegate.allGames objectAtIndex:indexPath.section];
+    //NSLog(@"ROWS: %d",[sectionContents count]);
+    
+    if (indexPath.section==0 && indexPath.row==sectionContents.count) {
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
+        cell.textLabel.text = @"+ New game";
+        return cell;
+    }
+    
+    Game* game = [sectionContents objectAtIndex:[indexPath row]];
+	cell.textLabel.text = game.gameTitle;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section==0 && indexPath.row==[appDelegate.activeGames count]) {
+        [self performSegueWithIdentifier:@"setupNewGame" sender:self];
+    } else {
+        DetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"gameView"];
+        Game *selectedGame = [[appDelegate.allGames objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        controller.game = selectedGame;        
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
+
+/*
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
+
+/*
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source.
+ [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+ }
+ }
+ */
+
+/*
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
+
+/*
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 @end

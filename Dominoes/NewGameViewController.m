@@ -169,7 +169,7 @@
             inputField.keyboardType = UIKeyboardTypeDefault;
             inputField.returnKeyType = UIReturnKeyDone;
             inputField.tag = indexPath.row;
-            NSLog(@"inputField TAG: %i",inputField.tag);
+            //NSLog(@"inputField TAG: %i",inputField.tag);
             
             [cell addSubview:inputField];
         }
@@ -182,7 +182,7 @@
         
     } else {
         
-        if (indexPath.row == 1 ) {
+        if (indexPath.row == 0 ) {
             
             NSString *cellIdentifier = @"SettingCell";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -191,7 +191,7 @@
             cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:0];
             return cell;
             
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == 1) {
             
             NSString *cellIdentifier = @"ScoreCell";
             
@@ -208,8 +208,6 @@
                 scoreInputField.returnKeyType = UIReturnKeyDone;
                 scoreInputField.textAlignment = UITextAlignmentRight;
                 scoreInputField.tag = 201;
-                NSLog(@"UITextField TAG: %i",scoreInputField.tag);
-                
                 [cell addSubview:scoreInputField];
             }
             
@@ -218,7 +216,7 @@
             scoreInputField.delegate = self;
             return cell;
             
-        } else if (indexPath.row == 3) {
+        } else if (indexPath.row == 2) {
             
             NSString *cellIdentifier = @"TitleCell";
             
@@ -234,12 +232,11 @@
                 inputField.keyboardType = UIKeyboardTypeDefault;
                 inputField.returnKeyType = UIReturnKeyDone;
                 inputField.textAlignment = UITextAlignmentRight;
-                inputField.tag = 202;
-                NSLog(@"UITextField TAG: %i",inputField.tag);
-                
+                inputField.tag = 202;                
                 [cell addSubview:inputField];
             }
             
+            NSLog(@"TITLE CELL: %@",[defaultGameSettings objectAtIndex:2]);
             cell.textLabel.text = @"Title";
             inputField.text = [defaultGameSettings objectAtIndex:2];
             inputField.delegate = self;
@@ -267,13 +264,20 @@
     if (textField.tag==201) {
         NSNumber *gameES = [NSNumber numberWithInt:[textField.text intValue]];
         [defaultGameSettings replaceObjectAtIndex:1 withObject:gameES];
-        NSLog(@"THIS: %@",gameES);
+        NSLog(@"MODIFIED END SCORE: %@",gameES);
+        if ([[defaultGameSettings objectAtIndex:2] hasPrefix:@"First to"]) {
+            NSLog(@"TITLE HASN'T BEEN MODIFIED, SO UPDATE IT WITH NEW SCORE");
+            NSString *newTitle = [NSString stringWithFormat:@"First to %@",textField.text];
+            [defaultGameSettings replaceObjectAtIndex:2 withObject:newTitle];
+            UITextField *titleField = (UITextField *)[self.view viewWithTag:202];
+            titleField.text = newTitle;
+        }
     } else if (textField.tag==202) {
         [defaultGameSettings replaceObjectAtIndex:2 withObject:textField.text];
-        NSLog(@"THAT");
+        NSLog(@"MODIFIED TITLE: %@",[defaultGameSettings objectAtIndex:2]);
     } else {
         [defaultGamePlayers replaceObjectAtIndex:textField.tag withObject:textField.text];
-        NSLog(@"THE OTHER");
+        NSLog(@"MODIFIED PLAYER %@: %@",[defaultGame objectAtIndex:textField.tag],textField.text);
     }
 }
 

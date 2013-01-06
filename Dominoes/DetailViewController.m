@@ -71,9 +71,14 @@
     for (i=0; i<[self.game.gamePlayersScore count]; i++) {
         int pScore = [[self.game.gamePlayersScore objectAtIndex:i] intValue];
         if (pScore >= [self.game.gameEndScore intValue]) {
+            NSLog(@"GAME OVER");
             self.game.gameActive = NO;
-            [appDelegate.activeGames removeObject:self.game];
+            NSLog(@"I1: %@",appDelegate.inactiveGames);
             [appDelegate.inactiveGames addObject:self.game];
+            NSLog(@"I2: %@",appDelegate.inactiveGames);
+            NSLog(@"A1: %@",appDelegate.activeGames);
+            [appDelegate.activeGames removeObject:self.game];
+            NSLog(@"A2: %@",appDelegate.activeGames);
         }
     }
     
@@ -83,7 +88,7 @@
     [userDefault setObject:myEncodedActive forKey:[NSString stringWithFormat:@"activeGames"]];
     NSData *myEncodedInactive = [NSKeyedArchiver archivedDataWithRootObject:appDelegate.inactiveGames];
     [userDefault setObject:myEncodedInactive forKey:[NSString stringWithFormat:@"inactiveGames"]];
-    
+    NSLog(@"SAVED TO USERDEFAULTS");
 }
 
 - (void)updatePlayerScore:(int)player
@@ -120,7 +125,7 @@
 
     NSLog(@"TITLE: %@",self.title);
     NSLog(@"END SCORE: %@",self.game.gameEndScore);
-    NSLog(@"ACTIVE: %c",self.game.gameActive);
+    //NSLog(@"ACTIVE: %c",self.game.gameActive);
     
     int keypadHeight = 210;
 
@@ -151,13 +156,8 @@
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger rows = [[self.game gamePlayers] count];
-    //NSInteger rows = [sectionContents count];
-	
     NSLog(@"PLAYERS: %d",rows);
     return rows;
-
-    //NSInteger rows = [self.game.gamePlayers count];
-    //return rows;
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
