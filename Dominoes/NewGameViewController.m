@@ -146,9 +146,12 @@
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *sectionContents = [[self defaultGame] objectAtIndex:section];
-    NSInteger rows = [sectionContents count];
-	
-    return rows;
+    if (section==0) {
+        //return 1 extra row for add player button
+        return [defaultGamePlayers count]+1;
+    } else {
+        return [sectionContents count];
+    }
 }
 
  - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -156,7 +159,6 @@
     if(indexPath.section==0){
         
         NSString *cellIdentifier = @"PlayerCell";
-        
         UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         UITextField *inputField;
         
@@ -169,9 +171,15 @@
             inputField.keyboardType = UIKeyboardTypeDefault;
             inputField.returnKeyType = UIReturnKeyDone;
             inputField.tag = indexPath.row;
-            //NSLog(@"inputField TAG: %i",inputField.tag);
+            NSLog(@"inputField TAG: %i",inputField.tag);
             
             [cell addSubview:inputField];
+        }
+
+        if (indexPath.section==0 && indexPath.row==defaultGamePlayers.count) {
+            UITableViewCell *cell = [[UITableViewCell alloc] init];
+            cell.textLabel.text = @"+ Add player";
+            return cell;
         }
 
         //NSString* rowLabel = [NSString stringWithFormat:@"Player %i", indexPath.row+1];
@@ -194,7 +202,6 @@
         } else if (indexPath.row == 1) {
             
             NSString *cellIdentifier = @"ScoreCell";
-            
             UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
             UITextField *scoreInputField;
             
@@ -219,7 +226,6 @@
         } else if (indexPath.row == 2) {
             
             NSString *cellIdentifier = @"TitleCell";
-            
             UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
             UITextField *inputField;
             
@@ -236,10 +242,10 @@
                 [cell addSubview:inputField];
             }
             
-            NSLog(@"TITLE CELL: %@",[defaultGameSettings objectAtIndex:2]);
             cell.textLabel.text = @"Title";
             inputField.text = [defaultGameSettings objectAtIndex:2];
             inputField.delegate = self;
+            NSLog(@"TITLE CELL: %@",inputField.text);
             return cell;
             
         } else {
@@ -277,7 +283,7 @@
         NSLog(@"MODIFIED TITLE: %@",[defaultGameSettings objectAtIndex:2]);
     } else {
         [defaultGamePlayers replaceObjectAtIndex:textField.tag withObject:textField.text];
-        NSLog(@"MODIFIED PLAYER %@: %@",[defaultGame objectAtIndex:textField.tag],textField.text);
+        NSLog(@"MODIFIED PLAYER %@: %@",[defaultGamePlayers objectAtIndex:textField.tag],textField.text);
     }
 }
 
@@ -334,13 +340,15 @@
 
 #pragma mark - Table view delegate
 
-/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
-		[self.nameTextField becomeFirstResponder];
+    if (indexPath.section==0 && indexPath.row==[defaultGamePlayers count]) {
+        [defaultGamePlayers addObject:[NSString stringWithFormat:@"Player %d",indexPath.row+1]];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[defaultGamePlayers count]-1 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
-*/
 
 #pragma mark - NewGameViewControllerDelegate
 
