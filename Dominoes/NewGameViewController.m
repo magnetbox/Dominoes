@@ -50,7 +50,7 @@
         defaultGamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
         defaultGameSettings = [[NSMutableArray alloc] initWithObjects:@"Park bench", [NSNumber numberWithInt:500], @"First to 500", @"Yes", nil];
         defaultGame = [[NSMutableArray alloc] initWithObjects:defaultGamePlayers, defaultGameSettings, nil];
-        defaultGameSave = YES;
+        defaultGameSave = NO;
         defaultGamePlayersTurn = 0;
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:defaultGame] forKey:@"defaultGame"];
     }
@@ -160,12 +160,11 @@
         
         NSString *cellIdentifier = @"PlayerCell";
         UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        UITextField *inputField;
+        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,178,30)];
         
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,178,30)];
             inputField.textColor = [UIColor colorWithRed:51.0f/255.0f green:82.0f/255.0f blue:115.0f/255.0f alpha:1];
             inputField.adjustsFontSizeToFitWidth = YES;
             inputField.keyboardType = UIKeyboardTypeDefault;
@@ -203,12 +202,11 @@
             
             NSString *cellIdentifier = @"ScoreCell";
             UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            UITextField *scoreInputField;
+            UITextField *scoreInputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,178,30)];
             
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                scoreInputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,178,30)];
                 scoreInputField.textColor = [UIColor colorWithRed:51.0f/255.0f green:82.0f/255.0f blue:115.0f/255.0f alpha:1];
                 scoreInputField.adjustsFontSizeToFitWidth = YES;
                 scoreInputField.keyboardType = UIKeyboardTypeNumberPad;
@@ -227,12 +225,11 @@
             
             NSString *cellIdentifier = @"TitleCell";
             UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            UITextField *inputField;
+            UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,178,30)];
             
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,178,30)];
                 inputField.textColor = [UIColor colorWithRed:51.0f/255.0f green:82.0f/255.0f blue:115.0f/255.0f alpha:1];
                 inputField.adjustsFontSizeToFitWidth = YES;
                 inputField.keyboardType = UIKeyboardTypeDefault;
@@ -252,13 +249,6 @@
 
             NSString *cellIdentifier = @"SettingSaveCell";            
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            UISwitch *saveSwitch = (UISwitch *)[cell viewWithTag:203];
-            if(defaultGameSave){
-                [saveSwitch setOn:YES animated:NO];
-            } else {
-                [saveSwitch setOn:NO animated:NO];
-            }
-            [saveSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
             return cell;
             
         }
@@ -283,21 +273,11 @@
         NSLog(@"MODIFIED TITLE: %@",[defaultGameSettings objectAtIndex:2]);
     } else {
         [defaultGamePlayers replaceObjectAtIndex:textField.tag withObject:textField.text];
-        NSLog(@"MODIFIED PLAYER %@: %@",[defaultGamePlayers objectAtIndex:textField.tag],textField.text);
+        NSLog(@"MODIFIED TAG: %d",textField.tag);
+        NSLog(@"MODIFIED PLAYER %d: %@",textField.tag,[defaultGamePlayers objectAtIndex:textField.tag]);
     }
 }
 
-- (void) switchChanged:(id)sender {
-    [self.view endEditing:YES];
-    UISwitch* switchControl = sender;
-    if(switchControl.on){
-        defaultGameSave = YES;
-    } else {
-        defaultGameSave = NO;
-    }
-}
-
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -314,13 +294,15 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [self.view endEditing:YES];
+        [defaultGamePlayers removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //[self.tableView reloadData];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.
@@ -347,6 +329,28 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[defaultGamePlayers count]-1 inSection:0];
         [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                               withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadData];
+    }
+    if (indexPath.section==1 && indexPath.row==0) {
+        NSLog(@"SELECTED SURFACE PICKER");
+    }
+    if (indexPath.section==1 && indexPath.row==3) {
+        NSLog(@"SELECTED SAVE AS NEW DEFAULTS");
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Do you want to save these players and settings as your new game defaults?"
+                              message:nil
+                              delegate:self
+                              cancelButtonTitle:@"No"
+                              otherButtonTitles:@"Yes", nil];
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        defaultGameSave = YES;
+    } else {
+        defaultGameSave = NO;
     }
 }
 
