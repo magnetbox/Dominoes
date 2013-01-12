@@ -8,11 +8,12 @@
 
 #import "NewGameViewController.h"
 #import "Game.h"
+#import "ImagePickerViewController.h"
 
 @implementation NewGameViewController
 
 @synthesize delegate;
-@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave, defaultGamePlayersTurn;
+@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave, defaultGamePlayersTurn, imgPicker;
 
 - (void)didReceiveMemoryWarning
 {
@@ -48,7 +49,7 @@
     } else {
         NSLog(@"NO DEFAULT GAME DATA, SET IT AND SAVE IT");
         defaultGamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        defaultGameSettings = [[NSMutableArray alloc] initWithObjects:@"Park bench", [NSNumber numberWithInt:500], @"First to 500", @"Yes", nil];
+        defaultGameSettings = [[NSMutableArray alloc] initWithObjects:@"Default", [NSNumber numberWithInt:500], @"First to 500", [UIImage imageNamed:@"pattern2.png"], nil];
         defaultGame = [[NSMutableArray alloc] initWithObjects:defaultGamePlayers, defaultGameSettings, nil];
         defaultGameSave = NO;
         defaultGamePlayersTurn = 0;
@@ -170,7 +171,7 @@
             inputField.keyboardType = UIKeyboardTypeDefault;
             inputField.returnKeyType = UIReturnKeyDone;
             inputField.tag = indexPath.row;
-            NSLog(@"inputField TAG: %i",inputField.tag);
+            //NSLog(@"inputField TAG: %i",inputField.tag);
             
             [cell addSubview:inputField];
         }
@@ -181,7 +182,6 @@
             return cell;
         }
 
-        //NSString* rowLabel = [NSString stringWithFormat:@"Player %i", indexPath.row+1];
         cell.textLabel.text = @"Name";
         inputField.text = [defaultGamePlayers objectAtIndex:indexPath.row];
         inputField.delegate = self;
@@ -189,16 +189,16 @@
         
     } else {
         
-        if (indexPath.row == 0 ) {
+        if (indexPath.row == 2 ) {
             
             NSString *cellIdentifier = @"SettingCell";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
-            cell.textLabel.text = @"Surface";
+            cell.textLabel.text = @"Background";
             cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:0];
             return cell;
             
-        } else if (indexPath.row == 1) {
+        } else if (indexPath.row == 0) {
             
             NSString *cellIdentifier = @"ScoreCell";
             UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -221,7 +221,7 @@
             scoreInputField.delegate = self;
             return cell;
             
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == 1) {
             
             NSString *cellIdentifier = @"TitleCell";
             UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -278,6 +278,19 @@
     }
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    NSLog(@"%@",info);
+    UIImage *pickedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    [defaultGameSettings replaceObjectAtIndex:3 withObject:pickedImage];
+    [defaultGameSettings replaceObjectAtIndex:0 withObject:@"Custom"];
+    [picker dismissModalViewControllerAnimated:YES];
+    [self.tableView reloadData];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissModalViewControllerAnimated:YES];
+}
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -331,8 +344,15 @@
                               withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView reloadData];
     }
-    if (indexPath.section==1 && indexPath.row==0) {
+    if (indexPath.section==1 && indexPath.row==2) {
         NSLog(@"SELECTED SURFACE PICKER");
+        
+        imgPicker = [[UIImagePickerController alloc] init];
+        imgPicker.delegate = self;
+        imgPicker.allowsEditing = NO;
+        imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentModalViewController:imgPicker animated:YES];
+        
     }
     if (indexPath.section==1 && indexPath.row==3) {
         NSLog(@"SELECTED SAVE AS NEW DEFAULTS");
@@ -375,7 +395,7 @@
     // get the field values    
     Game *game = [[Game alloc] init];
     game.gamePlayers = defaultGamePlayers;
-    game.gameSurface = [defaultGameSettings objectAtIndex:0];
+    game.gameSurface = [defaultGameSettings objectAtIndex:3];
     game.gameEndScore = [defaultGameSettings objectAtIndex:1];
     game.gameTitle = [defaultGameSettings objectAtIndex:2];
     game.gamePlayersTurn = defaultGamePlayersTurn;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Game.h"
+#import "ImagePickerViewController.h"
 
 @class NewGameViewController;
 
@@ -16,7 +17,7 @@
 - (void)newGameViewController:(NewGameViewController *)controller didAddGame:(Game *)game;
 @end
 
-@interface NewGameViewController : UITableViewController <NewGameViewControllerDelegate>
+@interface NewGameViewController : UITableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, NewGameViewControllerDelegate>
 {
     NSMutableArray *defaultGame;
     NSMutableArray *defaultGamePlayers;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) NSMutableArray *defaultGameSettings;
 @property (nonatomic, assign) NSInteger defaultGamePlayersTurn;
 @property (nonatomic) BOOL defaultGameSave;
+@property (nonatomic, retain) UIImagePickerController *imgPicker;
 
 @property (nonatomic, weak) id <NewGameViewControllerDelegate> delegate;
 

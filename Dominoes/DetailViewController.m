@@ -141,8 +141,14 @@
     
     // add keypad to view
     keypad = [[KeypadView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-keypadHeight, self.view.frame.size.width, self.view.frame.size.height)];
+    
+    // set background image, failing to default image if saved image is gone
+    UIImage *bgImage = self.game.gameSurface;
+    if (bgImage == nil || ![bgImage isKindOfClass:[UIImage class]]) {
+        bgImage = [UIImage imageNamed:@"pattern2.png"];
+    }
+    self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
 
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern2.png"]];
     [self.view addSubview:playerList];
     [self.view addSubview:keypad];
     
