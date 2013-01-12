@@ -70,7 +70,7 @@
     int i;
     for (i=0; i<[self.game.gamePlayersScore count]; i++) {
         int pScore = [[self.game.gamePlayersScore objectAtIndex:i] intValue];
-        if (pScore >= [self.game.gameEndScore intValue]) {
+        if (pScore >= [self.game.gameEndScore intValue] && self.game.gameActive==YES) {
             NSLog(@"GAME OVER");
             self.game.gameActive = NO;
             NSLog(@"I1: %@",appDelegate.inactiveGames);
