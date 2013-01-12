@@ -8,7 +8,6 @@
 
 #import "NewGameViewController.h"
 #import "Game.h"
-#import "ImagePickerViewController.h"
 
 @implementation NewGameViewController
 

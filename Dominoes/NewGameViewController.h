@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Game.h"
-#import "ImagePickerViewController.h"
 
 @class NewGameViewController;
 
