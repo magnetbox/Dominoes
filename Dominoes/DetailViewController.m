@@ -151,7 +151,7 @@
     // vertically center image
     UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0.f);
     CGFloat newHeight = (self.view.frame.size.width * bgImage.size.height)/bgImage.size.width;
-    [bgImage drawInRect:CGRectMake(0.f, (self.view.frame.size.height/2)-(newHeight/2)-44.0f, self.view.frame.size.width, newHeight)];
+    [bgImage drawInRect:CGRectMake(0.f, ((self.view.frame.size.height-44.0f)/2)-(newHeight/2), self.view.frame.size.width, newHeight)];
     UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:resultImage];
