@@ -129,10 +129,9 @@
     
     int keypadHeight = 210;
 
-    playerList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 440) style:UITableViewStylePlain];
+    playerList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-keypadHeight+44.0) style:UITableViewStylePlain];
     playerList.backgroundColor = [UIColor clearColor];
     playerList.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [playerList setContentInset:UIEdgeInsetsMake(0,0,keypadHeight,0)];
 
     [playerList setAutoresizesSubviews:YES];
     [playerList setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
@@ -140,7 +139,7 @@
     [playerList setDataSource:self];
     
     // add keypad to view
-    keypad = [[KeypadView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-keypadHeight, self.view.frame.size.width, self.view.frame.size.height)];
+    keypad = [[KeypadView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-keypadHeight, self.view.frame.size.width, keypadHeight)];
     
     // set background image, failing to default image if saved image is gone
     UIImage *bgImage = self.game.gameSurface;
@@ -151,7 +150,7 @@
     // vertically center image
     UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0.f);
     CGFloat newHeight = (self.view.frame.size.width * bgImage.size.height)/bgImage.size.width;
-    [bgImage drawInRect:CGRectMake(0.f, ((self.view.frame.size.height-44.0f)/2)-(newHeight/2), self.view.frame.size.width, newHeight)];
+    [bgImage drawInRect:CGRectMake(0.f, 0.f, self.view.frame.size.width, newHeight)];
     UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:resultImage];
@@ -231,6 +230,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.keypad = nil;
+    self.playerList = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
