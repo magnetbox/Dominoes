@@ -31,6 +31,7 @@
 		BB6EF5A6167B06FF007F7B4E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */; };
 		BB83504E14AE8EF000E2210D /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB83504D14AE8EF000E2210D /* NewGameViewController.m */; };
 		BB96F3DD16A3955E00E79D58 /* KeypadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BB96F3DC16A3955E00E79D58 /* KeypadButton.m */; };
+		BB9C7A7016A3B80000712064 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9C7A6F16A3B80000712064 /* iAd.framework */; };
 		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
 		BBC56F32169157F400E2E707 /* KeypadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC56F31169157F400E2E707 /* KeypadView.m */; };
 		BBD635EA167E8DA20064AC7F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */; };
@@ -82,6 +83,7 @@
 		BB83504D14AE8EF000E2210D /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
 		BB96F3DB16A3955E00E79D58 /* KeypadButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeypadButton.h; sourceTree = "<group>"; };
 		BB96F3DC16A3955E00E79D58 /* KeypadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeypadButton.m; sourceTree = "<group>"; };
+		BB9C7A6F16A3B80000712064 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		BB9DCEAA1485DD8700C0E306 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		BB9DCEAB1485DD8700C0E306 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		BBC56F30169157F400E2E707 /* KeypadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeypadView.h; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB9C7A7016A3B80000712064 /* iAd.framework in Frameworks */,
 				B527C6B3147C661D00D2257E /* UIKit.framework in Frameworks */,
 				B527C6B5147C661D00D2257E /* Foundation.framework in Frameworks */,
 				B527C6B7147C661D00D2257E /* CoreGraphics.framework in Frameworks */,
@@ -135,6 +138,7 @@
 		B527C6B1147C661D00D2257E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB9C7A6F16A3B80000712064 /* iAd.framework */,
 				B527C6B2147C661D00D2257E /* UIKit.framework */,
 				B527C6B4147C661D00D2257E /* Foundation.framework */,
 				B527C6B6147C661D00D2257E /* CoreGraphics.framework */,

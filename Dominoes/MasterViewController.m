@@ -12,6 +12,8 @@
 
 @implementation MasterViewController
 
+@synthesize gameList;
+
 #pragma mark - View lifecycle
 
 - (void)awakeFromNib
@@ -110,6 +112,12 @@
     NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:appDelegate.activeGames, appDelegate.inactiveGames, nil];
     //NSLog(@"%@",array);
     [appDelegate setAllGames:array];
+    
+    gameList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStyleGrouped];
+    [gameList setDelegate:self];
+    [gameList setDataSource:self];
+    [self.view addSubview:gameList];
+    
 }
 
 - (void)viewDidUnload
@@ -117,19 +125,27 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.gameList = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+-(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    NSIndexPath *indexPath = [self.gameList indexPathForSelectedRow];
+    [self.gameList reloadData];
+    if(indexPath) {
+        [self.gameList selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+-(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.tableView reloadData];
+    
+    NSIndexPath *indexPath = [self.gameList indexPathForSelectedRow];
+    if(indexPath) {
+        [self.gameList deselectRowAtIndexPath:indexPath animated:NO];
+    }
 }
-
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
@@ -157,9 +173,9 @@
     [appDelegate.activeGames insertObject:game atIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames] forKey:@"activeGames"];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+    [self.gameList insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView reloadData];
+    [self.gameList reloadData];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 

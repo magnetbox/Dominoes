@@ -28,8 +28,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
-@property (retain, nonatomic) NSString *selected;
-
 @property (nonatomic, retain) UIView *keypad;
 @property (nonatomic, retain) UITableView *playerList;
 

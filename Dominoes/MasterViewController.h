@@ -10,8 +10,11 @@
 #import "NewGameViewController.h"
 #import "AppDelegate.h"
 
-@interface MasterViewController : UITableViewController <NewGameViewControllerDelegate>{
+@interface MasterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,  NewGameViewControllerDelegate>{
     AppDelegate *appDelegate;
+    UITableView *gameList;
 }
+
+@property (nonatomic, retain) UITableView *gameList;
 
 @end

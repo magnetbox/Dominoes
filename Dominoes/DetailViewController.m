@@ -19,7 +19,7 @@
 
 @synthesize detailItem = _detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
-@synthesize selected, game, keypad, playerList;
+@synthesize game, keypad, playerList;
 
 #pragma mark - Managing the detail item
 
