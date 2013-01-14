@@ -127,19 +127,21 @@
     NSLog(@"END SCORE: %@",self.game.gameEndScore);
     //NSLog(@"ACTIVE: %c",self.game.gameActive);
     
-    int keypadHeight = 210;
+    int keypadHeight = 170;
 
-    playerList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-keypadHeight+44.0) style:UITableViewStylePlain];
+    // add player list
+    playerList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-keypadHeight) style:UITableViewStylePlain];
     playerList.backgroundColor = [UIColor clearColor];
     playerList.separatorStyle = UITableViewCellSeparatorStyleNone;
-
     [playerList setAutoresizesSubviews:YES];
-    [playerList setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+    [playerList setAutoresizingMask:(UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
     [playerList setDelegate:self];
     [playerList setDataSource:self];
     
-    // add keypad to view
+    // add keypad
     keypad = [[KeypadView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-keypadHeight, self.view.frame.size.width, keypadHeight)];
+    [keypad setAutoresizesSubviews:YES];
+    [keypad setAutoresizingMask:(UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth)];
     
     // set background image, failing to default image if saved image is gone
     UIImage *bgImage = self.game.gameSurface;

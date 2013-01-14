@@ -19,7 +19,7 @@
     CGRect contentRect = self.contentView.bounds;
     CGFloat boundsX = contentRect.origin.x;
     nameLabel.frame = CGRectMake(boundsX+16, 16, 170, 25);
-    scoreLabel.frame = CGRectMake(boundsX+185, 4, 120, 50);
+    scoreLabel.frame = CGRectMake(self.contentView.bounds.size.width-136, 4, 120, 50);
     progressBar.frame = CGRectMake(boundsX, contentRect.size.height-6, contentRect.size.width, 6);
     
 }
