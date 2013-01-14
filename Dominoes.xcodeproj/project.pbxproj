@@ -30,6 +30,7 @@
 		BB6EF5A4167B06FB007F7B4E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BB6EF5A3167B06FB007F7B4E /* Icon.png */; };
 		BB6EF5A6167B06FF007F7B4E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */; };
 		BB83504E14AE8EF000E2210D /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB83504D14AE8EF000E2210D /* NewGameViewController.m */; };
+		BB96F3DD16A3955E00E79D58 /* KeypadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BB96F3DC16A3955E00E79D58 /* KeypadButton.m */; };
 		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
 		BBC56F32169157F400E2E707 /* KeypadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC56F31169157F400E2E707 /* KeypadView.m */; };
 		BBD635EA167E8DA20064AC7F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */; };
@@ -79,6 +80,8 @@
 		BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		BB83504C14AE8EF000E2210D /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
 		BB83504D14AE8EF000E2210D /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
+		BB96F3DB16A3955E00E79D58 /* KeypadButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeypadButton.h; sourceTree = "<group>"; };
+		BB96F3DC16A3955E00E79D58 /* KeypadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeypadButton.m; sourceTree = "<group>"; };
 		BB9DCEAA1485DD8700C0E306 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		BB9DCEAB1485DD8700C0E306 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		BBC56F30169157F400E2E707 /* KeypadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeypadView.h; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 				B5E9848B14AE865500BA3DFF /* DetailViewController.m */,
 				BBC56F30169157F400E2E707 /* KeypadView.h */,
 				BBC56F31169157F400E2E707 /* KeypadView.m */,
+				BB96F3DB16A3955E00E79D58 /* KeypadButton.h */,
+				BB96F3DC16A3955E00E79D58 /* KeypadButton.m */,
 				BB4AF71216741C79001834F7 /* PlayerCell.h */,
 				BB4AF71316741C79001834F7 /* PlayerCell.m */,
 				BB4AF71616743408001834F7 /* PlayerProgress.h */,
@@ -333,6 +338,7 @@
 				BB4AF71416741C79001834F7 /* PlayerCell.m in Sources */,
 				BB4AF71816743408001834F7 /* PlayerProgress.m in Sources */,
 				BBC56F32169157F400E2E707 /* KeypadView.m in Sources */,
+				BB96F3DD16A3955E00E79D58 /* KeypadButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

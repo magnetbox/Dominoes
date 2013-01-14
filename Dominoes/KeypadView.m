@@ -7,6 +7,7 @@
 //
 
 #import "KeypadView.h"
+#import "KeypadButton.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation KeypadView
@@ -37,7 +38,7 @@
     dot.layer.shadowRadius = 2.5;
     dot.layer.shadowOffset = CGSizeMake(0,2.5f);
     dot.layer.masksToBounds = NO;
-    dot.clipsToBounds = YES;
+    dot.clipsToBounds = NO;
     dot.userInteractionEnabled = NO;
     dot.exclusiveTouch = NO;
     return dot;
@@ -78,21 +79,21 @@
     display.font = [UIFont boldSystemFontOfSize:48.0];
     [self addSubview:display];
     
-    UIButton *undoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    KeypadButton *undoButton = [KeypadButton buttonWithType:UIButtonTypeCustom];
     undoButton.frame = CGRectMake(142,12,66,44);
     [undoButton setTitle:@"clear" forState:UIControlStateNormal];
     [self setupButtonStyle:undoButton];
     [undoButton addTarget:self.superview action:@selector(clearDisplay) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:undoButton];
     
-    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    KeypadButton *doneButton = [KeypadButton buttonWithType:UIButtonTypeCustom];
     doneButton.frame = CGRectMake(216,12,66,44);
     [doneButton setTitle:@"done" forState:UIControlStateNormal];
     [self setupButtonStyle:doneButton];
     [doneButton addTarget:self.superview action:@selector(endTurn:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:doneButton];
     
-    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    KeypadButton *button1 = [KeypadButton buttonWithType:UIButtonTypeCustom];
     button1.frame = CGRectMake(8,70,44,88);
     button1.titleLabel.hidden = YES;
     button1.tag = 1;
@@ -109,7 +110,7 @@
     [dot1s addSubview:dot1];
     [button1 addSubview:dot1s];
     
-    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    KeypadButton *button2 = [KeypadButton buttonWithType:UIButtonTypeCustom];
     button2.frame = CGRectMake(60,70,44,88);
     button2.tag = 2;
     [button2 addTarget:self.superview action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -126,7 +127,7 @@
     [dot2s addSubview:dot22];
     [button2 addSubview:dot2s];
     
-    UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
+    KeypadButton *button3 = [KeypadButton buttonWithType:UIButtonTypeCustom];
     button3.frame = CGRectMake(112,70,44,88);
     button3.tag = 3;
     [self setupButtonStyle:button3];
@@ -146,7 +147,7 @@
     [dot3s addSubview:dot33];
     [button3 addSubview:dot3s];
     
-    UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
+    KeypadButton *button4 = [KeypadButton buttonWithType:UIButtonTypeCustom];
     button4.frame = CGRectMake(164,70,44,88);
     button4.tag = 4;
     [self setupButtonStyle:button4];
@@ -169,7 +170,7 @@
     [dot4s addSubview:dot44];\
     [button4 addSubview:dot4s];
     
-    UIButton *button5 = [UIButton buttonWithType:UIButtonTypeCustom];
+    KeypadButton *button5 = [KeypadButton buttonWithType:UIButtonTypeCustom];
     button5.frame = CGRectMake(216,70,44,88);
     button5.tag = 5;
     [self setupButtonStyle:button5];
@@ -195,7 +196,7 @@
     [dot5s addSubview:dot55];
     [button5 addSubview:dot5s];
     
-    UIButton *button6 = [UIButton buttonWithType:UIButtonTypeCustom];
+    KeypadButton *button6 = [KeypadButton buttonWithType:UIButtonTypeCustom];
     button6.frame = CGRectMake(268,70,44,88);
     button6.tag = 6;
     [self setupButtonStyle:button6];
