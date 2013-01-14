@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 #import "NewGameViewController.h"
 #import "AppDelegate.h"
 
-@interface MasterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,  NewGameViewControllerDelegate>{
+@interface MasterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate, NewGameViewControllerDelegate> {
     AppDelegate *appDelegate;
     UITableView *gameList;
+    ADBannerView *bannerView;
 }
 
 @property (nonatomic, retain) UITableView *gameList;
+@property (nonatomic, retain) ADBannerView *bannerView;
 
 @end

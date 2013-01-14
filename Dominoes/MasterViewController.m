@@ -12,7 +12,7 @@
 
 @implementation MasterViewController
 
-@synthesize gameList;
+@synthesize gameList, bannerView;
 
 #pragma mark - View lifecycle
 
@@ -112,12 +112,94 @@
     NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:appDelegate.activeGames, appDelegate.inactiveGames, nil];
     //NSLog(@"%@",array);
     [appDelegate setAllGames:array];
-    
+
+    // add table of games
     gameList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStyleGrouped];
-    [gameList setDelegate:self];
-    [gameList setDataSource:self];
+    gameList.delegate = self;
+    gameList.dataSource = self;
+    gameList.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     [self.view addSubview:gameList];
     
+    // add banner ad
+    [self createBannerView];
+    
+}
+
+- (void)createBannerView {
+    Class cls = NSClassFromString(@"ADBannerView");
+    if (cls) {
+        ADBannerView *adView = [[cls alloc] initWithFrame:CGRectZero];
+        adView.requiredContentSizeIdentifiers = [NSSet setWithObjects:
+                                                 ADBannerContentSizeIdentifierPortrait,
+                                                 ADBannerContentSizeIdentifierLandscape,
+                                                 nil];
+        
+        // Set the current size based on device orientation
+        adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+        adView.delegate = self;
+        adView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
+        
+        // Set initial frame to be offscreen
+        CGRect bannerFrame = adView.frame;
+        bannerFrame.origin.y = self.view.frame.size.height;
+        adView.frame = bannerFrame;
+        
+        self.bannerView = adView;
+        [self.view addSubview:adView];
+    }
+}
+
+- (void)showBanner {
+    CGFloat fullViewHeight = self.view.frame.size.height;
+    CGRect tableFrame = self.gameList.frame;
+    CGRect bannerFrame = self.bannerView.frame;
+    
+    // Shrink the tableview to create space for banner
+    tableFrame.size.height = fullViewHeight - bannerFrame.size.height;
+    
+    // Move banner onscreen
+    bannerFrame.origin.y = fullViewHeight - bannerFrame.size.height;
+    
+    NSLog(@"%f %f %f",fullViewHeight,tableFrame.size.height,bannerFrame.size.height);
+    
+    [UIView beginAnimations:@"showBanner" context:NULL];
+    self.gameList.frame = tableFrame;
+    self.bannerView.frame = bannerFrame;
+    [UIView commitAnimations];
+}
+
+- (void)hideBanner {
+    
+    // Grow the tableview to occupy space left by banner
+    CGFloat fullViewHeight = self.view.frame.size.height;
+    CGRect tableFrame = self.gameList.frame;
+    tableFrame.size.height = fullViewHeight;
+    
+    // Move the banner view offscreen
+    CGRect bannerFrame = self.bannerView.frame;
+    bannerFrame.origin.y = fullViewHeight;
+    
+    self.gameList.frame = tableFrame;
+    self.bannerView.frame = bannerFrame;
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    NSLog(@"GOT A BANNER");
+    [self showBanner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    NSLog(@"BANNER FAIL");
+    [self hideBanner];
+}
+
+- (void)changeBannerOrientation:(UIInterfaceOrientation)toOrientation {
+    NSLog(@"CHANGE ORIENTATION");
+    if (UIInterfaceOrientationIsLandscape(toOrientation)) {
+        self.bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
+    } else {
+        self.bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+    }
 }
 
 - (void)viewDidUnload
@@ -125,6 +207,10 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    if (self.bannerView) {
+        bannerView.delegate = nil;
+        self.bannerView = nil;
+    }
     self.gameList = nil;
 }
 
@@ -136,6 +222,10 @@
     if(indexPath) {
         [self.gameList selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
+    if (bannerView) {
+        UIInterfaceOrientation orientation = self.interfaceOrientation;
+        [self changeBannerOrientation:orientation];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -143,7 +233,7 @@
     
     NSIndexPath *indexPath = [self.gameList indexPathForSelectedRow];
     if(indexPath) {
-        [self.gameList deselectRowAtIndexPath:indexPath animated:NO];
+        [self.gameList deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 - (void)viewWillDisappear:(BOOL)animated
@@ -159,7 +249,14 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                duration:(NSTimeInterval)duration {    
+    if (bannerView) {
+        [self changeBannerOrientation:toInterfaceOrientation];
+    }
 }
 
 - (void)setupNewGame:(id)sender
