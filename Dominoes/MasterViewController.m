@@ -9,6 +9,8 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "Game.h"
+#import <StoreKit/StoreKit.h>
+
 
 @implementation MasterViewController
 
