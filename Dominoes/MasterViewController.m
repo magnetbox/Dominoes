@@ -149,6 +149,16 @@
     }
 }
 
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    NSLog(@"GOT A BANNER");
+    [self showBanner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    NSLog(@"BANNER FAIL");
+    [self hideBanner];
+}
+
 - (void)showBanner {
     CGFloat fullViewHeight = self.view.frame.size.height;
     CGRect tableFrame = self.gameList.frame;
@@ -183,22 +193,25 @@
     self.bannerView.frame = bannerFrame;
 }
 
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    NSLog(@"GOT A BANNER");
-    [self showBanner];
-}
-
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    NSLog(@"BANNER FAIL");
-    [self hideBanner];
-}
-
 - (void)changeBannerOrientation:(UIInterfaceOrientation)toOrientation {
     NSLog(@"CHANGE ORIENTATION");
     if (UIInterfaceOrientationIsLandscape(toOrientation)) {
         self.bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
     } else {
         self.bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+    }
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                duration:(NSTimeInterval)duration {
+    if (bannerView) {
+        [self changeBannerOrientation:toInterfaceOrientation];
+    }
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if (bannerView) {
+        [self showBanner];
     }
 }
 
@@ -246,17 +259,12 @@
 	[super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
+- (BOOL)shouldAutorotate {
     return YES;
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-                                duration:(NSTimeInterval)duration {    
-    if (bannerView) {
-        [self changeBannerOrientation:toInterfaceOrientation];
-    }
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 - (void)setupNewGame:(id)sender
