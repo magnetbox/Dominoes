@@ -22,7 +22,7 @@
 -(void) setHighlighted:(BOOL)highlighted {
     
     if(highlighted) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
     } else {
         self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.9];
     }
