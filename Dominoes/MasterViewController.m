@@ -264,7 +264,7 @@
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskLandscape;
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (void)setupNewGame:(id)sender
