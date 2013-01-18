@@ -74,7 +74,11 @@
             NSLog(@"GAME OVER");
             self.game.gameActive = NO;
             NSLog(@"I1: %@",appDelegate.inactiveGames);
-            [appDelegate.inactiveGames addObject:self.game];
+            if ([appDelegate.inactiveGames count]>0) {
+                [appDelegate.inactiveGames insertObject:self.game atIndex:0];
+            } else {
+                [appDelegate.inactiveGames addObject:self.game];
+            }
             NSLog(@"I2: %@",appDelegate.inactiveGames);
             NSLog(@"A1: %@",appDelegate.activeGames);
             [appDelegate.activeGames removeObject:self.game];
