@@ -121,6 +121,9 @@
     gameList.delegate = self;
     gameList.dataSource = self;
     gameList.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    gameList.backgroundView = nil;
+ 
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern3.png"]]];
     [self.view addSubview:gameList];
     
     // add banner ad

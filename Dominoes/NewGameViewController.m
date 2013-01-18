@@ -59,6 +59,9 @@
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
     
+    self.tableView.backgroundView = nil;
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern3.png"]]];
+    
 }
 
 - (void)viewDidUnload
