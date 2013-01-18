@@ -105,10 +105,11 @@
             [appDelegate setInactiveGames:[[NSMutableArray alloc] initWithArray:oldSavedArray2]];
         } else {
             NSLog(@"INACTIVE ARRAY IS NIL");
-            [appDelegate setInactiveGames:[[NSMutableArray alloc] init]];
+            appDelegate.inactiveGames = [[NSMutableArray alloc] init];
         }
     } else {
         NSLog(@"INACTIVE OBJECT IS NIL");
+        appDelegate.inactiveGames = [[NSMutableArray alloc] init];
     }
     
     NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:appDelegate.activeGames, appDelegate.inactiveGames, nil];
