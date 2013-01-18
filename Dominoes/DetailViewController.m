@@ -73,16 +73,8 @@
         if (pScore >= [self.game.gameEndScore intValue] && self.game.gameActive==YES) {
             NSLog(@"GAME OVER");
             self.game.gameActive = NO;
-            NSLog(@"I1: %@",appDelegate.inactiveGames);
-            if ([appDelegate.inactiveGames count]>0) {
-                [appDelegate.inactiveGames insertObject:self.game atIndex:0];
-            } else {
-                [appDelegate.inactiveGames addObject:self.game];
-            }
-            NSLog(@"I2: %@",appDelegate.inactiveGames);
-            NSLog(@"A1: %@",appDelegate.activeGames);
+            [appDelegate.inactiveGames insertObject:self.game atIndex:0];
             [appDelegate.activeGames removeObject:self.game];
-            NSLog(@"A2: %@",appDelegate.activeGames);
         }
     }
     
