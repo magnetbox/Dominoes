@@ -57,26 +57,7 @@
     inactiveGame.gameActive = NO;
     inactiveGame.gamePlayersTurn = 0;
     [appDelegate.inactiveGames addObject:inactiveGame];
-    
-    inactiveGame = [[Game alloc] init];
-    inactiveGame.gameTitle = @"First to 121";
-    inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-    inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
-    inactiveGame.gameEndScore = [NSNumber numberWithInt:121];
-    inactiveGame.gameActive = NO;
-    inactiveGame.gamePlayersTurn = 0;
-    [appDelegate.inactiveGames addObject:inactiveGame];
-    
-    inactiveGame = [[Game alloc] init];
-    inactiveGame.gameTitle = @"First to 100";
-    inactiveGame.gamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-    inactiveGame.gamePlayersScore = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
-    inactiveGame.gameEndScore = [NSNumber numberWithInt:100];
-    inactiveGame.gameActive = NO;
-    inactiveGame.gamePlayersTurn = 0;
-    [appDelegate.inactiveGames addObject:inactiveGame];
-    
-     */
+    */
     
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
@@ -273,10 +254,14 @@
     return UIInterfaceOrientationMaskAll;
 }
 
-- (void)setupNewGame:(id)sender
+- (void)buyUpgrade
 {
-    NewGameViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"newGameView"];
-    [self.navigationController pushViewController:controller animated:YES];
+    NSLog(@"BUY UPGRADE");
+    UIAlertView *askToPurchase = [[UIAlertView alloc] initWithTitle:@"Hate ads?" message:@"Would you like to pay for this app so you don't see any more ads?" delegate:self cancelButtonTitle:@"No, thanks" otherButtonTitles:@"Yes, please!", nil];
+    askToPurchase.delegate = self;
+    [askToPurchase show];
+    //NewGameViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"newGameView"];
+    //[self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)newGameViewController:(NewGameViewController *)controller didAddGame:(Game *)game
@@ -334,7 +319,7 @@
         //return 1 extra row for new game button in active games section
         return [sectionContents count]+1;
     } else {
-        return [sectionContents count];
+        return [sectionContents count]+1;
     }
 }
 
@@ -351,7 +336,13 @@
     
     if (indexPath.section==0 && indexPath.row==sectionContents.count) {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
-        cell.textLabel.text = @"+ New game";
+        cell.textLabel.text = @"+ Start new game";
+        return cell;
+    }
+    
+    if (indexPath.section==1 && indexPath.row==sectionContents.count) {
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
+        cell.textLabel.text = @"+ Upgrade to remove ads";
         return cell;
     }
     
@@ -365,6 +356,8 @@
     
     if (indexPath.section==0 && indexPath.row==[appDelegate.activeGames count]) {
         [self performSegueWithIdentifier:@"setupNewGame" sender:self];
+    } else if (indexPath.section==1 && indexPath.row==[appDelegate.inactiveGames count]) {
+        [self buyUpgrade];
     } else {
         DetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"gameView"];
         Game *selectedGame = [[appDelegate.allGames objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
