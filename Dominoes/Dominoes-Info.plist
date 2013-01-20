@@ -25,7 +25,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>SpaceMillions.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.Space-Millions.Dominoes</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

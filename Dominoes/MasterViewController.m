@@ -11,7 +11,6 @@
 #import "Game.h"
 #import <StoreKit/StoreKit.h>
 
-
 @implementation MasterViewController
 
 @synthesize gameList, bannerView;
@@ -254,14 +253,38 @@
     return UIInterfaceOrientationMaskAll;
 }
 
-- (void)buyUpgrade
-{
-    NSLog(@"BUY UPGRADE");
-    UIAlertView *askToPurchase = [[UIAlertView alloc] initWithTitle:@"Hate ads?" message:@"Would you like to pay for this app so you don't see any more ads?" delegate:self cancelButtonTitle:@"No, thanks" otherButtonTitles:@"Yes, please!", nil];
+- (void)buyUpgrade {
+    NSLog(@"BUY UPGRADE?");
+    askToPurchase = [[UIAlertView alloc] initWithTitle:@"Hate ads?" message:@"Would you like to pay for this app so you don't see any more ads?" delegate:self cancelButtonTitle:@"No, thanks" otherButtonTitles:@"Yes, please!", nil];
     askToPurchase.delegate = self;
     [askToPurchase show];
-    //NewGameViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"newGameView"];
-    //[self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView==askToPurchase) {
+        if (buttonIndex == [alertView cancelButtonIndex]) {
+            NSLog(@"NO, THANKS");
+        } else if (buttonIndex == [alertView firstOtherButtonIndex]) {
+            NSLog(@"YES, PLEASE!");
+            if ([SKPaymentQueue canMakePayments]) {
+                SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:@"com.emirbytes.IAPNoob.01"]];
+                request.delegate = self;
+                [request start];
+            } else {
+                UIAlertView *tmp = [[UIAlertView alloc] initWithTitle:@"Prohibited" message:@"Please enable In App Purchases in Settings" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                [tmp show];
+            }
+        }
+    }
+}
+
+- (BOOL)IAPItemPurchased {
+    NSLog(@"ITEM PURCHASED");
+    return NO;
+}
+
+-(void)unlockFeature {
+    NSLog(@"UNLOCK");
 }
 
 - (void)newGameViewController:(NewGameViewController *)controller didAddGame:(Game *)game

@@ -15,6 +15,7 @@
     AppDelegate *appDelegate;
     UITableView *gameList;
     ADBannerView *bannerView;
+    UIAlertView *askToPurchase;
 }
 
 @property (nonatomic, retain) UITableView *gameList;
