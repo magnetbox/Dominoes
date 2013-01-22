@@ -300,6 +300,8 @@
     // Return NO if you do not want the specified item to be editable.
     if (indexPath.section==0) {
         return YES;
+    } else if (indexPath.section == 1 && indexPath.row == 2) {
+        return YES;
     } else {
         return NO;
     }
@@ -310,14 +312,31 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [self.view endEditing:YES];
-        [defaultGamePlayers removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        //[self.tableView reloadData];
-    }   
+        if (indexPath.section==0) {
+            [self.view endEditing:YES];
+            [defaultGamePlayers removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            //[self.tableView reloadData];
+        }
+        if (indexPath.section == 1 && indexPath.row == 2) {
+            [self.view endEditing:YES];
+            [defaultGameSettings replaceObjectAtIndex:0 withObject:@"Default"];
+            [defaultGameSettings replaceObjectAtIndex:3 withObject:[UIImage imageNamed:@"pattern2.png"]];
+            [self.tableView reloadData];
+        }
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1 && indexPath.row == 2) {
+        return @"Reset";
+    } else {
+        return @"Delete";
+    }
 }
 
 /*
