@@ -9,7 +9,6 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "Game.h"
-#import <StoreKit/StoreKit.h>
 
 @implementation MasterViewController
 
@@ -107,8 +106,10 @@
     [self.view addSubview:gameList];
     
     // add banner ad
-    [self createBannerView];
-    
+    if (![self didRemoveAds]) {
+        [self createBannerView];
+    }
+
 }
 
 - (void)createBannerView {
@@ -146,6 +147,10 @@
 }
 
 - (void)showBanner {
+    if([self didRemoveAds]) {
+        return;
+    }
+    
     CGFloat fullViewHeight = self.view.frame.size.height;
     CGRect tableFrame = self.gameList.frame;
     CGRect bannerFrame = self.bannerView.frame;
@@ -267,7 +272,7 @@
         } else if (buttonIndex == [alertView firstOtherButtonIndex]) {
             NSLog(@"YES, PLEASE!");
             if ([SKPaymentQueue canMakePayments]) {
-                SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:@"com.emirbytes.IAPNoob.01"]];
+                SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:@"com.SpaceMillions.Dominoes.removeAds"]];
                 request.delegate = self;
                 [request start];
             } else {
@@ -278,13 +283,98 @@
     }
 }
 
-- (BOOL)IAPItemPurchased {
-    NSLog(@"ITEM PURCHASED");
-    return NO;
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+    SKProduct *validProduct = nil;
+    int count = [response.products count];
+    
+    if (count>0) {
+        validProduct = [response.products objectAtIndex:0];
+        SKPayment *payment = [SKPayment paymentWithProduct:validProduct];
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+        [[SKPaymentQueue defaultQueue] addPayment:payment];
+    } else {
+        UIAlertView *tmp = [[UIAlertView alloc] initWithTitle:@"Not Available" message:@"No products to purchase" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [tmp show];
+    }
 }
 
--(void)unlockFeature {
-    NSLog(@"UNLOCK");
+-(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
+    for (SKPaymentTransaction *transaction in transactions) {
+        switch (transaction.transactionState) {
+            case SKPaymentTransactionStatePurchasing:
+            {
+                // show wait view here
+                // statusLabel.text = @"Processing...";
+                break;
+            }
+            case SKPaymentTransactionStatePurchased:
+            {
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                // remove wait view and unlock feature
+                // statusLabel.text = @"Done!";
+                UIAlertView *tmp = [[UIAlertView alloc]
+                                    initWithTitle:@"Complete"
+                                    message:@"You have successfully upgraded to not show ads. Thanks!"
+                                    delegate:self
+                                    cancelButtonTitle:nil
+                                    otherButtonTitles:@"Ok", nil];
+                [tmp show];
+                // do other thing to enable the features
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"removeAds"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                [self hideBanner];
+                [gameList reloadData];
+                NSLog(@"STORE: New purchase success");
+                break;
+            }
+            case SKPaymentTransactionStateRestored:
+            {
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                NSLog(@"STORE: Restored purchase state");
+                break;
+            }
+            case SKPaymentTransactionStateFailed:
+            {
+                if (transaction.error.code != SKErrorPaymentCancelled) {
+                    NSLog(@"STORE: Error: %d",transaction.error.code);
+                }
+                UIAlertView *tmp = [[UIAlertView alloc]
+                                    initWithTitle:@"Error"
+                                    message:@"There was a problem with this transaction. Try again, and contact us if you continue to have issues."
+                                    delegate:self
+                                    cancelButtonTitle:nil
+                                    otherButtonTitles:@"Ok", nil];
+                [tmp show];
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+                // remove wait view here
+                //statusLabel.text = @"Purchase Error!";
+                NSLog(@"STORE: Failed purchase");
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
+    }
+}
+
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
+    NSLog(@"STORE: Failed to connect with error: %@", [error localizedDescription]);
+}
+
+- (void)requestDidFinish:(SKRequest *)request {
+    NSLog(@"STORE: Request finished");
+}
+
+- (BOOL)didRemoveAds {
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"removeAds"]) {
+        NSLog(@"DID UPGRADE? YES");
+        return YES;
+    } else {
+        NSLog(@"DID UPGRADE? NO");
+        return NO;
+    }
 }
 
 - (void)newGameViewController:(NewGameViewController *)controller didAddGame:(Game *)game
@@ -365,7 +455,14 @@
     
     if (indexPath.section==1 && indexPath.row==sectionContents.count) {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
-        cell.textLabel.text = @"+ Upgrade to remove ads";
+        if ([self didRemoveAds]) {
+            cell.textLabel.text = @"+ Upgraded to remove ads";
+            cell.userInteractionEnabled = NO;
+            cell.textLabel.enabled = NO;
+            cell.detailTextLabel.enabled = NO;
+        } else {
+            cell.textLabel.text = @"+ Upgrade to remove ads";
+        }
         return cell;
     }
     
@@ -381,6 +478,7 @@
         [self performSegueWithIdentifier:@"setupNewGame" sender:self];
     } else if (indexPath.section==1 && indexPath.row==[appDelegate.inactiveGames count]) {
         [self buyUpgrade];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     } else {
         DetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"gameView"];
         Game *selectedGame = [[appDelegate.allGames objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];

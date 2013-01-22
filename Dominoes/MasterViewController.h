@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <iAd/iAd.h>
+#import <StoreKit/StoreKit.h>
 #import "NewGameViewController.h"
 #import "AppDelegate.h"
 
-@interface MasterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate, NewGameViewControllerDelegate> {
+@interface MasterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver, NewGameViewControllerDelegate> {
     AppDelegate *appDelegate;
     UITableView *gameList;
     ADBannerView *bannerView;
