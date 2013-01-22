@@ -164,7 +164,7 @@
         
         NSString *cellIdentifier = @"PlayerCell";
         UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,178,30)];
+        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,8,184,30)];
         
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -174,6 +174,8 @@
             inputField.keyboardType = UIKeyboardTypeDefault;
             inputField.returnKeyType = UIReturnKeyDone;
             inputField.tag = indexPath.row;
+            inputField.clearButtonMode = UITextFieldViewModeWhileEditing;
+            inputField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
             //NSLog(@"inputField TAG: %i",inputField.tag);
             
             [cell addSubview:inputField];
