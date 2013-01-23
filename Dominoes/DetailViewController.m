@@ -82,12 +82,12 @@
             [appDelegate.activeGames removeObject:self.game];
         }
         NSIndexPath *playerIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
-        PlayerCell *cell = [playerList cellForRowAtIndexPath:playerIndexPath];
+        PlayerCell *cell = (PlayerCell*)[playerList cellForRowAtIndexPath:playerIndexPath];
         [cell.nameLabel setText:[cell.nameLabel.text stringByReplacingOccurrencesOfString:@" \ue131" withString:@""]];
     }
     if (self.game.gameActive==NO) {
         NSIndexPath *winnerIndexPath = [NSIndexPath indexPathForRow:highestScorePlayer inSection:0];
-        PlayerCell *cell = [playerList cellForRowAtIndexPath:winnerIndexPath];
+        PlayerCell *cell = (PlayerCell*)[playerList cellForRowAtIndexPath:winnerIndexPath];
         [cell.nameLabel setText:[cell.nameLabel.text stringByAppendingString:@" \ue131"]];
     }
     
