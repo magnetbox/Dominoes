@@ -12,7 +12,7 @@
 @implementation NewGameViewController
 
 @synthesize delegate;
-@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave, defaultGamePlayersTurn, imgPicker;
+@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave, defaultGamePlayersTurn, imgPicker, settingsList, bannerView;
 
 - (void)didReceiveMemoryWarning
 {
@@ -62,9 +62,120 @@
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
     
-    self.tableView.backgroundView = nil;
+    settingsList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStyleGrouped];
+    settingsList.delegate = self;
+    settingsList.dataSource = self;
+    settingsList.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    settingsList.backgroundView = nil;
+    [self.view addSubview:settingsList];
+
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grey.png"]]];
     
+    // add banner ad
+    if (![self didRemoveAds]) {
+        [self createBannerView];
+    }
+}
+
+- (void)createBannerView {
+    Class cls = NSClassFromString(@"ADBannerView");
+    if (cls) {
+        ADBannerView *adView = [[cls alloc] initWithFrame:CGRectZero];
+        adView.requiredContentSizeIdentifiers = [NSSet setWithObjects:
+                                                 ADBannerContentSizeIdentifierPortrait,
+                                                 ADBannerContentSizeIdentifierLandscape,
+                                                 nil];
+        
+        // Set the current size based on device orientation
+        adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+        adView.delegate = self;
+        adView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
+        
+        // Set initial frame to be offscreen
+        CGRect bannerFrame = adView.frame;
+        bannerFrame.origin.y = self.view.frame.size.height;
+        adView.frame = bannerFrame;
+        
+        self.bannerView = adView;
+        [self.view addSubview:adView];
+    }
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    NSLog(@"GOT A BANNER");
+    [self showBanner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    NSLog(@"BANNER FAIL");
+    [self hideBanner];
+}
+
+- (void)showBanner {
+    if([self didRemoveAds]) {
+        return;
+    }
+    
+    CGFloat fullViewHeight = self.view.frame.size.height;
+    CGRect tableFrame = self.settingsList.frame;
+    CGRect bannerFrame = self.bannerView.frame;
+    
+    // Shrink the tableview to create space for banner
+    tableFrame.size.height = fullViewHeight - bannerFrame.size.height;
+    
+    // Move banner onscreen
+    bannerFrame.origin.y = fullViewHeight - bannerFrame.size.height;
+    [UIView beginAnimations:@"showBanner" context:NULL];
+    self.settingsList.frame = tableFrame;
+    self.bannerView.frame = bannerFrame;
+    [UIView commitAnimations];
+}
+
+- (void)hideBanner {
+    
+    // Grow the tableview to occupy space left by banner
+    CGFloat fullViewHeight = self.view.frame.size.height;
+    CGRect tableFrame = self.settingsList.frame;
+    tableFrame.size.height = fullViewHeight;
+    
+    // Move the banner view offscreen
+    CGRect bannerFrame = self.bannerView.frame;
+    bannerFrame.origin.y = fullViewHeight;
+    
+    self.settingsList.frame = tableFrame;
+    self.bannerView.frame = bannerFrame;
+}
+
+- (void)changeBannerOrientation:(UIInterfaceOrientation)toOrientation {
+    NSLog(@"CHANGE ORIENTATION");
+    if (UIInterfaceOrientationIsLandscape(toOrientation)) {
+        self.bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
+    } else {
+        self.bannerView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+    }
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                duration:(NSTimeInterval)duration {
+    if (bannerView) {
+        [self changeBannerOrientation:toInterfaceOrientation];
+    }
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if (bannerView) {
+        [self showBanner];
+    }
+}
+
+- (BOOL)didRemoveAds {
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"removeAds"]) {
+        NSLog(@"DID UPGRADE? YES");
+        return YES;
+    } else {
+        NSLog(@"DID UPGRADE? NO");
+        return NO;
+    }
 }
 
 - (void)viewDidUnload
@@ -73,11 +184,20 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.imgPicker = nil;
+    if (self.bannerView) {
+        bannerView.delegate = nil;
+        self.bannerView = nil;
+    }
+    self.settingsList = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (bannerView) {
+        UIInterfaceOrientation orientation = self.interfaceOrientation;
+        [self changeBannerOrientation:orientation];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -202,10 +322,15 @@
         if (indexPath.row == 2 ) {
             
             NSString *cellIdentifier = @"SettingCell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+            }
+            
             cell.textLabel.text = @"Background";
             cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:0];
             cell.backgroundColor = [UIColor whiteColor];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             return cell;
             
         } else if (indexPath.row == 0) {
@@ -260,8 +385,12 @@
         } else {
 
             NSString *cellIdentifier = @"SettingSaveCell";            
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+            }
             cell.backgroundColor = [UIColor whiteColor];
+            cell.textLabel.text = @"Save as new defaults";
             return cell;
             
         }
@@ -297,7 +426,7 @@
     [defaultGameSettings replaceObjectAtIndex:3 withObject:pickedImage];
     [defaultGameSettings replaceObjectAtIndex:0 withObject:@"Custom"];
     [picker dismissModalViewControllerAnimated:YES];
-    [self.tableView reloadData];
+    [settingsList reloadData];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
@@ -332,7 +461,7 @@
             [self.view endEditing:YES];
             [defaultGameSettings replaceObjectAtIndex:0 withObject:@"Default"];
             [defaultGameSettings replaceObjectAtIndex:3 withObject:@"default"];
-            [self.tableView reloadData];
+            [settingsList reloadData];
         }
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -372,9 +501,9 @@
     if (indexPath.section==0 && indexPath.row==[defaultGamePlayers count]) {
         [defaultGamePlayers addObject:[NSString stringWithFormat:@"Player %d",indexPath.row+1]];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[defaultGamePlayers count]-1 inSection:0];
-        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+        [settingsList insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                               withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView reloadData];
+        [settingsList reloadData];
     }
     if (indexPath.section==1 && indexPath.row==2) {
         NSLog(@"SELECTED SURFACE PICKER");
@@ -396,6 +525,7 @@
                               otherButtonTitles:@"Yes", nil];
         [alert show];
     }
+    [settingsList deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -446,6 +576,7 @@
         NSMutableArray *newDefaultGame = [[NSMutableArray alloc] initWithObjects:defaultGamePlayers, defaultGameSettings, nil];
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:newDefaultGame] forKey:@"defaultGame"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        NSLog(@"SAVED TO USERDEFAULTS");
     } else {
         NSLog(@"DON'T SAVE THE DEFAULTS");
     }

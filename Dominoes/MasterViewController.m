@@ -323,6 +323,7 @@
                 // do other thing to enable the features
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"removeAds"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
+                NSLog(@"SAVED TO USERDEFAULTS");
                 [self hideBanner];
                 [gameList reloadData];
                 NSLog(@"STORE: New purchase success");
@@ -383,6 +384,7 @@
     [appDelegate.activeGames insertObject:game atIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames] forKey:@"activeGames"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    NSLog(@"SAVED TO USERDEFAULTS");
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.gameList insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -509,11 +511,12 @@
          [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames] forKey:@"activeGames"];
      } else {
          [appDelegate.inactiveGames removeObjectAtIndex:indexPath.row];
-         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames] forKey:@"inactiveGames"];
+         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.inactiveGames] forKey:@"inactiveGames"];
          
      }
      [[NSUserDefaults standardUserDefaults] synchronize];
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+     NSLog(@"SAVED TO USERDEFAULTS");
+     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
  } else if (editingStyle == UITableViewCellEditingStyleInsert) {
  // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
  }
