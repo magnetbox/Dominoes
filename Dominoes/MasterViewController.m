@@ -94,6 +94,7 @@
     NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:appDelegate.activeGames, appDelegate.inactiveGames, nil];
     //NSLog(@"%@",array);
     [appDelegate setAllGames:array];
+    [prefs synchronize];
 
     // add table of games
     gameList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStyleGrouped];
@@ -381,6 +382,7 @@
 {
     [appDelegate.activeGames insertObject:game atIndex:0];
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames] forKey:@"activeGames"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.gameList insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -508,7 +510,9 @@
      } else {
          [appDelegate.inactiveGames removeObjectAtIndex:indexPath.row];
          [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames] forKey:@"inactiveGames"];
+         
      }
+     [[NSUserDefaults standardUserDefaults] synchronize];
  [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
  } else if (editingStyle == UITableViewCellEditingStyleInsert) {
  // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

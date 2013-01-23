@@ -54,8 +54,9 @@
         defaultGame = [[NSMutableArray alloc] initWithObjects:defaultGamePlayers, defaultGameSettings, nil];
         defaultGameSave = NO;
         defaultGamePlayersTurn = 0;
-        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:defaultGame] forKey:@"defaultGame"];
+        [currentDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:defaultGame] forKey:@"defaultGame"];
     }
+    [currentDefaults synchronize];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTap)];
     tap.cancelsTouchesInView = NO;
@@ -444,6 +445,7 @@
         NSLog(@"SAVE THE DEFAULTS");
         NSMutableArray *newDefaultGame = [[NSMutableArray alloc] initWithObjects:defaultGamePlayers, defaultGameSettings, nil];
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:newDefaultGame] forKey:@"defaultGame"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     } else {
         NSLog(@"DON'T SAVE THE DEFAULTS");
     }

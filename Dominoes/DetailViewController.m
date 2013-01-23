@@ -23,23 +23,6 @@
 
 #pragma mark - Managing the detail item
 
-/*
-- (Game *)loadGame:(NSString *)key {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSData *myEncodedObject = [defaults objectForKey:key];
-    Game *aGame = (Game *)[NSKeyedUnarchiver unarchiveObjectWithData: myEncodedObject];
-    return aGame;
-}
-
-- (void)setGame:(Game *)aGame {
-    NSLog(@"SAVE");
-    // save the game object
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSData *myEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:aGame];
-    [prefs setObject:myEncodedObject forKey:@"myEncodedObjectKey"];
-}
-*/
-
 - (void)buttonPressed:(id)sender {
     NSLog(@"DIGIT PRESSED: %d", [sender tag]);
     NSInteger total = [keypad.display.text intValue];
@@ -75,7 +58,6 @@
             highestScore = pScore;
             highestScorePlayer = i;
         }
-        NSLog(@"%d",highestScorePlayer);
         if (pScore >= [self.game.gameEndScore intValue] && self.game.gameActive==YES) {
             self.game.gameActive = NO;
             [appDelegate.inactiveGames insertObject:self.game atIndex:0];
@@ -97,6 +79,7 @@
     [userDefault setObject:myEncodedActive forKey:[NSString stringWithFormat:@"activeGames"]];
     NSData *myEncodedInactive = [NSKeyedArchiver archivedDataWithRootObject:appDelegate.inactiveGames];
     [userDefault setObject:myEncodedInactive forKey:[NSString stringWithFormat:@"inactiveGames"]];
+    [userDefault synchronize];
     NSLog(@"SAVED TO USERDEFAULTS");
 }
 
