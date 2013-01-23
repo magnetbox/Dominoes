@@ -27,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *defaultGameArraySavedArray = [currentDefaults objectForKey:@"defaultGame"];
@@ -48,7 +50,7 @@
     } else {
         NSLog(@"NO DEFAULT GAME DATA, SET IT AND SAVE IT");
         defaultGamePlayers = [[NSMutableArray alloc] initWithObjects:@"Player 1", @"Player 2", nil];
-        defaultGameSettings = [[NSMutableArray alloc] initWithObjects:@"Default", [NSNumber numberWithInt:500], @"First to 500", [UIImage imageNamed:@"pattern2.png"], nil];
+        defaultGameSettings = [[NSMutableArray alloc] initWithObjects:@"Default", [NSNumber numberWithInt:500], @"First to 500", @"default", nil];
         defaultGame = [[NSMutableArray alloc] initWithObjects:defaultGamePlayers, defaultGameSettings, nil];
         defaultGameSave = NO;
         defaultGamePlayersTurn = 0;
@@ -60,7 +62,7 @@
     [self.view addGestureRecognizer:tap];
     
     self.tableView.backgroundView = nil;
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern3.png"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grey.png"]]];
     
 }
 
@@ -169,6 +171,7 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = [UIColor whiteColor];
             inputField.textColor = [UIColor colorWithRed:51.0f/255.0f green:82.0f/255.0f blue:115.0f/255.0f alpha:1];
             inputField.adjustsFontSizeToFitWidth = YES;
             inputField.keyboardType = UIKeyboardTypeDefault;
@@ -184,6 +187,7 @@
         if (indexPath.section==0 && indexPath.row==defaultGamePlayers.count) {
             UITableViewCell *cell = [[UITableViewCell alloc] init];
             cell.textLabel.text = @"+ Add player";
+            cell.backgroundColor = [UIColor whiteColor];
             return cell;
         }
 
@@ -198,9 +202,9 @@
             
             NSString *cellIdentifier = @"SettingCell";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        
             cell.textLabel.text = @"Background";
             cell.detailTextLabel.text = [defaultGameSettings objectAtIndex:0];
+            cell.backgroundColor = [UIColor whiteColor];
             return cell;
             
         } else if (indexPath.row == 0) {
@@ -221,6 +225,7 @@
                 [cell addSubview:scoreInputField];
             }
             
+            cell.backgroundColor = [UIColor whiteColor];
             cell.textLabel.text = @"Play to score";
             scoreInputField.text = [NSString stringWithFormat:@"%i", [[defaultGameSettings objectAtIndex:1] integerValue]];
             scoreInputField.delegate = self;
@@ -244,6 +249,7 @@
                 [cell addSubview:inputField];
             }
             
+            cell.backgroundColor = [UIColor whiteColor];
             cell.textLabel.text = @"Title";
             inputField.text = [defaultGameSettings objectAtIndex:2];
             inputField.delegate = self;
@@ -254,6 +260,7 @@
 
             NSString *cellIdentifier = @"SettingSaveCell";            
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            cell.backgroundColor = [UIColor whiteColor];
             return cell;
             
         }
@@ -323,7 +330,7 @@
         if (indexPath.section == 1 && indexPath.row == 2) {
             [self.view endEditing:YES];
             [defaultGameSettings replaceObjectAtIndex:0 withObject:@"Default"];
-            [defaultGameSettings replaceObjectAtIndex:3 withObject:[UIImage imageNamed:@"pattern2.png"]];
+            [defaultGameSettings replaceObjectAtIndex:3 withObject:@"default"];
             [self.tableView reloadData];
         }
     }

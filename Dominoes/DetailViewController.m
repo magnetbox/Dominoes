@@ -142,16 +142,17 @@
     // set background image, failing to default image if saved image is gone
     UIImage *bgImage = self.game.gameSurface;
     if (bgImage == nil || ![bgImage isKindOfClass:[UIImage class]]) {
-        bgImage = [UIImage imageNamed:@"pattern2.png"];
+        bgImage = [UIImage imageNamed:@"px_by_Gre3g.png"];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+    } else {
+        // vertically center image
+        UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0.f);
+        CGFloat newHeight = (self.view.frame.size.width * bgImage.size.height)/bgImage.size.width;
+        [bgImage drawInRect:CGRectMake(0.f, 0.f, self.view.frame.size.width, newHeight)];
+        UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        self.view.backgroundColor = [UIColor colorWithPatternImage:resultImage];
     }
-    
-    // vertically center image
-    UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0.f);
-    CGFloat newHeight = (self.view.frame.size.width * bgImage.size.height)/bgImage.size.width;
-    [bgImage drawInRect:CGRectMake(0.f, 0.f, self.view.frame.size.width, newHeight)];
-    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor colorWithPatternImage:resultImage];
 
     [self.view addSubview:playerList];
     [self.view addSubview:keypad];

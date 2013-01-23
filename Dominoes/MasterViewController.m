@@ -102,7 +102,7 @@
     gameList.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     gameList.backgroundView = nil;
  
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"pattern3.png"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grey.png"]]];
     [self.view addSubview:gameList];
     
     // add banner ad
@@ -443,13 +443,15 @@
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil)
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    
+        cell.backgroundColor = [UIColor whiteColor];
+
     NSArray *sectionContents = [appDelegate.allGames objectAtIndex:indexPath.section];
     //NSLog(@"ROWS: %d",[sectionContents count]);
     
     if (indexPath.section==0 && indexPath.row==sectionContents.count) {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         cell.textLabel.text = @"+ Start new game";
+        cell.backgroundColor = [UIColor whiteColor];
         return cell;
     }
     
@@ -462,6 +464,7 @@
             cell.detailTextLabel.enabled = NO;
         } else {
             cell.textLabel.text = @"+ Upgrade to remove ads";
+            cell.backgroundColor = [UIColor whiteColor];
         }
         return cell;
     }
