@@ -81,7 +81,7 @@
         NSArray *oldSavedArray2 = [NSKeyedUnarchiver unarchiveObjectWithData:myDecodedObjectInactive];
         if (oldSavedArray2 != nil) {
             NSLog(@"INACTIVE ARRAY IS NOT NIL");
-            [appDelegate setInactiveGames:[[NSMutableArray alloc] initWithArray:[oldSavedArray2 subarrayWithRange:NSMakeRange(0, 10)]]];
+            [appDelegate setInactiveGames:[[NSMutableArray alloc] initWithArray:oldSavedArray2]];
         } else {
             NSLog(@"INACTIVE ARRAY IS NIL");
             appDelegate.inactiveGames = [[NSMutableArray alloc] init];

@@ -67,15 +67,28 @@
     [self clearDisplay];
 
     // if someone has reached the end score, the game is done so set it to be inactive
-    int i;
-    for (i=0; i<[self.game.gamePlayersScore count]; i++) {
+    int highestScore = 0;
+    int highestScorePlayer = 0;
+    for (int i=0; i<[self.game.gamePlayersScore count]; i++) {
         int pScore = [[self.game.gamePlayersScore objectAtIndex:i] intValue];
+        if (pScore >= highestScore) {
+            highestScore = pScore;
+            highestScorePlayer = i;
+        }
+        NSLog(@"%d",highestScorePlayer);
         if (pScore >= [self.game.gameEndScore intValue] && self.game.gameActive==YES) {
-            NSLog(@"GAME OVER");
             self.game.gameActive = NO;
             [appDelegate.inactiveGames insertObject:self.game atIndex:0];
             [appDelegate.activeGames removeObject:self.game];
         }
+        NSIndexPath *playerIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        PlayerCell *cell = [playerList cellForRowAtIndexPath:playerIndexPath];
+        [cell.nameLabel setText:[cell.nameLabel.text stringByReplacingOccurrencesOfString:@" \ue131" withString:@""]];
+    }
+    if (self.game.gameActive==NO) {
+        NSIndexPath *winnerIndexPath = [NSIndexPath indexPathForRow:highestScorePlayer inSection:0];
+        PlayerCell *cell = [playerList cellForRowAtIndexPath:winnerIndexPath];
+        [cell.nameLabel setText:[cell.nameLabel.text stringByAppendingString:@" \ue131"]];
     }
     
     // save data
