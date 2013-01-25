@@ -81,9 +81,9 @@
     
     KeypadButton *undoButton = [KeypadButton buttonWithType:UIButtonTypeCustom];
     undoButton.frame = CGRectMake(142,12,66,44);
-    [undoButton setTitle:@"clear" forState:UIControlStateNormal];
+    [undoButton setTitle:@"undo" forState:UIControlStateNormal];
     [self setupButtonStyle:undoButton];
-    [undoButton addTarget:self.superview action:@selector(clearDisplay) forControlEvents:UIControlEventTouchUpInside];
+    [undoButton addTarget:self.superview action:@selector(undoMove) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:undoButton];
     
     KeypadButton *doneButton = [KeypadButton buttonWithType:UIButtonTypeCustom];

@@ -73,7 +73,10 @@
         [cell.nameLabel setText:[cell.nameLabel.text stringByAppendingString:@" \ue131"]];
     }
     
-    // save data
+    [self saveGames];
+}
+
+- (void)saveGames {
     NSUserDefaults *userDefault=[NSUserDefaults standardUserDefaults];
     NSData *myEncodedActive = [NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames];
     [userDefault setObject:myEncodedActive forKey:[NSString stringWithFormat:@"activeGames"]];
@@ -85,12 +88,44 @@
 
 - (void)updatePlayerScore:(int)player
 {
+    NSLog(@"MOVE");
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:player inSection:0];
 	PlayerCell* cell = (PlayerCell *)[playerList cellForRowAtIndexPath:indexPath];
     NSInteger newValue = [keypad.display.text intValue]+[cell.scoreLabel.text intValue];
+
+    // update display
     [cell.scoreLabel setText:[NSString stringWithFormat:@"%d", newValue]];
     [self.game.gamePlayersScore replaceObjectAtIndex:player withObject:[NSNumber numberWithInt:newValue]];
     cell.progressBar.progress = (float) newValue / [self.game.gameEndScore intValue];
+    
+    // add to turn array
+    NSArray *move = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:player], [NSNumber numberWithInt:[keypad.display.text intValue]], nil];
+    [self.game.gameMoves addObject:move];
+}
+
+- (void)undoMove {
+    NSLog(@"UNDO");
+    NSArray *move = [self.game.gameMoves lastObject];
+    int player = [[move objectAtIndex:0] intValue];
+    int moveValue = [[move objectAtIndex:1] intValue];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:player inSection:0];
+	PlayerCell* cell = (PlayerCell *)[playerList cellForRowAtIndexPath:indexPath];
+    NSInteger newValue = [cell.scoreLabel.text intValue]-moveValue;
+    
+    // update display
+    [cell.scoreLabel setText:[NSString stringWithFormat:@"%d", newValue]];
+    [self.game.gamePlayersScore replaceObjectAtIndex:player withObject:[NSNumber numberWithInt:newValue]];
+    cell.progressBar.progress = (float) newValue / [self.game.gameEndScore intValue];
+    
+    [self.game.gameMoves removeLastObject];
+
+    // select proper player
+    [self.game setGamePlayersTurn:player];
+    [playerList selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
+
+    keypad.display.text = @"0";
+    [self saveGames];
 }
 
 - (void)setDetailItem:(id)newDetailItem

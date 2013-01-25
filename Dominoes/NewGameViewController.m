@@ -556,19 +556,18 @@
     
     // get the field values    
     Game *game = [[Game alloc] init];
+    game.gameActive = YES;
     game.gamePlayers = defaultGamePlayers;
     game.gameSurface = [defaultGameSettings objectAtIndex:3];
     game.gameEndScore = [defaultGameSettings objectAtIndex:1];
     game.gameTitle = [defaultGameSettings objectAtIndex:2];
     game.gamePlayersTurn = defaultGamePlayersTurn;
-
     game.gamePlayersScore = [[NSMutableArray alloc] init];
+    game.gameMoves = [[NSMutableArray alloc] init];
     int i;
     for (i=0; i<[game.gamePlayers count]; i++) {
         [game.gamePlayersScore addObject:[NSNumber numberWithInt:0]];
     }
-    
-    game.gameActive = YES;
     
     // save the values as the defaults
     if(defaultGameSave){
