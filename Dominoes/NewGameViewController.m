@@ -312,9 +312,8 @@
             inputField.tag = indexPath.row;
             inputField.clearButtonMode = UITextFieldViewModeWhileEditing;
             inputField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-            //NSLog(@"inputField TAG: %i",inputField.tag);
-            
-            [cell addSubview:inputField];
+            cell.accessoryView = inputField;
+            //[cell addSubview:inputField];
         }
 
         if (indexPath.section==0 && indexPath.row==defaultGamePlayers.count) {
@@ -360,7 +359,8 @@
                 scoreInputField.returnKeyType = UIReturnKeyDone;
                 scoreInputField.textAlignment = UITextAlignmentRight;
                 scoreInputField.tag = 201;
-                [cell addSubview:scoreInputField];
+                cell.accessoryView = scoreInputField;
+                //[cell addSubview:scoreInputField];
             }
             
             cell.backgroundColor = [UIColor whiteColor];
@@ -383,8 +383,9 @@
                 inputField.keyboardType = UIKeyboardTypeDefault;
                 inputField.returnKeyType = UIReturnKeyDone;
                 inputField.textAlignment = UITextAlignmentRight;
-                inputField.tag = 202;                
-                [cell addSubview:inputField];
+                inputField.tag = 202;
+                cell.accessoryView = inputField;
+                //[cell addSubview:inputField];
             }
             
             cell.backgroundColor = [UIColor whiteColor];
