@@ -12,7 +12,7 @@
 @implementation NewGameViewController
 
 @synthesize delegate;
-@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave, defaultGamePlayersTurn, imgPicker, settingsList, bannerView;
+@synthesize defaultGame, defaultGamePlayers, defaultGameSettings, defaultGameSave, defaultGamePlayersTurn, imgPicker, settingsList, bannerView, actifText;
 
 - (void)didReceiveMemoryWarning
 {
@@ -28,6 +28,17 @@
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    // Register notification when the keyboard will be hide
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
@@ -198,6 +209,7 @@
         UIInterfaceOrientation orientation = self.interfaceOrientation;
         [self changeBannerOrientation:orientation];
     }
+    [settingsList reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -399,6 +411,7 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.actifText = nil;
     if (textField.tag==201) {
         NSNumber *gameES = [NSNumber numberWithInt:[textField.text intValue]];
         [defaultGameSettings replaceObjectAtIndex:1 withObject:gameES];
@@ -599,6 +612,73 @@
             [self.view endEditing:YES];
         }
     }
+}
+
+- (IBAction)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.actifText = textField;
+}
+
+// To be link with your TextField event "Editing Did End"
+//  release current TextField
+-(void) keyboardWillShow:(NSNotification *)note
+{
+    // Get the keyboard size
+    CGRect keyboardBounds;
+    [[note.userInfo valueForKey:UIKeyboardFrameBeginUserInfoKey] getValue: &keyboardBounds];
+    
+    // Detect orientation
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGRect frame = self.settingsList.frame;
+    
+    // Start animation
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3f];
+    
+    // Reduce size of the Table view
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+        frame.size.height -= keyboardBounds.size.height;
+    else
+        frame.size.height -= keyboardBounds.size.width;
+    
+    // Apply new size of table view
+    self.settingsList.frame = frame;
+    
+    // Scroll the table view to see the TextField just above the keyboard
+    if (self.actifText)
+    {
+        CGRect textFieldRect = [self.settingsList convertRect:self.actifText.bounds fromView:self.actifText];
+        [self.settingsList scrollRectToVisible:textFieldRect animated:NO];
+    }
+    
+    [UIView commitAnimations];
+}
+
+-(void) keyboardWillHide:(NSNotification *)note
+{
+    // Get the keyboard size
+    CGRect keyboardBounds;
+    [[note.userInfo valueForKey:UIKeyboardFrameBeginUserInfoKey] getValue: &keyboardBounds];
+    
+    // Detect orientation
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGRect frame = self.settingsList.frame;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3f];
+    
+    // Reduce size of the Table view
+    if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown)
+        frame.size.height += keyboardBounds.size.height;
+    else
+        frame.size.height += keyboardBounds.size.width;
+    
+    // Apply new size of table view
+    self.settingsList.frame = frame;
+    
+    [UIView commitAnimations];
 }
 
 @end

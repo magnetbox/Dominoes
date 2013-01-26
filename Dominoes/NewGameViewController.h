@@ -26,6 +26,7 @@
     BOOL defaultGameSave;
     UITableView *settingsList;
     ADBannerView *bannerView;
+    UITextField *actifText;
 }
 @property (nonatomic, retain) NSMutableArray *defaultGame;
 @property (nonatomic, retain) NSMutableArray *defaultGamePlayers;
@@ -35,8 +36,14 @@
 @property (nonatomic, retain) UIImagePickerController *imgPicker;
 @property (nonatomic, retain) UITableView *settingsList;
 @property (nonatomic, retain) ADBannerView *bannerView;
-
 @property (nonatomic, weak) id <NewGameViewControllerDelegate> delegate;
+@property (nonatomic, retain) IBOutlet UITextField *actifText;
+
+- (IBAction)textFieldDidBeginEditing:(UITextField *)textField;
+- (IBAction)textFieldDidEndEditing:(UITextField *)textField;
+
+-(void) keyboardWillHide:(NSNotification *)note;
+-(void) keyboardWillShow:(NSNotification *)note;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
