@@ -348,7 +348,7 @@
             
             NSString *cellIdentifier = @"ScoreCell";
             UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            UITextField *scoreInputField = [[UITextField alloc] initWithFrame:CGRectMake(tableView.bounds.size.width-195,12,175,30)];
+            UITextField *scoreInputField = [[UITextField alloc] initWithFrame:CGRectMake(tableView.bounds.size.width-175,12,155,30)];
             
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -358,6 +358,7 @@
                 scoreInputField.keyboardType = UIKeyboardTypeNumberPad;
                 scoreInputField.returnKeyType = UIReturnKeyDone;
                 scoreInputField.textAlignment = UITextAlignmentRight;
+                scoreInputField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
                 scoreInputField.tag = 201;
                 cell.accessoryView = scoreInputField;
                 //[cell addSubview:scoreInputField];
@@ -383,6 +384,7 @@
                 inputField.keyboardType = UIKeyboardTypeDefault;
                 inputField.returnKeyType = UIReturnKeyDone;
                 inputField.textAlignment = UITextAlignmentRight;
+                inputField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
                 inputField.tag = 202;
                 cell.accessoryView = inputField;
                 //[cell addSubview:inputField];
