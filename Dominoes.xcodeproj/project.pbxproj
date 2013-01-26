@@ -32,6 +32,12 @@
 		BB96F3DD16A3955E00E79D58 /* KeypadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BB96F3DC16A3955E00E79D58 /* KeypadButton.m */; };
 		BB9C7A7016A3B80000712064 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9C7A6F16A3B80000712064 /* iAd.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		BB9DCEAC1485DD8700C0E306 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCEAB1485DD8700C0E306 /* Game.m */; };
+		BBB9974A16B4931200DC100E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BBB9974916B4931200DC100E /* Default.png */; };
+		BBB9974D16B4931600DC100E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBB9974C16B4931600DC100E /* Default@2x.png */; };
+		BBB9975216B4949400DC100E /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = BBB9974E16B4949400DC100E /* Icon-Small.png */; };
+		BBB9975316B4949400DC100E /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBB9974F16B4949400DC100E /* Icon-Small@2x.png */; };
+		BBB9975416B4949400DC100E /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = BBB9975016B4949400DC100E /* iTunesArtwork */; };
+		BBB9975516B4949400DC100E /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = BBB9975116B4949400DC100E /* iTunesArtwork@2x */; };
 		BBC56F32169157F400E2E707 /* KeypadView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC56F31169157F400E2E707 /* KeypadView.m */; };
 		BBD635EA167E8DA20064AC7F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
@@ -84,6 +90,12 @@
 		BB9C7A6F16A3B80000712064 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		BB9DCEAA1485DD8700C0E306 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		BB9DCEAB1485DD8700C0E306 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		BBB9974916B4931200DC100E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		BBB9974C16B4931600DC100E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		BBB9974E16B4949400DC100E /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		BBB9974F16B4949400DC100E /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		BBB9975016B4949400DC100E /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		BBB9975116B4949400DC100E /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
 		BBC56F30169157F400E2E707 /* KeypadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeypadView.h; sourceTree = "<group>"; };
 		BBC56F31169157F400E2E707 /* KeypadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeypadView.m; sourceTree = "<group>"; };
 		BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -210,9 +222,15 @@
 			children = (
 				BB724DBA16AF9AAD00FD8327 /* grey.png */,
 				BB724DB716AF999D00FD8327 /* px_by_Gre3g.png */,
+				BBB9974916B4931200DC100E /* Default.png */,
+				BBB9974C16B4931600DC100E /* Default@2x.png */,
 				BBD635E9167E8DA20064AC7F /* Default-568h@2x.png */,
-				BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */,
 				BB6EF5A3167B06FB007F7B4E /* Icon.png */,
+				BB6EF5A5167B06FF007F7B4E /* Icon@2x.png */,
+				BBB9974E16B4949400DC100E /* Icon-Small.png */,
+				BBB9974F16B4949400DC100E /* Icon-Small@2x.png */,
+				BBB9975016B4949400DC100E /* iTunesArtwork */,
+				BBB9975116B4949400DC100E /* iTunesArtwork@2x */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -295,6 +313,12 @@
 				BBD635EA167E8DA20064AC7F /* Default-568h@2x.png in Resources */,
 				BB724DB816AF999D00FD8327 /* px_by_Gre3g.png in Resources */,
 				BB724DBB16AF9AAD00FD8327 /* grey.png in Resources */,
+				BBB9974A16B4931200DC100E /* Default.png in Resources */,
+				BBB9974D16B4931600DC100E /* Default@2x.png in Resources */,
+				BBB9975216B4949400DC100E /* Icon-Small.png in Resources */,
+				BBB9975316B4949400DC100E /* Icon-Small@2x.png in Resources */,
+				BBB9975416B4949400DC100E /* iTunesArtwork in Resources */,
+				BBB9975516B4949400DC100E /* iTunesArtwork@2x in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,8 @@
 
 @synthesize gameList, bannerView;
 
+//#define SCREENSHOTMODE
+
 #pragma mark - View lifecycle
 
 - (void)awakeFromNib
@@ -110,6 +112,13 @@
     if (![self didRemoveAds]) {
         [self createBannerView];
     }
+
+    #ifdef SCREENSHOTMODE
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.rightBarButtonItem = nil;
+        self.title = nil;
+        [self deactivateContentForSubviewsInView:self.view];
+    #endif
 
 }
 
@@ -537,5 +546,28 @@
  return YES;
  }
  */
+
+#ifdef SCREENSHOTMODE
+- (void)deactivateContentForSubviewsInView:(UIView *)contentView {
+    for (UIView *aView in contentView.subviews) {
+        if ([aView isKindOfClass:[UILabel class]]) {
+            [(UILabel *)aView setText:nil];
+        }
+        else if ([aView isKindOfClass:[UITableView class]]) {
+            [(UITableView *)aView setDataSource:nil];
+        }
+        else if ([aView isKindOfClass:[UIToolbar class]]) {
+            [(UIToolbar *)aView setItems:nil];
+        }
+        else if ([aView isKindOfClass:[UIImageView class]]) {
+            [(UIImageView *)aView setImage:nil];
+        }
+        else if ([aView isKindOfClass:[UIView class]]) {
+            // i often put views in UIViews to group them
+            [self deactivateContentForSubviewsInView:aView];
+        }
+    }
+}
+#endif
 
 @end
