@@ -299,7 +299,7 @@
         
         NSString *cellIdentifier = @"PlayerCell";
         UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,8,184,30)];
+        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(tableView.bounds.size.width-190,8,175,30)];
         
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -349,7 +349,7 @@
             
             NSString *cellIdentifier = @"ScoreCell";
             UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            UITextField *scoreInputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,178,30)];
+            UITextField *scoreInputField = [[UITextField alloc] initWithFrame:CGRectMake(tableView.bounds.size.width-195,12,175,30)];
             
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -373,7 +373,7 @@
             
             NSString *cellIdentifier = @"TitleCell";
             UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(120,12,178,30)];
+            UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(tableView.bounds.size.width-195,12,175,30)];
             
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -403,6 +403,11 @@
             }
             cell.backgroundColor = [UIColor whiteColor];
             cell.textLabel.text = @"Save as new defaults";
+            if (defaultGameSave) {
+                cell.detailTextLabel.text = @"Yes";
+            } else {
+                cell.detailTextLabel.text = @"No";
+            }
             return cell;
             
         }
@@ -547,6 +552,7 @@
     } else {
         defaultGameSave = NO;
     }
+    [settingsList reloadData];
 }
 
 #pragma mark - NewGameViewControllerDelegate
@@ -623,6 +629,8 @@
 //  release current TextField
 -(void) keyboardWillShow:(NSNotification *)note
 {
+    [self hideBanner];
+    
     // Get the keyboard size
     CGRect keyboardBounds;
     [[note.userInfo valueForKey:UIKeyboardFrameBeginUserInfoKey] getValue: &keyboardBounds];
@@ -657,6 +665,8 @@
 
 -(void) keyboardWillHide:(NSNotification *)note
 {
+    [self showBanner];
+    
     // Get the keyboard size
     CGRect keyboardBounds;
     [[note.userInfo valueForKey:UIKeyboardFrameBeginUserInfoKey] getValue: &keyboardBounds];
