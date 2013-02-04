@@ -47,9 +47,13 @@
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.game gamePlayersTurn] inSection:0];
     [playerList selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
-    [self clearDisplay];
 
-    // if someone has reached the end score, the game is done so set it to be inactive
+    [self clearDisplay];
+    [self setGameStatus];
+    [self saveGames];
+}
+
+- (void)setGameStatus {
     int highestScore = 0;
     int highestScorePlayer = 0;
     for (int i=0; i<[self.game.gamePlayersScore count]; i++) {
@@ -67,13 +71,12 @@
         PlayerCell *cell = (PlayerCell*)[playerList cellForRowAtIndexPath:playerIndexPath];
         [cell.nameLabel setText:[cell.nameLabel.text stringByReplacingOccurrencesOfString:@" \ue131" withString:@""]];
     }
+
     if (self.game.gameActive==NO) {
         NSIndexPath *winnerIndexPath = [NSIndexPath indexPathForRow:highestScorePlayer inSection:0];
         PlayerCell *cell = (PlayerCell*)[playerList cellForRowAtIndexPath:winnerIndexPath];
         [cell.nameLabel setText:[cell.nameLabel.text stringByAppendingString:@" \ue131"]];
     }
-    
-    [self saveGames];
 }
 
 - (void)saveGames {
@@ -270,7 +273,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];    
+    [super viewDidAppear:animated];
+    [self setGameStatus];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
