@@ -459,7 +459,11 @@
 {
     // Return NO if you do not want the specified item to be editable.
     if (indexPath.section==0) {
-        return YES;
+        if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
+            return NO;
+        } else {
+            return YES;
+        }
     } else if (indexPath.section == 1 && indexPath.row == 2) {
         return YES;
     } else {

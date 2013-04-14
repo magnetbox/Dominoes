@@ -506,8 +506,11 @@
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
  {
- // Return NO if you do not want the specified item to be editable.
- return YES;
+     if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
+         return NO;
+     } else {
+         return YES;
+     }
  }
 
  // Override to support editing the table view.
