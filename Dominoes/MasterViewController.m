@@ -249,6 +249,16 @@
     if(indexPath) {
         [self.gameList deselectRowAtIndexPath:indexPath animated:YES];
     }
+
+    if ([self didRemoveAds]) {
+        self.navigationItem.leftBarButtonItem = nil;
+    } else {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                                                 initWithTitle:@"- Ads"
+                                                 style:UIBarButtonItemStylePlain
+                                                 target:self action:@selector(buyUpgrade)];
+    }
+    
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -335,6 +345,7 @@
                 NSLog(@"SAVED TO USERDEFAULTS");
                 [self hideBanner];
                 [gameList reloadData];
+                self.navigationItem.leftBarButtonItem = nil;
                 NSLog(@"STORE: New purchase success");
                 break;
             }
@@ -431,7 +442,7 @@
 	if(section == 0) {
 		sectionHeader = @"In progress";
 	}
-	if(section == 1) {
+	if(section == 1 && [appDelegate.inactiveGames count]>0) {
 		sectionHeader = @"Completed";
 	}
 	
@@ -445,7 +456,7 @@
         //return 1 extra row for new game button in active games section
         return [sectionContents count]+1;
     } else {
-        return [sectionContents count]+1;
+        return [sectionContents count];
     }
 }
 
@@ -465,20 +476,6 @@
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         cell.textLabel.text = @"+ Start new game";
         cell.backgroundColor = [UIColor whiteColor];
-        return cell;
-    }
-    
-    if (indexPath.section==1 && indexPath.row==sectionContents.count) {
-        UITableViewCell *cell = [[UITableViewCell alloc] init];
-        if ([self didRemoveAds]) {
-            cell.textLabel.text = @"+ Upgraded to remove ads";
-            cell.userInteractionEnabled = NO;
-            cell.textLabel.enabled = NO;
-            cell.detailTextLabel.enabled = NO;
-        } else {
-            cell.textLabel.text = @"+ Upgrade to remove ads";
-            cell.backgroundColor = [UIColor whiteColor];
-        }
         return cell;
     }
     
@@ -506,7 +503,7 @@
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
  {
-     if (indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
+     if (indexPath.section == 0 && indexPath.row == [tableView numberOfRowsInSection:indexPath.section] - 1) {
          return NO;
      } else {
          return YES;
@@ -516,22 +513,21 @@
  // Override to support editing the table view.
  - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
  {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source.
-     if (indexPath.section==0) {
-         [appDelegate.activeGames removeObjectAtIndex:indexPath.row];
-         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames] forKey:@"activeGames"];
-     } else {
-         [appDelegate.inactiveGames removeObjectAtIndex:indexPath.row];
-         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.inactiveGames] forKey:@"inactiveGames"];
-         
+     if (editingStyle == UITableViewCellEditingStyleDelete) {
+     // Delete the row from the data source.
+         if (indexPath.section==0) {
+             [appDelegate.activeGames removeObjectAtIndex:indexPath.row];
+             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.activeGames] forKey:@"activeGames"];
+         } else {
+             [appDelegate.inactiveGames removeObjectAtIndex:indexPath.row];
+             [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:appDelegate.inactiveGames] forKey:@"inactiveGames"];
+             
+         }
+         [[NSUserDefaults standardUserDefaults] synchronize];
+         NSLog(@"SAVED TO USERDEFAULTS");
+         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+         [self.gameList reloadData];
      }
-     [[NSUserDefaults standardUserDefaults] synchronize];
-     NSLog(@"SAVED TO USERDEFAULTS");
-     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
- }
  }
 
 /*
