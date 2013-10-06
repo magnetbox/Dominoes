@@ -28,7 +28,7 @@
     NSInteger curWidth = floor([self progress] * maxWidth);
     
     CGContextAddRect(context, CGRectMake(rect.origin.x, rect.origin.y, curWidth, rect.size.height));
-    CGContextSetRGBFillColor(context, 255.0f, 255.0f, 255.0f, 0.9f);
+    CGContextSetRGBFillColor(context, 255.0f, 255.0f, 255.0f, 1.0f);
     CGContextFillPath(context);
 }
 

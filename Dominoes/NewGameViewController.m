@@ -39,7 +39,7 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
 
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    //self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *defaultGameArraySavedArray = [currentDefaults objectForKey:@"defaultGame"];

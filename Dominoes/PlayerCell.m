@@ -48,7 +48,9 @@
         scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.adjustsFontSizeToFitWidth = NO;
         
-        progressBar = [[PlayerProgress alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+        progressBar = [[PlayerProgress alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+        progressBar.backgroundColor = [UIColor clearColor];
+        progressBar.tintColor = [UIColor whiteColor];
         
         //[self.contentView addSubview:bgColorView];
         [self.contentView addSubview:nameLabel];
