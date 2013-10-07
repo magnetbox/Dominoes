@@ -29,13 +29,29 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    //self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    } else {
+        self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
+        self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        self.navigationController.navigationBar.translucent = NO;
+        self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    }
     
     /*
     appDelegate.activeGames = [NSMutableArray arrayWithCapacity:10];
@@ -477,6 +493,7 @@
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         cell.textLabel.text = @"+ Start new game";
         cell.backgroundColor = [UIColor whiteColor];
+        cell.textLabel.textColor = [UIColor brownColor];
         return cell;
     }
     

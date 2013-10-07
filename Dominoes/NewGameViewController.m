@@ -39,7 +39,16 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
 
-    //self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    } else {
+        self.navigationController.navigationBar.backgroundColor = [UIColor blackColor];
+        self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        self.navigationController.navigationBar.translucent = NO;
+        self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    }
 
     NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
     NSData *defaultGameArraySavedArray = [currentDefaults objectForKey:@"defaultGame"];

@@ -50,7 +50,9 @@
         
         progressBar = [[PlayerProgress alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
         progressBar.backgroundColor = [UIColor clearColor];
-        progressBar.tintColor = [UIColor whiteColor];
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+            progressBar.tintColor = [UIColor whiteColor];
+        }
         
         //[self.contentView addSubview:bgColorView];
         [self.contentView addSubview:nameLabel];
