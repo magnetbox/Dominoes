@@ -33,7 +33,7 @@
         bgColorView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
         self.selectedBackgroundView = bgColorView;
         
-        nameLabel = [[UILabel alloc]init];
+        nameLabel = [[UILabel alloc] init];
         nameLabel.textAlignment = UITextAlignmentLeft;
         nameLabel.font = [UIFont boldSystemFontOfSize:24.0];
         nameLabel.textColor = [UIColor whiteColor];
@@ -41,7 +41,7 @@
         nameLabel.adjustsFontSizeToFitWidth = NO;
         nameLabel.lineBreakMode = UILineBreakModeTailTruncation;
         
-        scoreLabel = [[UILabel alloc]init];
+        scoreLabel = [[UILabel alloc] init];
         scoreLabel.textAlignment = UITextAlignmentRight;
         scoreLabel.font = [UIFont boldSystemFontOfSize:48.0];
         scoreLabel.textColor = [UIColor whiteColor];

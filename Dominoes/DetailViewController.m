@@ -220,7 +220,7 @@
     NSString *playerScoreString = [playerScore stringValue];
     
     cell.backgroundColor = [UIColor clearColor];
-    cell.nameLabel.text = playerName;
+    cell.nameLabel.text = playerName;    
     cell.scoreLabel.text = playerScoreString;
     cell.progressBar.progress = (float) [playerScore intValue] / [gameEndScore intValue];
     

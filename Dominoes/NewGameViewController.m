@@ -332,6 +332,7 @@
             return cell;
         }
 
+        NSLog(@"PLAYER DATA: %@",[defaultGamePlayers objectAtIndex:indexPath.row]);
         cell.textLabel.text = @"Name";
         inputField.text = [defaultGamePlayers objectAtIndex:indexPath.row];
         inputField.delegate = self;
@@ -533,8 +534,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0 && indexPath.row==[defaultGamePlayers count]) {
-        [defaultGamePlayers addObject:[NSString stringWithFormat:@"Player %d",indexPath.row+1]];
+        NSLog(@"ADD PLAYER %d",[defaultGamePlayers count]+1);
+        [defaultGamePlayers addObject:[NSString stringWithFormat:@"Player %d",[defaultGamePlayers count]+1]];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[defaultGamePlayers count]-1 inSection:0];
+        NSLog(@"INTO INDEXPATH %@",indexPath);
         [settingsList insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                               withRowAnimation:UITableViewRowAnimationAutomatic];
         [settingsList reloadData];
