@@ -270,10 +270,12 @@
     if ([self didRemoveAds]) {
         self.navigationItem.leftBarButtonItem = nil;
     } else {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+        if ([self connected]) {
+            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
                                                  initWithTitle:@"- Ads"
                                                  style:UIBarButtonItemStylePlain
                                                  target:self action:@selector(buyUpgrade)];
+        }
     }
     
 }
@@ -563,6 +565,13 @@
  return YES;
  }
  */
+
+- (BOOL)connected
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return !(networkStatus == NotReachable);
+}
 
 #ifdef SCREENSHOTMODE
 - (void)deactivateContentForSubviewsInView:(UIView *)contentView {

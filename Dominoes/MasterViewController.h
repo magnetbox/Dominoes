@@ -11,6 +11,8 @@
 #import <StoreKit/StoreKit.h>
 #import "NewGameViewController.h"
 #import "AppDelegate.h"
+#import "Reachability.h"
+#import <SystemConfiguration/SystemConfiguration.h>
 
 @interface MasterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ADBannerViewDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver, NewGameViewControllerDelegate> {
     AppDelegate *appDelegate;
@@ -21,5 +23,6 @@
 
 @property (nonatomic, retain) UITableView *gameList;
 @property (nonatomic, retain) ADBannerView *bannerView;
+- (BOOL)connected;
 
 @end
