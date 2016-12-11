@@ -47,7 +47,8 @@
 -(id)setupButtonStyle:(UIButton*)button{
     button.clipsToBounds = YES;
     button.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.9];
-    button.titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:40.0];
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(-6.0f, 0.0f, 0.0f, 0.0f)];
     [button setTitleColor:[UIColor colorWithRed:82.0f/255.0f green:92.0f/255.0f blue:105.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
     [button setTitleShadowColor:[UIColor colorWithWhite:1.0f alpha:0.8f] forState:UIControlStateNormal];
     [button.titleLabel setShadowOffset:CGSizeMake(0.0f, 1.0f)];
@@ -81,14 +82,14 @@
     
     KeypadButton *undoButton = [KeypadButton buttonWithType:UIButtonTypeCustom];
     undoButton.frame = CGRectMake(142,12,66,44);
-    [undoButton setTitle:@"undo" forState:UIControlStateNormal];
+    [undoButton setTitle:@"–" forState:UIControlStateNormal];
     [self setupButtonStyle:undoButton];
     [undoButton addTarget:self.superview action:@selector(undoMove) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:undoButton];
     
     KeypadButton *doneButton = [KeypadButton buttonWithType:UIButtonTypeCustom];
     doneButton.frame = CGRectMake(216,12,66,44);
-    [doneButton setTitle:@"done" forState:UIControlStateNormal];
+    [doneButton setTitle:@"+" forState:UIControlStateNormal];
     [self setupButtonStyle:doneButton];
     [doneButton addTarget:self.superview action:@selector(endTurn:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:doneButton];
