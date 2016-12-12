@@ -34,12 +34,12 @@
     keypad.display.text = @"0";
 }
 
-- (void)endTurn:(id)sender {
+- (void)endTurnAdd:(id)sender {
     NSLog(@"END TURN");
     
     // update score display
-    [self updatePlayerScore:[self.game gamePlayersTurn]];
-
+    [self updatePlayerScoreAdd:[self.game gamePlayersTurn]];
+    
     // select next player
     [self.game setGamePlayersTurn:[self.game gamePlayersTurn] + 1];
     if ([self.game gamePlayersTurn]>([[self.game gamePlayers] count]-1)) {
@@ -47,7 +47,26 @@
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.game gamePlayersTurn] inSection:0];
     [playerList selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    
+    [self clearDisplay];
+    [self setGameStatus];
+    [self saveGames];
+}
 
+- (void)endTurnSub:(id)sender {
+    NSLog(@"END TURN");
+    
+    // update score display
+    [self updatePlayerScoreSub:[self.game gamePlayersTurn]];
+    
+    // select next player
+    [self.game setGamePlayersTurn:[self.game gamePlayersTurn] + 1];
+    if ([self.game gamePlayersTurn]>([[self.game gamePlayers] count]-1)) {
+        [self.game setGamePlayersTurn:0];
+    }
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.game gamePlayersTurn] inSection:0];
+    [playerList selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    
     [self clearDisplay];
     [self setGameStatus];
     [self saveGames];
@@ -89,13 +108,30 @@
     NSLog(@"SAVED TO USERDEFAULTS");
 }
 
-- (void)updatePlayerScore:(int)player
+- (void)updatePlayerScoreAdd:(int)player
 {
     NSLog(@"MOVE");
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:player inSection:0];
-	PlayerCell* cell = (PlayerCell *)[playerList cellForRowAtIndexPath:indexPath];
+    PlayerCell* cell = (PlayerCell *)[playerList cellForRowAtIndexPath:indexPath];
     NSInteger newValue = [keypad.display.text intValue]+[cell.scoreLabel.text intValue];
+    
+    // update display
+    [cell.scoreLabel setText:[NSString stringWithFormat:@"%d", newValue]];
+    [self.game.gamePlayersScore replaceObjectAtIndex:player withObject:[NSNumber numberWithInt:newValue]];
+    cell.progressBar.progress = (float) newValue / [self.game.gameEndScore intValue];
+    
+    // add to turn array
+    NSArray *move = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:player], [NSNumber numberWithInt:[keypad.display.text intValue]], nil];
+    [self.game.gameMoves addObject:move];
+}
 
+- (void)updatePlayerScoreSub:(int)player
+{
+    NSLog(@"MOVE");
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:player inSection:0];
+    PlayerCell* cell = (PlayerCell *)[playerList cellForRowAtIndexPath:indexPath];
+    NSInteger newValue = [cell.scoreLabel.text intValue]-[keypad.display.text intValue];
+    
     // update display
     [cell.scoreLabel setText:[NSString stringWithFormat:@"%d", newValue]];
     [self.game.gamePlayersScore replaceObjectAtIndex:player withObject:[NSNumber numberWithInt:newValue]];

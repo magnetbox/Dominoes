@@ -14,7 +14,8 @@
 @protocol KeypadViewControllerDelegate <UITableViewDelegate>
 - (void)buttonPressed:(id)sender;
 - (void)clearDisplay;
-- (void)endTurn:(id)sender;
+- (void)endTurnAdd:(id)sender;
+- (void)endTurnSub:(id)sender;
 @end
 
 @interface DetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
