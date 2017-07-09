@@ -23,13 +23,13 @@
 #pragma mark NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeInt:self.gameId forKey:@"GameId"];
+    [aCoder encodeInt:(int)self.gameId forKey:@"GameId"];
     [aCoder encodeObject:self.gameTitle forKey:@"GameTitle"];
     [aCoder encodeObject:self.gameEndScore forKey:@"GameEndScore"];
     [aCoder encodeObject:self.gameSurface forKey:@"GameSurface"];
     [aCoder encodeObject:self.gamePlayers forKey:@"GamePlayers"];
     [aCoder encodeObject:self.gamePlayersScore forKey:@"GamePlayersScore"];
-    [aCoder encodeInt:self.gamePlayersTurn forKey:@"GamePlayersTurn"];
+    [aCoder encodeInt:(int)self.gamePlayersTurn forKey:@"GamePlayersTurn"];
     [aCoder encodeObject:self.gameMoves forKey:@"GameMoves"];
     [aCoder encodeBool:self.gameActive forKey:@"GameActive"];
 }

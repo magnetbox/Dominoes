@@ -24,9 +24,9 @@
 #pragma mark - Managing the detail item
 
 - (void)buttonPressed:(id)sender {
-    NSLog(@"DIGIT PRESSED: %d", [sender tag]);
+    NSLog(@"DIGIT PRESSED: %ld", (long)[sender tag]);
     NSInteger total = [keypad.display.text intValue];
-    keypad.display.text = [NSString stringWithFormat:@"%d", total+[sender tag]];
+    keypad.display.text = [NSString stringWithFormat:@"%ld", total+[sender tag]];
 }
 
 - (void)clearDisplay {
@@ -38,7 +38,7 @@
     NSLog(@"END TURN");
     
     // update score display
-    [self updatePlayerScore:[self.game gamePlayersTurn]];
+    [self updatePlayerScore:(int)[self.game gamePlayersTurn]];
 
     // select next player
     [self.game setGamePlayersTurn:[self.game gamePlayersTurn] + 1];
@@ -97,8 +97,8 @@
     NSInteger newValue = [keypad.display.text intValue]+[cell.scoreLabel.text intValue];
 
     // update display
-    [cell.scoreLabel setText:[NSString stringWithFormat:@"%d", newValue]];
-    [self.game.gamePlayersScore replaceObjectAtIndex:player withObject:[NSNumber numberWithInt:newValue]];
+    [cell.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)newValue]];
+    [self.game.gamePlayersScore replaceObjectAtIndex:player withObject:[NSNumber numberWithInt:(int)newValue]];
     cell.progressBar.progress = (float) newValue / [self.game.gameEndScore intValue];
     
     // add to turn array
@@ -117,8 +117,8 @@
     NSInteger newValue = [cell.scoreLabel.text intValue]-moveValue;
     
     // update display
-    [cell.scoreLabel setText:[NSString stringWithFormat:@"%d", newValue]];
-    [self.game.gamePlayersScore replaceObjectAtIndex:player withObject:[NSNumber numberWithInt:newValue]];
+    [cell.scoreLabel setText:[NSString stringWithFormat:@"%ld", (long)newValue]];
+    [self.game.gamePlayersScore replaceObjectAtIndex:player withObject:[NSNumber numberWithInt:(int)newValue]];
     cell.progressBar.progress = (float) newValue / [self.game.gameEndScore intValue];
     
     [self.game.gameMoves removeLastObject];
@@ -201,13 +201,13 @@
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger rows = [[self.game gamePlayers] count];
-    NSLog(@"PLAYERS: %d",rows);
+    NSLog(@"PLAYERS: %ld",(long)rows);
     return rows;
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-	NSString* CellIdentifier = [NSString stringWithFormat:@"Cell-%i", indexPath.row];
+	NSString* CellIdentifier = [NSString stringWithFormat:@"Cell-%li", (long)indexPath.row];
     
 	PlayerCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil)
